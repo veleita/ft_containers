@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:44:24 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:06:41 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,75 @@ namespace ft
 
 	template<class T>
 		struct enable_if<true, T>	{	typedef T type;	};
+
+
+	/*
+	 * PAIR
+	 *
+	 * Provides a way to store two heterogeneous objects as a single unit.
+	 *
+	 * Reference: https://en.cppreference.com/w/cpp/utility/pair
+	 *
+	 */
+	template <class T1, class T2>
+		class pair
+		{
+			public:
+				/* Public attributes */
+				T1	first;
+				T2	second;
+
+
+				/* Constructors */
+				pair() : first(0), second(0) {};
+
+				template<class U, class V>
+				pair(const pair<U, V> &copy) : first(copy.first), second(copy.second) {};
+
+				pair(T1 first, T2 second) : first(first), second(second) {};
+
+
+				/* Operator overloads (=, ==, !=, <, <=, >, >=) */
+				pair	&operator=(const pair &rhs)
+				{
+					if (*this == rhs)
+						return (*this);
+					this->first = rhs.first;
+					this->second = rhs.second;
+					return (*this);
+				}
+				
+				bool	operator==(const ft::pair<T1,T2>& rhs)
+				{
+					return (this->first == rhs.first && this->second == rhs.second);
+				}
+				
+				bool operator!= (const ft::pair<T1,T2>& rhs)
+				{
+					return (this->first != rhs.first && this->second != rhs.second);
+				}
+		
+				bool operator< (const ft::pair<T1,T2>& rhs)
+				{
+					return (this->first < rhs.first && this->second < rhs.second);
+				}
+		
+				bool operator<= (const ft::pair<T1,T2>& rhs)
+				{
+					return (this->first <= rhs.first && this->second <= rhs.second);
+				}
+
+				bool operator> (const ft::pair<T1,T2>& rhs)
+				{
+					return (this->first > rhs.first && this->second > rhs.second);
+				}
+
+				bool operator>= (const ft::pair<T1,T2>& rhs)
+				{
+					return (this->first >= rhs.first && this->second >= rhs.second);
+				}
+
+				/* Destructor */
+				~pair() {};
+		};
 };

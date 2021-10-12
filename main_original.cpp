@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:20:19 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:37:44 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:51:54 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int main()
     std::cout << "bool: " << std::is_integral<bool>::value << '\n';
     
 	f(123);		// If the arguments for f() are not integrals, code does not compile
-    */
     
 	std::cout << "enable_if()" << std::endl;
     std::cout << "-----------------" << std::endl;
@@ -61,6 +60,20 @@ int main()
 
 	std::cout << std::boolalpha;
 	std::cout << "i is odd: " << is_odd(i) << std::endl;
+    */
+ 
+	std::cout << "pair< , >" << std::endl;
+    std::cout << "-----------------" << std::endl;
+	
+
+    std::pair<int, float> p1;
+	std::cout << "Value-initialized: " << "(" << p1.first << ", " << p1.second << ")\n";
+ 
+    std::pair<int, double> p2(42, 3.1415);
+	std::cout << "Initialized with two values: " << "(" << p2.first << ", " << p2.second << ")\n";
+
+    std::pair<char, int> p3(p2);
+	std::cout << "Implicitly converted: " << "(" << p3.first << ", " << p3.second << ")\n";
 	
 	std::cout << std::endl;
 
