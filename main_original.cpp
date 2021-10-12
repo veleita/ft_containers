@@ -6,12 +6,13 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:20:19 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/12 18:51:54 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:44:59 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <type_traits>
+#include <iostream>		// cout
+#include <type_traits>	// is_integral
+#include <utility>		// pair
 
 /*
  *	is_integral test
@@ -60,7 +61,6 @@ int main()
 
 	std::cout << std::boolalpha;
 	std::cout << "i is odd: " << is_odd(i) << std::endl;
-    */
  
 	std::cout << "pair< , >" << std::endl;
     std::cout << "-----------------" << std::endl;
@@ -74,6 +74,18 @@ int main()
 
     std::pair<char, int> p3(p2);
 	std::cout << "Implicitly converted: " << "(" << p3.first << ", " << p3.second << ")\n";
+    */
+
+	std::cout << "make_pair()" << std::endl;
+    std::cout << "-----------------" << std::endl;
+	std::pair <int,int> foo;
+	std::pair <int,int> bar;
+
+	foo = std::make_pair (10,20);
+	bar = std::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
+	
+	std::cout << "foo: " << foo.first << ", " << foo.second << '\n';
+	std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
 	
 	std::cout << std::endl;
 

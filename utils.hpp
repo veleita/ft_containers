@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/12 19:06:41 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:43:17 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,11 @@ namespace ft
 				/* Destructor */
 				~pair() {};
 		};
+	
+	template <class T1,class T2>
+		pair<T1,T2> make_pair (T1 x, T2 y)
+		{
+			return ( pair<T1,T2>(x,y) );
+		}
+
 };

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:33:07 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/12 18:53:47 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:43:52 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int main()
 
 	std::cout << std::boolalpha;
 	std::cout << "i is odd: " << is_odd(i) << std::endl;
-    */
  
 	std::cout << "pair< , >" << std::endl;
     std::cout << "-----------------" << std::endl;
@@ -74,6 +73,19 @@ int main()
 
     ft::pair<char, int> p3(p2);
 	std::cout << "Implicitly converted: " << "(" << p3.first << ", " << p3.second << ")\n";
+    */
+
+	std::cout << "make_pair()" << std::endl;
+    std::cout << "-----------------" << std::endl;
+	ft::pair <int,int> foo;
+	ft::pair <int,int> bar;
+
+	foo = ft::make_pair (10,20);
+	bar = ft::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
+	
+	std::cout << "foo: " << foo.first << ", " << foo.second << '\n';
+	std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
+	
 	
 	std::cout << std::endl;
 
