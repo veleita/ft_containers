@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:20:19 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/07 18:46:51 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/12 16:57:35 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ T f(T i)
 
 int main()
 {
-    std::cout << "IS_INTEGRAL" << std::endl;
+    std::cout << "is_integral()" << std::endl;
     std::cout << "-----------------" << std::endl << std::endl;
     std::cout << std::boolalpha;
     std::cout << "class: " << std::is_integral<A>::value << '\n';
