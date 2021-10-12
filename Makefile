@@ -6,7 +6,7 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/12 17:02:44 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/12 17:38:03 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ FT_SRCS = main_replica.cpp
 FT_OBJS = $(FT_SRCS:.cpp=.o)
 
 
-all: $(NAME) $(FT_NAME)
+all: original replica
 
 
 %.o: %.cpp
@@ -37,7 +37,7 @@ $(FT_NAME): $(FT_OBJS)
 
 
 clean:
-	rm -f $(OBJS) $(FT_OBJS)
+	rm -f $(OBJS) $(FT_OBJS) replica original
 
 fclean: clean
 	rm -f $(NAME) $(FT_NAME)
@@ -46,9 +46,13 @@ fclean: clean
 re: fclean all
 
 
-test: re
+original: $(NAME)
 	./$(NAME)
+
+replica: $(FT_NAME)
 	./$(FT_NAME)
+
+test: re
 
 diff: re
 	./$(NAME) > original

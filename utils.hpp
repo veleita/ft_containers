@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:01:02 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:36:03 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ namespace ft
 	/*
 	 * IS_INTEGRAL
 	 *
-	 * True for:
+	 * true for:
 	 * 			- bool				- char					
 	 * 			- int				- wchar_t				
 	 * 			- short int			- signed char			
@@ -23,6 +23,8 @@ namespace ft
 	 * 			- long long int		- unsigned long int
 	 * 			- unsigned int		- unsigned short int
 	 *			- unsigned long long int
+	 *
+	 * false for everything else
 	 *
 	 * Reference:
 	 *				- https://www.cplusplus.com/reference/type_traits/is_integral/
@@ -113,4 +115,18 @@ namespace ft
 			static const bool	value = true;
 		};
 
+	/*
+	 * ENABLE_IF
+	 *
+	 * Enables a type if a given condition is met. Otherwise, it won't compile
+	 *
+	 */
+	template<bool Cond, class T = void>
+		struct enable_if {};
+
+	template<class T>
+		struct enable_if<true, T>
+		{
+			typedef T type;
+		};
 };
