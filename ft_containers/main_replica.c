@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_utils.hpp                                     :+:      :+:    :+:   */
+/*   main_replica.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 17:38:15 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/15 19:13:20 by mzomeno-         ###   ########.fr       */
+/*   Created: 2021/10/15 18:51:36 by mzomeno-          #+#    #+#             */
+/*   Updated: 2021/10/15 19:02:55 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_UTILS_HPP
-# define TEST_UTILS_HPP
+#include <test_utils.hpp>
 
-#include <iostream>		// cout
-#include <type_traits>	// is_integral
-#include <utility>		// pair
-#include <utils.hpp>
+int main()
+{
+	std::cout << std::boolalpha;
 
-class A {};
-enum E : int {};
- 
-void	test_is_integral();
+	test_is_integral();
+	std::cout << std::endl;
 
-void	test_enable_if();
+	test_enable_if();
+	std::cout << std::endl;
 
-void	test_pair();
-void	test_make_pair();
+	test_pair();
+	std::cout << std::endl;
 
-bool 	is_palindrome(const std::string& s);
-void 	test(const std::string& s);
-void	test_equal();
+	test_pair();
+	std::cout << std::endl;
 
-#endif
+	test_make_pair();
+	std::cout << std::endl;
+}

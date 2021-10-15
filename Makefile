@@ -6,14 +6,14 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/15 18:13:49 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/15 19:07:27 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = containers
 FT_NAME = ft_containers
 
-COMPILER = clang++
+CC = clang++
 CFLAGS += -Wall -Wextra -Werror -std=c++98 -g
 
 INCLUDE_DIR =	include/
@@ -32,8 +32,8 @@ FT_OBJS = 			$(FT_SRC:.cpp=.o)
 
 all: $(NAME)
 
-#%.o:	%.cpp
-#		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -c $< -o $@
+%.o:	%.cpp
+		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) -I $(INCLUDE_DIR) -o $(NAME)
