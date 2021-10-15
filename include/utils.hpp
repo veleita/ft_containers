@@ -6,9 +6,12 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/12 19:43:17 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/15 17:54:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
 namespace ft
 {
@@ -156,11 +159,25 @@ namespace ft
 				/* Destructor */
 				~pair() {};
 		};
-	
+
+	/*
+	 * MAKE PAIR
+	 *
+	 * Pair constructor
+	 *
+	 * Reference: https://www.cplusplus.com/reference/utility/make_pair/
+	 *
+	 */	
 	template <class T1,class T2>
 		pair<T1,T2> make_pair (T1 x, T2 y)
 		{
 			return ( pair<T1,T2>(x,y) );
 		}
 
+	/*
+	 * EQUAL
+	 *
+	 */ 
 };
+
+#endif

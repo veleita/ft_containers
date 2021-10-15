@@ -6,41 +6,47 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/12 18:13:08 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/15 18:13:49 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-COMPILER = clang++
-FLAGS = -Wall -Wextra -Werror -I. -std=c++98 -g
-
 NAME = containers
-FT_NAME	= ft_containers
+FT_NAME = ft_containers
 
-SRCS = main_original.cpp
-OBJS = $(SRCS:.cpp=.o)
+COMPILER = clang++
+CFLAGS += -Wall -Wextra -Werror -std=c++98 -g
 
-FT_SRCS = main_replica.cpp
-FT_OBJS = $(FT_SRCS:.cpp=.o)
+INCLUDE_DIR =	include/
 
+CONTAINERS_DIR =	containers/
+SRC_FILES = 		main_original.cpp \
+					test_utils.cpp
+SRC =				$(addprefix $(CONTAINERS_DIR), $(SRC_FILES))
+OBJS =				$(SRC:.cpp=.o)
 
-all: original replica
+FT_CONTAINERS_DIR =	ft_containers/
+FT_SRC_FILES = 		main_replica.cpp \
+					test_ft_utils.cpp
+FT_SRC =			$(addprefix $(FT_CONTAINERS_DIR), $(SRC_FILES))
+FT_OBJS = 			$(FT_SRC:.cpp=.o)
 
+all: $(NAME)
 
-%.o: %.cpp
-	$(COMPILER) $(FLAGS) -c $< -o $@
+#%.o:	%.cpp
+#		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
-	${COMPILER} ${FLAGS} $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) -I $(INCLUDE_DIR) -o $(NAME)
 
 $(FT_NAME): $(FT_OBJS)
-	${COMPILER} ${FLAGS} $(FT_OBJS) -o $(FT_NAME)
+	${COMPILER} ${CFLAGS} $(FT_OBJS) -I $(INCLUDE_DIR) -o $(FT_NAME)
 
 
 clean:
-	rm -f $(OBJS) $(FT_OBJS) replica original
+	rm -rf $(OBJS) $(FT_OBJS) replica original
 
 fclean: clean
-	rm -f $(NAME) $(FT_NAME)
+	rm -rf $(NAME) $(FT_NAME)
 
 
 re: fclean all
