@@ -6,12 +6,12 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/15 19:07:27 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/16 12:24:32 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = containers
-FT_NAME = ft_containers
+NAME = containers.exe
+FT_NAME = ft_containers.exe
 
 CC = clang++
 CFLAGS += -Wall -Wextra -Werror -std=c++98 -g
@@ -27,26 +27,26 @@ OBJS =				$(SRC:.cpp=.o)
 FT_CONTAINERS_DIR =	ft_containers/
 FT_SRC_FILES = 		main_replica.cpp \
 					test_ft_utils.cpp
-FT_SRC =			$(addprefix $(FT_CONTAINERS_DIR), $(SRC_FILES))
+FT_SRC =			$(addprefix $(FT_CONTAINERS_DIR), $(FT_SRC_FILES))
 FT_OBJS = 			$(FT_SRC:.cpp=.o)
 
-all: $(NAME)
+all: $(NAME) $(FT_NAME)
 
 %.o:	%.cpp
 		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) -I $(INCLUDE_DIR) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -I $(INCLUDE_DIR) -o $(NAME)
 
 $(FT_NAME): $(FT_OBJS)
-	${COMPILER} ${CFLAGS} $(FT_OBJS) -I $(INCLUDE_DIR) -o $(FT_NAME)
+	$(CC) $(CFLAGS) $(FT_OBJS) -I $(INCLUDE_DIR) -o $(FT_NAME)
 
 
 clean:
-	rm -rf $(OBJS) $(FT_OBJS) replica original
+	rm $(OBJS) $(FT_OBJS)
 
 fclean: clean
-	rm -rf $(NAME) $(FT_NAME)
+	rm $(NAME) $(FT_NAME)
 
 
 re: fclean all
@@ -59,6 +59,8 @@ replica: $(FT_NAME)
 	./$(FT_NAME)
 
 test: re
+	./$(NAME)
+	./$(FT_NAME)
 
 diff: re
 	./$(NAME) > original
