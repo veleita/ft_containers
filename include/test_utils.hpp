@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:38:15 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 17:14:34 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:23:27 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>		// cout
 #include <type_traits>	// is_integral
 #include <utility>		// pair
+#include <vector>		// vector
 #include <utils.hpp>
 
 class A {};

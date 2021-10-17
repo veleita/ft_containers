@@ -6,7 +6,7 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/16 12:24:32 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/17 17:35:17 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,10 @@ $(FT_NAME): $(FT_OBJS)
 
 
 clean:
-	rm $(OBJS) $(FT_OBJS)
+	rm -f $(OBJS) $(FT_OBJS)
 
 fclean: clean
-	rm $(NAME) $(FT_NAME)
+	rm -f $(NAME) $(FT_NAME)
 
 
 re: fclean all
@@ -58,11 +58,11 @@ original: $(NAME)
 replica: $(FT_NAME)
 	./$(FT_NAME)
 
-test: re
+test: all
 	./$(NAME)
 	./$(FT_NAME)
 
-diff: re
+diff: all
 	./$(NAME) > original
 	./$(FT_NAME) > replica
 	diff original replica
