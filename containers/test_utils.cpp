@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:04:03 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/15 19:14:15 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:50:49 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,23 @@ void	test_make_pair()
 
 	std::cout << "foo: " << foo.first << ", " << foo.second << '\n';
 	std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
+}
+
+
+bool is_palindrome(const std::string& s)
+{
+    return std::equal(s.begin(), s.begin() + s.size()/2, s.rbegin());
+}
+ 
+void test(const std::string& s)
+{
+    std::cout << "\"" << s << "\" "
+        << (is_palindrome(s) ? "is" : "is not")
+        << " a palindrome\n";
+}
+
+void	test_equal()
+{
+	test("radar");
+    test("hello");
 }

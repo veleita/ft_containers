@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/15 19:06:00 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:39:57 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ int main()
 
 	test_make_pair();
 	std::cout << std::endl;
+
+	test_equal();
+	std::cout << std::endl;
+
+	return 0;
 }

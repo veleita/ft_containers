@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/15 18:51:15 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:50:47 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,34 @@ namespace ft
 	/*
 	 * EQUAL
 	 *
-	 */ 
+	 * Reference: https://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/cpp/algorithm/equal.html
+	 *
+	 */
+   template<class InputIt1, class InputIt2>
+	   bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2)
+	   {
+		   while (first1 != last1)
+		   {
+			   if (!(*first1 == *first2))
+				   return false;
+			   first1++;
+			   first2++;
+		   }
+		   return true;
+	   }	
+   
+   template<class InputIt1, class InputIt2, class BinaryPredicate>
+	   bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2, BinaryPredicate p)
+	   {
+		   while (first1 != last1)
+		   {
+			   if (p(*first1, *first2))
+				   return false;
+			   first1++;
+			   first2++;
+		   }
+		   return true;
+	   }
 };
 
 #endif
