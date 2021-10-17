@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:04:03 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 17:17:37 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:58:11 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,18 @@ void	test_lexicographical_compare()
 
 	std::cout << "Using mycomp as comparison object: ";
 	std::cout << std::lexicographical_compare(foo, foo+5, bar, bar+9, mycomp) << '\n';
+	
+	
+	std::vector<double> first (4, 100);
+	std::vector<int> second (4, 100);
+   
+	std::cout << "Comparing different vector types: " <<
+		std::lexicographical_compare(first.begin(), first.end(), second.begin(), second.end())
+		<< '\n';
+	
+	std::list<int> lst (4, 100);
+   
+	std::cout << "Comparing different container types: " <<
+		std::lexicographical_compare(first.begin(), first.end(), lst.begin(), lst.end())
+		<< '\n';
 }

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 17:43:38 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:57:51 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ namespace ft
 		{
 			if (first2 == last2 || *first2 < *first1)
 				return false;
-			else if (*first1 <= *first2)
+			else if (*first1 < *first2)
 				return true;
 			first1++;
 			first2++;
