@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 16:50:47 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:17:34 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,46 @@ namespace ft
 		   }
 		   return true;
 	   }
-};
 
+   /*
+	* LEXICOGRAPHICAL COMPARE
+	*
+	* Reference: 
+	* 			- https://www.cplusplus.com/reference/algorithm/lexicographical_compare/
+	* 			- https://www.fluentcpp.com/2019/12/20/how-to-compare-cpp-containers/
+	*
+	*/
+
+	template <class InputIterator1, class InputIterator2>
+		bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1,
+                                InputIterator2 first2, InputIterator2 last2)
+	{
+		while (first1 != last1)
+		{
+			if (first2 == last2 || *first2 < *first1)
+				return false;
+			else if (*first1 < *first2)
+				return true;
+			first1++;
+			first2++;
+  		}
+  		return (first2 != last2);
+	}
+
+	template <class InputIterator1, class InputIterator2, class Compare>
+		bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1,
+                                InputIterator2 first2, InputIterator2 last2, Compare comp)
+	{
+		while (first1 != last1)
+		{
+			if (first2 == last2 || !comp(*first2, *first1))
+				return false;
+			else if (comp(*first1, *first2))
+				return true;
+			first1++;
+			first2++;
+  		}
+  		return (first2 != last2);
+	}
+};
 #endif

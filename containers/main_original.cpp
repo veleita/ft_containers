@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 16:39:57 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:18:48 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int main()
 	std::cout << std::endl;
 
 	test_equal();
+	std::cout << std::endl;
+
+	test_lexicographical_compare();
 	std::cout << std::endl;
 
 	return 0;

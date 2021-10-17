@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 18:45:21 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 16:50:44 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:13:44 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,24 @@ void		test_equal()
 {
 	test("radar");
     test("hello");
+}
+
+
+bool mycomp (char c1, char c2)
+{
+	return std::tolower(c1) < std::tolower(c2);
+}
+
+void	test_lexicographical_compare()
+{
+	char foo[]= "Apple";
+	char bar[]= "apartment";
+
+	std::cout << "Comparing foo and bar lexicographically (foo<bar):\n";
+
+	std::cout << "Using default comparison (operator<): ";
+	std::cout << ft::lexicographical_compare(foo, foo+5, bar, bar+9) << '\n';
+
+	std::cout << "Using mycomp as comparison object: ";
+	std::cout << ft::lexicographical_compare(foo, foo+5, bar, bar+9, mycomp) << '\n';
 }
