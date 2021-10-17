@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 18:45:21 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 17:34:19 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:37:54 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,14 @@ void	test_lexicographical_compare()
 	std::cout << "Comparing foo and bar lexicographically (foo<bar):\n";
 
 	std::cout << "Using default comparison (operator<): ";
-	std::cout << ft::lexicographical_compare(foo, foo+5, bar, bar+9) << '\n';
+	std::cout << ft::lexicographical_compare(foo, foo + 5, bar, bar + 9) << '\n';
 
 	std::cout << "Using mycomp as comparison object: ";
-	std::cout << ft::lexicographical_compare(foo, foo+5, bar, bar+9, mycomp) << '\n';
+	std::cout << ft::lexicographical_compare(foo, foo + 5, bar, bar + 9, mycomp) << '\n';
 
 	std::vector<double> first (4, 100);
 	std::vector<int> second (4, 100);
    
-	std::cout << "Comparing different vector types: \n" <<\
+	std::cout << "Comparing different vector types: " <<
 		ft::lexicographical_compare(first.begin(), first.end(), second.begin(), second.end());
 }

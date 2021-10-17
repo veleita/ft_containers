@@ -6,7 +6,7 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/17 17:35:17 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/17 17:36:22 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,11 +58,11 @@ original: $(NAME)
 replica: $(FT_NAME)
 	./$(FT_NAME)
 
-test: all
+test: re
 	./$(NAME)
 	./$(FT_NAME)
 
-diff: all
+diff: re
 	./$(NAME) > original
 	./$(FT_NAME) > replica
 	diff original replica
