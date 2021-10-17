@@ -6,7 +6,7 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/17 17:36:22 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/17 18:39:04 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ INCLUDE_DIR =	include/
 
 CONTAINERS_DIR =	containers/
 SRC_FILES = 		main_original.cpp \
-					test_utils.cpp
+					test_utils.cpp \
+					test_iterators.cpp
 SRC =				$(addprefix $(CONTAINERS_DIR), $(SRC_FILES))
 OBJS =				$(SRC:.cpp=.o)
 
 FT_CONTAINERS_DIR =	ft_containers/
 FT_SRC_FILES = 		main_replica.cpp \
-					test_ft_utils.cpp
+					test_ft_utils.cpp \
+					test_ft_iterators.cpp
 FT_SRC =			$(addprefix $(FT_CONTAINERS_DIR), $(FT_SRC_FILES))
 FT_OBJS = 			$(FT_SRC:.cpp=.o)
 

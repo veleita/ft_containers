@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:38:15 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 17:57:37 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 18:35:13 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	test_make_pair();
 bool 	is_palindrome(const std::string& s);
 void 	test(const std::string& s);
 void			test_equal();
-
 
 bool 	mycomp (char c1, char c2);
 void	test_lexicographical_compare();

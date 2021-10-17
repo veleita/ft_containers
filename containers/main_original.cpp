@@ -6,11 +6,12 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 17:59:22 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/17 18:33:12 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <test_utils.hpp>
+#include <test_iterators.hpp>
 
 int main()
 {
@@ -34,9 +35,12 @@ int main()
 
 	test_equal();
 	std::cout << std::endl;
-*/
+	
 	test_lexicographical_compare();
 	std::cout << std::endl;
-
+*/
+	test_iter_traits();
+	std::cout << std::endl;
+	
 	return 0;
 }
