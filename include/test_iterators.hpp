@@ -6,11 +6,14 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:33:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 18:36:45 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/18 13:06:52 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>	// stdcout 
 #include <iterator>	// iterator_traits
+#include <vector>	// vector
+#include <list>		// list
+#include <array>		// list
 
 void	test_iter_traits();
