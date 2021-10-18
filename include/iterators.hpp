@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/18 13:24:27 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/18 13:48:03 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ namespace ft
 	 * 				- https://en.cppreference.com/w/cpp/iterator/iterator_traits
 	 * 				- https://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/cpp/iterator/iterator_tags.html
 	 */
+
+	/* Definition + specializations */
 	template <class I>
 		struct iterator_traits
 		{
@@ -65,13 +67,26 @@ namespace ft
 	template <class T>
 		struct iterator_traits<const T*>
 	{
-		typename std::ptrdiff_t 					difference_type;
-		typename T 									value_type;
-		typename const T* 							pointer;
-		typename const T& 							reference;
-		typename std::random_access_iterator_tag	iterator_category;
+		typedef std::ptrdiff_t 					difference_type;
+		typedef T 									value_type;
+		typedef const T* 							pointer;
+		typedef const T& 							reference;
+		typedef std::random_access_iterator_tag	iterator_category;
 	};
 
+	/* Methods */
+	template< class InputIt >
+		typename std::iterator_traits<InputIt>::difference_type
+		distance( InputIt first, InputIt last )
+		{
+			typename std::iterator_traits<InputIt>::difference_type result = 0;
+    		while (first != last)
+			{
+				++first;
+				++result;
+			}
+			return result;
+		};
 };
 
 #endif
