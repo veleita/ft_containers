@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 18:45:30 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/18 13:24:27 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,29 @@ namespace ft
 	 * Reference:
 	 * 				- https://www.cplusplus.com/reference/iterator/iterator_traits/
 	 * 				- https://en.cppreference.com/w/cpp/iterator/iterator_traits
+	 * 				- https://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/cpp/iterator/iterator_tags.html
 	 */
 	template <class I>
 		struct iterator_traits
 		{
+			/* Result of subtracting one iterator from another */
 			typedef typename I::difference_type		difference_type;
+
+			/* Type of the element the iterator points at */
 			typedef typename I::value_type			value_type;
+
+			/* *value_type */
 			typedef typename I::pointer 			pointer;
+
+			/* &value_type */
 			typedef typename I::reference 			reference;
+
+			/* The category of the iterator, can be one of these:
+			 *
+			 * 	- input_iterator_tag	- output_iterator_tag
+			 * 	- forward_iterator_tag	- bidirectional_iterator_tag
+			 * 	- random_access_iterator_tag (the coolest)
+			 */
 			typedef typename I::iterator_category 	iterator_category;
 		};
 
