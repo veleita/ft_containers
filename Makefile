@@ -6,7 +6,7 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/17 18:39:04 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/25 14:14:17 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ INCLUDE_DIR =	include/
 CONTAINERS_DIR =	containers/
 SRC_FILES = 		main_original.cpp \
 					test_utils.cpp \
-					test_iterators.cpp
+					test_iterators.cpp \
+					test_vector.cpp
 SRC =				$(addprefix $(CONTAINERS_DIR), $(SRC_FILES))
 OBJS =				$(SRC:.cpp=.o)
 
