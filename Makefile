@@ -6,7 +6,7 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/25 14:14:17 by mzomeno-         ###   ########.fr        #
+#    Updated: 2021/10/26 21:18:53 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ OBJS =				$(SRC:.cpp=.o)
 FT_CONTAINERS_DIR =	ft_containers/
 FT_SRC_FILES = 		main_replica.cpp \
 					test_ft_utils.cpp \
-					test_ft_iterators.cpp
+					test_ft_iterators.cpp \
+					test_ft_vector.cpp
 FT_SRC =			$(addprefix $(FT_CONTAINERS_DIR), $(FT_SRC_FILES))
 FT_OBJS = 			$(FT_SRC:.cpp=.o)
 

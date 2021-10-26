@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/26 17:02:50 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/26 21:40:30 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VECTOR_HPP
 
 # include <memory>
+# include <iterator>
 # include <iterators.hpp>
 
 namespace ft
@@ -24,9 +25,12 @@ namespace ft
 	template < class T, class Alloc = std::allocator<T> >
 		class vector
 		{
+			public:
+
 			 /* ATTRIBUTES
 			  *
 			  * Reference:
+			  * 			https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-140
 			  * 			https://stackoverflow.com/questions/18385418/c-meaning-of-a-statement-combining-typedef-and-typename
 			  */
 
@@ -68,25 +72,25 @@ namespace ft
 			 * Convertible to const_iterator
 			 */
 			// MUST MAKE A CUSTOM RANDOM_ACCESS_ITERATOR
-			typedef typename		std::random_access_iterator<value_type>
-				iterator;
+//			typedef typename		ft::random_access_iterator<value_type>
+//				iterator;
 
 			/* A random access iterator to const value_type */
 			// MUST MAKE A CUSTOM RANDOM_ACCESS_ITERATOR
-			typedef typename		std::random_access_iterator<const value_type>
-				const_iterator;
+//			typedef typename		ft::random_access_iterator<const value_type>
+//				const_iterator;
 
 			// MUST MAKE A CUSTOM REVERSE_ITERATOR
-			typedef typename		std::reverse_iterator<iterator>
-				reverse_iterator;
+//			typedef typename		ft::reverse_iterator<iterator>
+//				reverse_iterator;
 
 			// MUST MAKE A CUSTOM REVERSE_ITERATOR
-			typedef typename		std::reverse_iterator<const_iterator>
-				const_reverse_iterator;
+//			typedef typename		ft::reverse_iterator<const_iterator>
+//				const_reverse_iterator;
 
 			/* Number of elements between two pointers */
-			typedef typename		ft::iterator_traits<iterator>::difference_type
-				difference_type;
+//			typedef typename		ft::iterator_traits<iterator>::difference_type
+//				difference_type;
 
 
 
@@ -107,20 +111,40 @@ namespace ft
 			 */
 			
 			// Specify the allocator to use. Default constructor
-			explicit vector (const allocator_type& alloc = allocator_type());
+			explicit vector (const allocator_type& alloc = allocator_type()) 
+				:	_alloc(alloc)	{};
 
 			// Fill constructor
-			explicit vector (size_type count, const value_type& value = value_type(),
-                 const allocator_type& alloc = allocator_type());
+			explicit vector (size_type count, const value_type& value = value_type(), const allocator_type& alloc = allocator_type())
+			:	_alloc(alloc), _count(count), _value(value)		{};
 
 			// Range constructor
 			template <class InputIterator>
-		         vector (InputIterator first, InputIterator last,
-        	         const allocator_type& alloc = allocator_type());
+		         vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+				 :	_alloc(alloc)
+				 {
+					 (void)first;
+					 (void)last;
+				 };
 
 			// Copy constructor
-			vector (const vector& source);
-		}
+			vector (const vector& source)
+			{
+				(void)source;
+			};
+
+
+			/* GETTERS */
+			allocator_type get_allocator() const	{	return (this->_alloc);	}
+
+
+			private:
+
+				allocator_type	_alloc;
+				size_type		_count;
+				value_type		_value;
+
+		};
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:03:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/26 17:09:59 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/26 21:07:32 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void test_vector()
 	std::cout << " ]\n";
 
 	// Copy of v4
-	std::vector<int> v5(v4);
+	std::vector<int> v5(v2);
 	std::cout << "5 - vector(source): [";
 	for (std::vector<int>::iterator it = v5.begin(); it != v5.end(); ++it)
 	    std::cout << " " << *it;
