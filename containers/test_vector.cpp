@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:03:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/25 18:42:47 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:23:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,45 @@
 
 void test_vector()
 {
-  std::vector<int> first;
-  std::vector<int> second (4,100);
-  std::vector<int> third (second.begin(),second.end());
-  std::vector<int> fourth (third);
+	// Empty vector
+	std::vector<int> v0;
+	std::cout << "0 - vector(): [";
+	for (std::vector<int>::iterator it = v0.begin(); it != v0.end(); ++it)
+	    std::cout << " " << *it;
+	std::cout << " ]\n";
+	
+	// Vector with 3 elements of default value 0
+	std::vector<int> v1(3);
+	std::cout << "1 - vector(count): [";
+	for (std::vector<int>::iterator it = v1.begin(); it != v1.end(); ++it)
+	    std::cout << " " << *it;
+	std::cout << " ]\n";
+	
+	// Vector with 5 elements of value 2
+	std::vector<int> v2(5, 2);
+	std::cout << "2 - vector(count, value): [";
+	for (std::vector<int>::iterator it = v2.begin(); it != v2.end(); ++it)
+	    std::cout << " " << *it;
+	std::cout << " ]\n";
 
-  int myints[] = {16,2,77,29};
-  std::vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
+	// Vector with 4 elements of value 1 and with v2's allocator
+	std::vector<int> v3(4, 1, v2.get_allocator());
+	std::cout << "3 - vector(count, value, alloc): [";
+	for (std::vector<int>::iterator it = v3.begin(); it != v3.end(); ++it)
+	    std::cout << " " << *it;
+	std::cout << " ]\n";
 
-  std::cout << "The contents of first are:";
-  for (std::vector<int>::iterator it = first.begin(); it != first.end(); ++it)
-    std::cout << ' ' << *it;
-  std::cout << '\n';
+	// Vector copying elements in v3 in range 1 - 3
+	std::vector<int> v4(v3.begin() + 1, v3.begin() + 4);
+	std::cout << "4 - vector(first, last): [";
+	for (std::vector<int>::iterator it = v4.begin(); it != v4.end(); ++it)
+	    std::cout << " " << *it;
+	std::cout << " ]\n";
 
-  std::cout << "The contents of second are:";
-  for (std::vector<int>::iterator it = second.begin(); it != second.end(); ++it)
-    std::cout << ' ' << *it;
-  std::cout << '\n';
-
-  std::cout << "The contents of third are:";
-  for (std::vector<int>::iterator it = third.begin(); it != third.end(); ++it)
-    std::cout << ' ' << *it;
-  std::cout << '\n';
-
-  std::cout << "The contents of fourth are:";
-  for (std::vector<int>::iterator it = fourth.begin(); it != fourth.end(); ++it)
-    std::cout << ' ' << *it;
-  std::cout << '\n';
-
-  std::cout << "The contents of fifth are:";
-  for (std::vector<int>::iterator it = fifth.begin(); it != fifth.end(); ++it)
-    std::cout << ' ' << *it;
-  std::cout << '\n';
+	// Copy of v4
+	std::vector<int> v5(v4);
+	std::cout << "5 - vector(source): [";
+	for (std::vector<int>::iterator it = v5.begin(); it != v5.end(); ++it)
+	    std::cout << " " << *it;
+	std::cout << " ]\n";
 }
