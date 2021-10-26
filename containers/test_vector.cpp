@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:03:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/26 14:23:46 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:09:59 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void test_vector()
 {
+	std::cout << "CONSTRUCTORS\n";
+	std::cout << "----------------------------------------------\n";
+
 	// Empty vector
 	std::vector<int> v0;
 	std::cout << "0 - vector(): [";
@@ -55,4 +58,5 @@ void test_vector()
 	for (std::vector<int>::iterator it = v5.begin(); it != v5.end(); ++it)
 	    std::cout << " " << *it;
 	std::cout << " ]\n";
+
 }

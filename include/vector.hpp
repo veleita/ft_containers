@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/26 13:49:54 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:02:50 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VECTOR_HPP
 
 # include <memory>
+# include <iterators.hpp>
 
 namespace ft
 {
@@ -23,10 +24,13 @@ namespace ft
 	template < class T, class Alloc = std::allocator<T> >
 		class vector
 		{
-			 /* ATTRIBUTES */
+			 /* ATTRIBUTES
+			  *
+			  * Reference:
+			  * 			https://stackoverflow.com/questions/18385418/c-meaning-of-a-statement-combining-typedef-and-typename
+			  */
 
-			/*
-			 *  Member type allocator_type is the type of the allocator used
+			/*  Member type allocator_type is the type of the allocator used
 			 *  by the container, defined in vector as an alias of its second
 			 *  template parameter (Alloc).
 			 */
@@ -38,7 +42,52 @@ namespace ft
 			 */
 			typedef T				value_type;
 
-			typedef unsigned int	size_type;
+			typedef size_t			size_type;
+
+			/* A type that provides a reference to an element stored in a vector
+			 * Defaults to value_type&
+			 */
+			typedef typename		allocator_type::reference		reference;
+
+			/* A type that provides a reference to a const element in a vector
+			 * Defaults to const value_type&
+			 */
+			typedef typename		allocator_type::const_reference	const_reference;
+
+			/* A type that provides a pointer to an element stored in a vector
+			 * Defaults to value_type*
+			 */
+			typedef typename		allocator_type::pointer 		pointer;
+
+			/* A type that provides a pointer to a const element stored in a vector
+			 * Defaults to const value_type*
+			 */
+			typedef typename		allocator_type::const_pointer 	const_pointer;
+
+			/* A random access iterator to value_type
+			 * Convertible to const_iterator
+			 */
+			// MUST MAKE A CUSTOM RANDOM_ACCESS_ITERATOR
+			typedef typename		std::random_access_iterator<value_type>
+				iterator;
+
+			/* A random access iterator to const value_type */
+			// MUST MAKE A CUSTOM RANDOM_ACCESS_ITERATOR
+			typedef typename		std::random_access_iterator<const value_type>
+				const_iterator;
+
+			// MUST MAKE A CUSTOM REVERSE_ITERATOR
+			typedef typename		std::reverse_iterator<iterator>
+				reverse_iterator;
+
+			// MUST MAKE A CUSTOM REVERSE_ITERATOR
+			typedef typename		std::reverse_iterator<const_iterator>
+				const_reverse_iterator;
+
+			/* Number of elements between two pointers */
+			typedef typename		ft::iterator_traits<iterator>::difference_type
+				difference_type;
+
 
 
 			/* CONSTRUCTORS
