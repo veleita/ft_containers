@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/12 13:11:07 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/12 13:44:02 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 namespace ft
 {
+//	struct random_access_iterator_tag {};
 
 	/*
 	 * ITERATOR TRAITS
@@ -95,25 +96,7 @@ namespace ft
 	 * 				- https://www.cplusplus.com/reference/iterator/iterator/
 	 * 				- https://www.cplusplus.com/reference/iterator/reverse_iterator/reverse_iterator/
 	 */
-
-	/* INPUT ITERATOR: can be used in sequential input operations, where each value pointed by
-	 * the iterator is read only once and then the iterator is incremented */
-	struct input_iterator_tag {};
-
-	/* OUTPUT ITERATOR: can be used in sequential input operations, where each value pointed by
-	 * the iterator is written only once and then the iterator is incremented */
-	struct output_iterator_tag {};
-
-	/* FORWARD ITERATOR: can be used in sequential input operations, where each value pointed by
-	 * the iterator is written only once and then the iterator is incremented */
-	struct forward_iterator_tag {};
-
-	/* BIDIRECTIONAL ITERATOR: can be used to access the sequence of elements in a range in both
-	 * directions (towards the end and towards the beginning) */
-	struct bidirectional_iterator_tag {};
-
-	struct random_access_iterator_tag {};
-
+/*
 	template< 
 		class Category, class T, class Distance = ptrdiff_t, class Pointer = T*,
 		class Reference = T&
@@ -125,7 +108,7 @@ namespace ft
                 typedef Reference   reference;
                 typedef Category    iterator_category;
 			};
-
+*/
 	template <class Iterator>
 		class reverse_iterator
 		{
@@ -137,10 +120,10 @@ namespace ft
             	typedef typename ft::iterator_traits<Iterator>::pointer				pointer;
             	typedef typename ft::iterator_traits<Iterator>::reference			reference;
 
-				reverse_iterator() : _value()	{}
+				reverse_iterator() : _baseIterator()	{}
 				explicit reverse_iterator (iterator_type it) : _baseIterator(it)	{}
 				template <class Iter>
-					reverse_iterator (const reverse_iterator<Iter>& rev_it) : _value(rev_it.base())	{}
+					reverse_iterator (const reverse_iterator<Iter>& rev_it) : _baseIterator(rev_it.base())	{}
 				
 				iterator_type base() const	{	return(_baseIterator);	}
 				
@@ -183,7 +166,7 @@ namespace ft
 					return temp;
 				}
 				reference operator->() const	{	return &(operator*());	}
-				reference operator[](difference_type n) const	{	return (this->base()[-n])	};
+				reference operator[](difference_type n) const	{	return (this->base()[-n]);	};
 
 			private:
 				iterator_type	_baseIterator;

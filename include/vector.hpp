@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/11 15:03:13 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/12 13:51:12 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,31 +70,29 @@ namespace ft
 
 			/* A random access iterator to value_type
 			 * Convertible to const_iterator
+			 * IMPLEMENT RANDOM_ACCESS_ITERATOR
+			typedef typename		std::random_access_iterator
+				iterator;
 			 */
-			// MUST MAKE A CUSTOM RANDOM_ACCESS_ITERATOR
-//			typedef typename		ft::random_access_iterator<value_type>
-//				iterator;
 
-			/* A random access iterator to const value_type */
-			// MUST MAKE A CUSTOM RANDOM_ACCESS_ITERATOR
-//			typedef typename		ft::random_access_iterator<const value_type>
-//				const_iterator;
+			/* A random access iterator to const value_type
+			 * IMPLEMENT RANDOM_ACCESS_ITERATOR
+			typedef typename		std::random_access_iterator
+				const_iterator;
+			 */
 
-			// MUST MAKE A CUSTOM REVERSE_ITERATOR
-//			typedef typename		ft::reverse_iterator<iterator>
-//				reverse_iterator;
+			/* IMPLEMENT RANDOM_ACCESS_ITERATOR
+			typedef typename		ft::reverse_iterator<iterator>
+				reverse_iterator;
 
-			// MUST MAKE A CUSTOM REVERSE_ITERATOR
-//			typedef typename		ft::reverse_iterator<const_iterator>
-//				const_reverse_iterator;
+			typedef typename		ft::reverse_iterator<const_iterator>
+				const_reverse_iterator;
+			 */
 
-			/* Number of elements between two pointers */
-			// MUST MAKE A CUSTOM ITERATOR
-//			typedef		ft::iterator_traits< iterator >::difference_type
-//				difference_type;
-//			typedef typename		allocator_type::difference_type	
-//				difference_type;
-
+			/* Number of elements between two pointers
+			typedef		ft::iterator_traits< iterator >::difference_type
+				difference_type;
+			*/
 
 
 			/* CONSTRUCTORS
