@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/26 21:40:30 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/11 15:03:13 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ namespace ft
 //				const_reverse_iterator;
 
 			/* Number of elements between two pointers */
-//			typedef typename		ft::iterator_traits<iterator>::difference_type
+			// MUST MAKE A CUSTOM ITERATOR
+//			typedef		ft::iterator_traits< iterator >::difference_type
+//				difference_type;
+//			typedef typename		allocator_type::difference_type	
 //				difference_type;
 
 
@@ -100,6 +103,7 @@ namespace ft
 			 * 				https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-160#vector
 			 * 				https://www.cplusplus.com/reference/vector/vector/vector/
 			 * 				https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean
+			 * 				https://www.cplusplus.com/reference/memory/allocator/allocate/
 			 *
 			 * Parameters:
 			 * 				alloc		:	The allocator class to use with this object.
@@ -112,11 +116,24 @@ namespace ft
 			
 			// Specify the allocator to use. Default constructor
 			explicit vector (const allocator_type& alloc = allocator_type()) 
-				:	_alloc(alloc)	{};
+				:	_alloc(alloc), _count(0), _start(nullptr), _end(nullptr)
+			{};
 
 			// Fill constructor
 			explicit vector (size_type count, const value_type& value = value_type(), const allocator_type& alloc = allocator_type())
-			:	_alloc(alloc), _count(count), _value(value)		{};
+			:	_alloc(alloc), _count(count)
+			{
+				_start = _alloc.allocate(_count);	// allocate() returns a pointer to the initial element in the block of storage.
+				pointer	it = _start;
+				
+				while (count--)
+				{
+					_alloc.construct(it, value);
+					it++;
+				}
+
+				_end = it;
+			};
 
 			// Range constructor
 			template <class InputIterator>
@@ -125,13 +142,20 @@ namespace ft
 				 {
 					 (void)first;
 					 (void)last;
+					 /*
+					 reinterpret_cast< difference_type >_count = ft::distance(first, last); 
+					 _start = _alloc.allocate(_count);	// allocate() returns a pointer to the initial element in the block of storage.
+					 _end = _start;
+					 while (first != last)
+						 _alloc.construct(_end++, *first++);
+						 */
 				 };
 
 			// Copy constructor
+			// MUST COPY SOURCE CONTENT WITH insert()
 			vector (const vector& source)
-			{
-				(void)source;
-			};
+				:	_alloc(source._alloc), _count(source._count), _start(source._start), _end(source._end)
+			{};
 
 
 			/* GETTERS */
@@ -142,8 +166,13 @@ namespace ft
 
 				allocator_type	_alloc;
 				size_type		_count;
-				value_type		_value;
-
+				pointer			_start;
+				pointer			_end;
+		};
+	
+	template <>
+		class vector<bool>
+		{
 		};
 };
 

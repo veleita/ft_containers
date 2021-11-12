@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:48:40 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 18:27:39 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:09:34 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ namespace ft
 	*/
 
 	template <typename T>
-		struct is_integral	{	static const bool	value = false;	};
+		struct is_integral				{	static const bool	value = false;	};
 
 	template <>
-		struct is_integral<bool>	{	static const bool	value = true;	};			// bool
+		struct is_integral<bool>		{	static const bool	value = true;	};		// bool
 
 	template <>
-		struct is_integral<char>	{	static const bool	value = true;	};			// char
+		struct is_integral<char>		{	static const bool	value = true;	};		// char
 
 	template <>
-		struct is_integral<wchar_t>	{	static const bool	value = true;	};			// wchar_t
+		struct is_integral<wchar_t>		{	static const bool	value = true;	};		// wchar_t
 
 	template <>
-		struct is_integral<int>	{	static const bool	value = true;	};				// int
+		struct is_integral<int>			{	static const bool	value = true;	};		// int
 
 	template <>
 		struct is_integral<const int>	{	static const bool	value = true;	};		// const int
@@ -71,7 +71,7 @@ namespace ft
 		struct is_integral<unsigned int>	{	static const bool	value = true;	};	// unsigned int
 
 	template <>
-		struct is_integral<unsigned short int>	{	static const bool	value = true;	};	// unsigned short int
+		struct is_integral<unsigned short int>		{	static const bool	value = true;	};	// unsigned short int
 
 	template <>
 		struct is_integral<unsigned long long int>	{	static const bool	value = true;	};	// unsigned long long int
