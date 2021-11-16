@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/16 09:15:37 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/16 13:48:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ namespace ft
 	template < 
 		class Category, class T, class Distance = ptrdiff_t, class Pointer = T*,
 		class Reference = T&
-			> struct Iterator
+			> struct iterator
 			{
                 typedef T           value_type;
                 typedef Distance    difference_type;
@@ -107,7 +107,7 @@ namespace ft
 
 	/* Implementation defined random-access iterator for vector class
 	 * https://www.cplusplus.com/reference/iterator/RandomAccessIterator/ */
-	template < class Iterator >
+	template < class T >
 		class vector_iterator
 		{
 			public:
@@ -116,44 +116,80 @@ namespace ft
                 typedef typename ft::iterator<std::random_access_iterator_tag, T>::iterator_category     iterator_category;
                 typedef typename ft::iterator<std::random_access_iterator_tag, T>::value_type            value_type;
                 typedef typename ft::iterator<std::random_access_iterator_tag, T>::difference_type       difference_type;
-                typedef T*               pointer;
+                typedef T*             pointer;
                 typedef T&             reference;
 
 				/* CONSTRUCTORS */
-				vector_iterator();
-				vector_iterator(vector_iterator &copy);
+				vector_iterator()	:	_value(nullptr)	{}
+				vector_iterator(vector_iterator &copy)	:	_value(copy._value)	{}
 				
 				/* OPERATOR OVERLOADS */
-				vector_iterator	&operator=(const vector_iterator &rhs);
+				vector_iterator	&operator=(const vector_iterator &rhs)
+				{
+					if (*this != rhs)
+						this->_value = rhs._value;
+					return (*this);
+				}
 				
-				bool	&operator==(const vector_iterator &rhs);
-				bool	&operator!=(const vector_iterator &rhs);
+				bool	&operator==(const vector_iterator &rhs)	{	return(this->_value == rhs._value);	}
+				bool	&operator!=(const vector_iterator &rhs)	{	return(this->_value != rhs._value);	}
 
-				reference	&operator*();
-				pointer		&operator->();
-				reference	&operator[]();
+				reference	&operator*()	{	return(this->_value);	}
+				pointer		&operator->()	{	return(&(this->_value));	}
+				reference	&operator[](difference_type n)	{	return(*(*this + n));	}
 
-				vector_iterator	&operator++();
-				vector_iterator	&operator++(int);
-				vector_iterator	&operator--();
-				vector_iterator	&operator--(int);
+				vector_iterator	&operator++()
+				{
+					this->_value++;
+					return(*this);
+				}
+				vector_iterator	&operator++(int)
+				{
+					vector_iterator	&tmp = *this;
+					this->_value++;
+					return(tmp);
+				}
+				vector_iterator	&operator--()
+				{
+					this->_value++;
+					return(*this);
+				}
+				vector_iterator	&operator--(int)
+				{
+					vector_iterator	&tmp = *this;
+					this->_value++;
+					return(tmp);
+				}
 
-				vector_iterator	&operator+(const int &rhs);
-				vector_iterator	&operator-(const int &rhs);
-				vector_iterator	&operator+(const vector_iterator &rhs);
-				vector_iterator	&operator-(const vector_iterator &rhs);
+				vector_iterator	&operator+(difference_type n)	{	return(&(this->_value) + n);	}
+				vector_iterator	&operator-(difference_type n)	{	return(&(this->_value) - n);	}
+				vector_iterator	&operator+(const vector_iterator &rhs)	{	return(&(this->_value) + &(rhs._value));	}
+				vector_iterator	&operator-(const vector_iterator &rhs)	{	return(&(this->_value) - &(rhs._value));	}
 				
-				bool	&operator<(const vector_iterator &rhs);
-				bool	&operator>(const vector_iterator &rhs);
-				bool	&operator<=(const vector_iterator &rhs);
-				bool	&operator>=(const vector_iterator &rhs);
+				bool	&operator<(const vector_iterator &rhs)	{	return(this->_value < rhs._value);	}
+				bool	&operator>(const vector_iterator &rhs)	{	return(this->_value > rhs._value);	}
+				bool	&operator<=(const vector_iterator &rhs)	{	return(this->_value <= rhs._value);	}
+				bool	&operator>=(const vector_iterator &rhs)	{	return(this->_value >= rhs._value);	}
 				
-				vector_iterator	&operator+=(const vector_iterator &rhs);
-				vector_iterator	&operator-=(const vector_iterator &rhs);
+				vector_iterator	&operator+=(difference_type n)
+				{
+					&(this->_value) = &(this->_value) + n;
+				   return (*this);	
+				}
+				vector_iterator	&operator-=(difference_type n)
+				{
+					&(this->_value) = &(this->_value) - n;
+				   return (*this);	
+				}
 				
 				/* DESTRUCTOR */
-				~vector_iterator();
-		}
+				~vector_iterator()	{}
+
+			private:
+				
+				/* ATTRIBUTES */
+				value_type	_value;
+		};
 
 	/* Predefined iterator
 	 * Reverses the direction in which a random-access iterator iterates through a range

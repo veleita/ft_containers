@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/15 16:00:39 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:02:31 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,24 @@ namespace ft
 			typedef typename		allocator_type::const_pointer 	const_pointer;
 
 			/* A random access iterator to value_type
-			 * Convertible to const_iterator
-			 * IMPLEMENT RANDOM_ACCESS_ITERATOR
-			typedef typename		ft::vector_iterator				iterator;
-			 */
+			 * Convertible to const_iterator */
+			typedef typename		ft::vector_iterator< value_type >
+				iterator;
 
-			/* A random access iterator to const value_type
-			 * IMPLEMENT RANDOM_ACCESS_ITERATOR
-			typedef typename		ft::vector_iterator				const_iterator;
-			 */
-
-			/* IMPLEMENT RANDOM_ACCESS_ITERATOR
-			typedef typename		ft::reverse_iterator<iterator>
+			/* A random access iterator to const value_type */
+			typedef typename		ft::vector_iterator< value_type >
+				const_iterator;
+			
+			typedef typename		ft::reverse_iterator< vector_iterator<T> >
 				reverse_iterator;
 
-			typedef typename		ft::reverse_iterator<const_iterator>
+			typedef typename		ft::reverse_iterator< vector_iterator<T> >
 				const_reverse_iterator;
-			 */
 
-			/* Number of elements between two pointers
-			typedef		ft::iterator_traits< iterator >::difference_type
+			/* Number of elements between two pointers */
+			typedef	typename		ft::iterator_traits< vector_iterator<T> >::difference_type
 				difference_type;
-			*/
+			
 
 
 			/* CONSTRUCTORS
