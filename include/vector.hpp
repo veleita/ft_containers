@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/12 13:51:12 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:00:39 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,12 @@ namespace ft
 			/* A random access iterator to value_type
 			 * Convertible to const_iterator
 			 * IMPLEMENT RANDOM_ACCESS_ITERATOR
-			typedef typename		std::random_access_iterator
-				iterator;
+			typedef typename		ft::vector_iterator				iterator;
 			 */
 
 			/* A random access iterator to const value_type
 			 * IMPLEMENT RANDOM_ACCESS_ITERATOR
-			typedef typename		std::random_access_iterator
-				const_iterator;
+			typedef typename		ft::vector_iterator				const_iterator;
 			 */
 
 			/* IMPLEMENT RANDOM_ACCESS_ITERATOR

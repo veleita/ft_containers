@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/12 13:44:02 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/16 09:15:37 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,15 @@ namespace ft
 			}
 			return result;
 		};
-	
-	/*
-	 * ITERATORS
-	 *
-	 * Reference:
-	 * 				- https://www.cplusplus.com/reference/iterator/iterator/
-	 * 				- https://www.cplusplus.com/reference/iterator/reverse_iterator/reverse_iterator/
-	 */
-/*
-	template< 
+
+
+	/* ITERATORS */
+
+	/* Iterator base class: https://www.cplusplus.com/reference/iterator/iterator/ */
+	template < 
 		class Category, class T, class Distance = ptrdiff_t, class Pointer = T*,
 		class Reference = T&
-			> struct iterator
+			> struct Iterator
 			{
                 typedef T           value_type;
                 typedef Distance    difference_type;
@@ -108,8 +104,61 @@ namespace ft
                 typedef Reference   reference;
                 typedef Category    iterator_category;
 			};
-*/
-	template <class Iterator>
+
+	/* Implementation defined random-access iterator for vector class
+	 * https://www.cplusplus.com/reference/iterator/RandomAccessIterator/ */
+	template < class Iterator >
+		class vector_iterator
+		{
+			public:
+
+				/* TYPEDEFS */
+                typedef typename ft::iterator<std::random_access_iterator_tag, T>::iterator_category     iterator_category;
+                typedef typename ft::iterator<std::random_access_iterator_tag, T>::value_type            value_type;
+                typedef typename ft::iterator<std::random_access_iterator_tag, T>::difference_type       difference_type;
+                typedef T*               pointer;
+                typedef T&             reference;
+
+				/* CONSTRUCTORS */
+				vector_iterator();
+				vector_iterator(vector_iterator &copy);
+				
+				/* OPERATOR OVERLOADS */
+				vector_iterator	&operator=(const vector_iterator &rhs);
+				
+				bool	&operator==(const vector_iterator &rhs);
+				bool	&operator!=(const vector_iterator &rhs);
+
+				reference	&operator*();
+				pointer		&operator->();
+				reference	&operator[]();
+
+				vector_iterator	&operator++();
+				vector_iterator	&operator++(int);
+				vector_iterator	&operator--();
+				vector_iterator	&operator--(int);
+
+				vector_iterator	&operator+(const int &rhs);
+				vector_iterator	&operator-(const int &rhs);
+				vector_iterator	&operator+(const vector_iterator &rhs);
+				vector_iterator	&operator-(const vector_iterator &rhs);
+				
+				bool	&operator<(const vector_iterator &rhs);
+				bool	&operator>(const vector_iterator &rhs);
+				bool	&operator<=(const vector_iterator &rhs);
+				bool	&operator>=(const vector_iterator &rhs);
+				
+				vector_iterator	&operator+=(const vector_iterator &rhs);
+				vector_iterator	&operator-=(const vector_iterator &rhs);
+				
+				/* DESTRUCTOR */
+				~vector_iterator();
+		}
+
+	/* Predefined iterator
+	 * Reverses the direction in which a random-access iterator iterates through a range
+	 * https://www.cplusplus.com/reference/iterator/reverse_iterator/reverse_iterator/ */
+	template < class Iterator >
 		class reverse_iterator
 		{
 			public:
