@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/16 14:02:31 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/17 09:50:57 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <memory>
 # include <iterator>
 # include <iterators.hpp>
+# include <utils.hpp>
 
 namespace ft
 {
@@ -112,7 +113,8 @@ namespace ft
 			{};
 
 			// Fill constructor
-			explicit vector (size_type count, const value_type& value = value_type(), const allocator_type& alloc = allocator_type())
+			explicit vector (size_type count, const value_type& value = value_type(),
+					const allocator_type& alloc = allocator_type())
 			:	_alloc(alloc), _count(count)
 			{
 				_start = _alloc.allocate(_count);	// allocate() returns a pointer to the initial element in the block of storage.
@@ -128,19 +130,19 @@ namespace ft
 			};
 
 			// Range constructor
+			// Only enable if InputIterator isn't integral type (!is_integral)
 			template <class InputIterator>
-		         vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+		         vector (InputIterator first, InputIterator last,
+						 const allocator_type& alloc = allocator_type(),
+						 typename ft::enable_if< !ft::is_integral<InputIterator>::value,
+						 InputIterator>::type* = nullptr)
 				 :	_alloc(alloc)
 				 {
-					 (void)first;
-					 (void)last;
-					 /*
-					 reinterpret_cast< difference_type >_count = ft::distance(first, last); 
+					 difference_type range = ft::distance(first, last); 
 					 _start = _alloc.allocate(_count);	// allocate() returns a pointer to the initial element in the block of storage.
 					 _end = _start;
 					 while (first != last)
 						 _alloc.construct(_end++, *first++);
-						 */
 				 };
 
 			// Copy constructor
