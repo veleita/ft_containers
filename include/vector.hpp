@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/21 20:12:50 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/21 21:41:16 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,9 @@ namespace ft
 			// Fill constructor
 			explicit vector (size_type count, const value_type& value = value_type(),
 					const allocator_type& alloc = allocator_type())
-			:	_alloc(alloc), _count(count)
+			:	_alloc(alloc)
 			{
-				_start = _alloc.allocate(_count);	// allocate() returns a pointer to the initial element in the block of storage.
+				_start = _alloc.allocate(sizeof(value_type) * count);	// allocate() returns a pointer to the initial element in the block of storage.
 				pointer	it = _start;
 				
 				while (count--)
@@ -138,10 +138,10 @@ namespace ft
 				 :	_alloc(alloc)
 				 {
 					 difference_type range = ft::distance(first, last); 
-					 _start = _alloc.allocate(range);	// allocate() returns a pointer to the initial element in the block of storage.
-					 _end = _start;
-					 while (first != last)
-						 _alloc.construct(_end++, *first++);
+					 _start = _alloc.allocate(sizeof(value_type) * range);	// allocate() returns a pointer to the initial element in the block of storage.
+					 _last_element = _start;
+					 while (range-- > 0)
+						 _alloc.construct(_last_element++, *first++);
 				 };
 
 			// Copy constructor
@@ -192,7 +192,6 @@ namespace ft
 			private:
 
 				allocator_type	_alloc;
-				size_type		_count;
 				pointer			_start;
 				pointer			_last_element;
 				pointer			_end;
