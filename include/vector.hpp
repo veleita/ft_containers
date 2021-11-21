@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/17 09:50:57 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/21 20:12:50 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,11 @@ namespace ft
 			template <class InputIterator>
 		         vector (InputIterator first, InputIterator last,
 						 const allocator_type& alloc = allocator_type(),
-						 typename ft::enable_if< !ft::is_integral<InputIterator>::value,
-						 InputIterator>::type* = nullptr)
+						 typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 				 :	_alloc(alloc)
 				 {
 					 difference_type range = ft::distance(first, last); 
-					 _start = _alloc.allocate(_count);	// allocate() returns a pointer to the initial element in the block of storage.
+					 _start = _alloc.allocate(range);	// allocate() returns a pointer to the initial element in the block of storage.
 					 _end = _start;
 					 while (first != last)
 						 _alloc.construct(_end++, *first++);
@@ -156,11 +155,46 @@ namespace ft
 			allocator_type get_allocator() const	{	return (this->_alloc);	}
 
 
+			/* CAPACITY */
+
+			/* size(): Returns the number of elements in the vector */
+			size_type	size() const
+			{
+
+			}
+
+			/* MODIFIERS
+
+			 Clear(): Removes all elements
+			void clear()
+			{
+				size_type i = this->size();
+				for (i > 0; i--)
+				{
+					_end--;
+					_alloc.destroy(_end);
+				}
+			}
+
+			 Assign(): Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly
+			template <class InputIterator>
+			  void assign (InputIterator first, InputIterator last,
+					  typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
+			  {
+				  this->clear();
+			  }
+
+			void assign (size_type n, const value_type& val)
+			{
+				  this->clear();
+			}
+*/
 			private:
 
 				allocator_type	_alloc;
 				size_type		_count;
 				pointer			_start;
+				pointer			_last_element;
 				pointer			_end;
 		};
 	

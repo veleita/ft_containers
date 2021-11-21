@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/17 09:39:13 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/21 20:19:20 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ namespace ft
 
 				/* CONSTRUCTORS */
 				vector_iterator()	:	_value(nullptr)	{}
+				explicit vector_iterator(T *it)	:	_value(*it)	{}
 				vector_iterator(vector_iterator &copy)	:	_value(copy._value)	{}
 				
 				/* OPERATOR OVERLOADS */
