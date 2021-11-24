@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/21 21:41:16 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/24 22:46:02 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ namespace ft
 			 /* ATTRIBUTES
 			  *
 			  * Reference:
-			  * 			https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-140
-			  * 			https://stackoverflow.com/questions/18385418/c-meaning-of-a-statement-combining-typedef-and-typename
+* https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-140
+* https://stackoverflow.com/questions/18385418/c-meaning-of-a-statement-combining-typedef-and-typename
 			  */
 
 			/*  Member type allocator_type is the type of the allocator used
@@ -93,23 +93,23 @@ namespace ft
 			/* CONSTRUCTORS
 			 *
 			 * Reference: 
-			 * 				https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-160#vector
-			 * 				https://www.cplusplus.com/reference/vector/vector/vector/
-			 * 				https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean
-			 * 				https://www.cplusplus.com/reference/memory/allocator/allocate/
+* https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-160#vector
+* https://www.cplusplus.com/reference/vector/vector/vector/
+* https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean
+* https://www.cplusplus.com/reference/memory/allocator/allocate/
 			 *
 			 * Parameters:
-			 * 				alloc		:	The allocator class to use with this object.
-			 * 				count		:	The number of elements in the constructed vector.
-			 * 				value		:	The value of the elements in the constructed vector.
-			 * 				source		:	The vector of which the constructed vector is to be a copy.
-			 * 				first		:	Position of the first element in the range of elements to be copied.
-			 * 				last		:	Position of the element beyond the last in the range of elements to be copied.
+			 * 				alloc	:	The allocator class to use with this object.
+			 * 				count	:	The number of elements in the constructed vector.
+			 * 				value	:	The value of the elements in the constructed vector.
+			 * 				source	:	The vector of which the constructed vector is to be a copy.
+			 * 				first	:	Position of the first element in the range of elements to be copied.
+			 * 				last	:	Position of the element beyond the last in the range of elements to be copied.
 			 */
 			
 			// Specify the allocator to use. Default constructor
 			explicit vector (const allocator_type& alloc = allocator_type()) 
-				:	_alloc(alloc), _count(0), _start(nullptr), _end(nullptr)
+				:	_alloc(alloc), _start(nullptr), _end(nullptr)
 			{};
 
 			// Fill constructor
@@ -117,7 +117,7 @@ namespace ft
 					const allocator_type& alloc = allocator_type())
 			:	_alloc(alloc)
 			{
-				_start = _alloc.allocate(sizeof(value_type) * count);	// allocate() returns a pointer to the initial element in the block of storage.
+				_start = _alloc.allocate(count);	// allocate() returns a pointer to the initial element in the block of storage.
 				pointer	it = _start;
 				
 				while (count--)
@@ -138,8 +138,8 @@ namespace ft
 				 :	_alloc(alloc)
 				 {
 					 difference_type range = ft::distance(first, last); 
-					 _start = _alloc.allocate(sizeof(value_type) * range);	// allocate() returns a pointer to the initial element in the block of storage.
-					 _last_element = _start;
+					 _start = _alloc.allocate(range);	// allocate() returns a pointer to the 
+					 _last_element = _start;			// initial element in the block of storage.
 					 while (range-- > 0)
 						 _alloc.construct(_last_element++, *first++);
 				 };
@@ -147,7 +147,8 @@ namespace ft
 			// Copy constructor
 			// MUST COPY SOURCE CONTENT WITH insert()
 			vector (const vector& source)
-				:	_alloc(source._alloc), _count(source._count), _start(source._start), _end(source._end)
+				:	_alloc(source._alloc), _start(source._start),
+					_last_element(source._last_element), _end(source._end)
 			{};
 
 
@@ -158,37 +159,75 @@ namespace ft
 			/* CAPACITY */
 
 			/* size(): Returns the number of elements in the vector */
-			size_type	size() const
-			{
+			size_type	size() const	{	return (this->_last_element - this->_start);	}
 
+			/* max_size(): Return maximum size */
+			size_type max_size() const	{	return (_alloc.max_size());	}
+
+			/* capacity(): Return size of allocated storage */
+			size_type	capacity() const	{	return (this->_end - this->_start);	}
+
+			/* reserve(): Request a change in capacity */
+			void		reserve(size_type n)
+			{
+				if (this->capacity() >= n)
+					return;
+				
+				T* new_start = _alloc.allocate(n);	// new_start is initialized as a pointer to the first element
+				size_type prev_size = this->size();
+				size_type prev_capacity = this->capacity();
+
+				for (size_type i = 0; i < prev_size; i++)
+				{
+					this->alloc->construct(new_start + i, _start + i);
+					this->alloc->destroy(_start + i);
+				}
+				this->alloc->deallocate(_start, prev_capacity);
+
+				this->_start = new_start;
+				this->_last_element = new_start + prev_size;
+				this->_end = new_start + n;
 			}
 
-			/* MODIFIERS
+			
+			/* MODIFIERS */
 
-			 Clear(): Removes all elements
+			 /* Clear(): Removes all elements */
 			void clear()
 			{
 				size_type i = this->size();
-				for (i > 0; i--)
+				while (i > 0)
 				{
-					_end--;
-					_alloc.destroy(_end);
+					_last_element--;
+					_alloc.destroy(_last_element);
+					i--;
 				}
 			}
 
-			 Assign(): Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly
+			/* Assign(): Assigns new contents to the vector, replacing its current contents
+			 * and modifying its size accordingly */
 			template <class InputIterator>
 			  void assign (InputIterator first, InputIterator last,
-					  typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
+					  typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>
+					  ::type* = nullptr)
 			  {
+				  this->reserve();
 				  this->clear();
+				  
+				  size_type n = ft::distance(first, last);
+				  while (n--)
+					  _alloc.construct(_last_element++, *(first++));
 			  }
 
 			void assign (size_type n, const value_type& val)
 			{
+				  this->reserve();
 				  this->clear();
+
+				  while (n--)
+					  _alloc.construct(_last_element++, val);
 			}
-*/
+
 			private:
 
 				allocator_type	_alloc;
