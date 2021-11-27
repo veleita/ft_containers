@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:03:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/26 21:07:32 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:11:51 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,60 @@
 
 void test_vector()
 {
-	std::cout << "CONSTRUCTORS\n";
-	std::cout << "----------------------------------------------\n";
+	/* constructors */
+	std::vector<int> ft_default_vector;
 
-	// Empty vector
-	std::vector<int> v0;
-	std::cout << "0 - vector(): [";
-	for (std::vector<int>::iterator it = v0.begin(); it != v0.end(); ++it)
-	    std::cout << " " << *it;
-	std::cout << " ]\n";
+	std::vector<int> *ft_pointer_default_vector = new std::vector<int>;
+	delete ft_pointer_default_vector;
+
+	std::vector<int> ft_empty_vector(0);
+	std::vector<int> ft_fill_vector(10);
+	std::vector<int> ft_fill_vector_sized_and_valued(19, 42);
+
+	int range_array[] = { 45, 87846, 12, 965, 5 };
+	std::vector<int>::iterator ft_iterator(&(range_array[0]));
+
+	/* reserve */
+	std::vector<int>::size_type sz;
 	
-	// Vector with 3 elements of default value 0
-	std::vector<int> v1(3);
-	std::cout << "1 - vector(count): [";
-	for (std::vector<int>::iterator it = v1.begin(); it != v1.end(); ++it)
-	    std::cout << " " << *it;
-	std::cout << " ]\n";
+	std::vector<int> foo;
+	sz = foo.capacity();
+	std::cout << "making foo grow:\n";
+	for (int i=0; i < 100; ++i) {
+		foo.push_back(i);
+		if (sz!=foo.capacity()) {
+			sz = foo.capacity();
+			std::cout << "capacity changed: " << sz << '\n';
+		}
+	}
 	
-	// Vector with 5 elements of value 2
-	std::vector<int> v2(5, 2);
-	std::cout << "2 - vector(count, value): [";
-	for (std::vector<int>::iterator it = v2.begin(); it != v2.end(); ++it)
-	    std::cout << " " << *it;
-	std::cout << " ]\n";
+	std::vector<int> bar;
+	sz = bar.capacity();
+	bar.reserve(100);   // this is the only difference with foo above
+	std::cout << "making bar grow:\n";
+	for (int i=0; i<100; ++i) {
+		bar.push_back(i);
+		if (sz!=bar.capacity()) {
+			sz = bar.capacity();
+	  		std::cout << "capacity changed: " << sz << '\n';
+		}
+	}
 
-	// Vector with 4 elements of value 1 and with v2's allocator
-	std::vector<int> v3(4, 1, v2.get_allocator());
-	std::cout << "3 - vector(count, value, alloc): [";
-	for (std::vector<int>::iterator it = v3.begin(); it != v3.end(); ++it)
-	    std::cout << " " << *it;
-	std::cout << " ]\n";
+	/* assign */
+	std::vector<int> first;
+	std::vector<int> second;
+	std::vector<int> third;
 
-	// Vector copying elements in v3 in range 1 - 3
-	std::vector<int> v4(v3.begin() + 1, v3.begin() + 4);
-	std::cout << "4 - vector(first, last): [";
-	for (std::vector<int>::iterator it = v4.begin(); it != v4.end(); ++it)
-	    std::cout << " " << *it;
-	std::cout << " ]\n";
+	first.assign (7,100);             // 7 ints with a value of 100
 
-	// Copy of v4
-	std::vector<int> v5(v2);
-	std::cout << "5 - vector(source): [";
-	for (std::vector<int>::iterator it = v5.begin(); it != v5.end(); ++it)
-	    std::cout << " " << *it;
-	std::cout << " ]\n";
+	std::vector<int>::iterator it;
+	it = first.begin()+1;
 
+	second.assign (it,first.end()-1); // the 5 central values of first
+
+	int myints[] = {1776,7,4};
+	third.assign (myints,myints+3);   // assigning from array.
+
+	std::cout << "Size of first: " << int (first.size()) << '\n';
+	std::cout << "Size of second: " << int (second.size()) << '\n';
 }

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/24 22:46:02 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:28:33 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,32 @@ namespace ft
 			/* max_size(): Return maximum size */
 			size_type max_size() const	{	return (_alloc.max_size());	}
 
+			/* Resizes the container so that it contains n elements */
+			void resize(size_type n, value_type val = value_type())
+			{
+				size_type prev_size;
+
+				if (n > (prev_size = this->size()))
+				{
+					this->reserve(n);
+					for (size_type i = prev_size; i < n; i++)
+						this->alloc->construct(this->space++, val);
+				}
+				else if (n < prev_size)
+				{
+					for (size_type i = n; i < prev_size; i++)
+						this->alloc->destroy(--this->space);
+				}
+			}
+
 			/* capacity(): Return size of allocated storage */
 			size_type	capacity() const	{	return (this->_end - this->_start);	}
+			 
+			/* Returns whether the vector is empty (i.e. whether its size is 0) */
+			bool empty() const
+			{
+				return (this->size() == 0);
+			}
 
 			/* reserve(): Request a change in capacity */
 			void		reserve(size_type n)

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 18:42:27 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/21 20:16:33 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:15:02 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void test_vector()
 {
+	/* constructors */
 	ft::vector<int> ft_default_vector;
 
 	ft::vector<int> *ft_pointer_default_vector = new ft::vector<int>;
@@ -27,6 +28,52 @@ void test_vector()
 
 	int range_array[] = { 45, 87846, 12, 965, 5 };
 	ft::vector<int>::iterator ft_iterator(&(range_array[0]));
+
+	/* reserve */
+	ft::vector<int>::size_type sz;
+	
+	ft::vector<int> foo;
+	sz = foo.capacity();
+	std::cout << "making foo grow:\n";
+	for (int i=0; i < 100; ++i) {
+		foo.push_back(i);
+		if (sz != foo.capacity()) {
+			sz = foo.capacity();
+			std::cout << "capacity changed: " << sz << '\n';
+		}
+	}
+	
+	ft::vector<int> bar;
+	sz = bar.capacity();
+	bar.reserve(100);   // this is the only difference with foo above
+	std::cout << "making bar grow:\n";
+	for (int i=0; i < 100; ++i) {
+		bar.push_back(i);
+		if (sz!=bar.capacity()) {
+			sz = bar.capacity();
+	  		std::cout << "capacity changed: " << sz << '\n';
+		}
+	}
+
+	/* assign */
+	ft::vector<int> first;
+	ft::vector<int> second;
+	ft::vector<int> third;
+
+	first.assign (7,100);             // 7 ints with a value of 100
+
+	ft::vector<int>::iterator it;
+	it = first.begin() + 1;
+
+	second.assign (it, first.end() - 1); // the 5 central values of first
+
+	int myints[] = {1776, 7, 4};
+	third.assign (myints, myints + 3);   // assigning from array.
+
+	std::cout << "Size of first: " << int (first.size()) << '\n';
+	std::cout << "Size of second: " << int (second.size()) << '\n';
+	std::cout << "Size of third: " << int (third.size()) << '\n';
+
 /*	std::cout << "0 - vector(): [";
 	for (ft::vector<int>::iterator it = v0.begin(); it != v0.end(); ++it)
 			std::cout << " " << *it;
@@ -35,11 +82,11 @@ void test_vector()
 	ft::vector<int> v1(3);
 
 	std::cout << "1 - vector(count): [";
-	for (ft::vector<int>::iterator it = v1.begin(); it != v1.end(); ++it)
-	    std::cout << " " << *it;
-	std::cout << " ]\n";
-	// Vector with 5 elements of value 2
-	ft::vector<int> v2(5, 2);
+		for (ft::vector<int>::iterator it = v1.begin(); it != v1.end(); ++it)
+			std::cout << " " << *it;
+		std::cout << " ]\n";
+		// Vector with 5 elements of value 2
+		ft::vector<int> v2(5, 2);
 
 	std::cout << "2 - vector(count, value): [";
 	for (ft::vector<int>::iterator it = v2.begin(); it != v2.end(); ++it)
