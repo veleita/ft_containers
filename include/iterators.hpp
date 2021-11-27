@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/21 20:19:20 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:52:14 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ namespace ft
                 typedef T&             reference;
 
 				/* CONSTRUCTORS */
-				vector_iterator()	:	_value(nullptr)	{}
-				explicit vector_iterator(T *it)	:	_value(*it)	{}
+				vector_iterator()	:	_value(0)	{}
+				vector_iterator(pointer it)	:	_value(it)	{}
 				vector_iterator(vector_iterator &copy)	:	_value(copy._value)	{}
 				
 				/* OPERATOR OVERLOADS */
@@ -135,9 +135,9 @@ namespace ft
 				bool	&operator==(const vector_iterator &rhs)	{	return(this->_value == rhs._value);	}
 				bool	&operator!=(const vector_iterator &rhs)	{	return(this->_value != rhs._value);	}
 
-				reference	&operator*()	{	return(this->_value);	}
-				pointer		&operator->()	{	return(&(this->_value));	}
-				reference	&operator[](difference_type n)	{	return(*(*this + n));	}
+				reference	&operator*()	{	return(*this->_value);	}
+				pointer		&operator->()	{	return(this->_value);	}
+				reference	&operator[](difference_type n)	{	return(*(this + n));	}
 
 				vector_iterator	&operator++()
 				{
@@ -162,10 +162,12 @@ namespace ft
 					return(tmp);
 				}
 
-				vector_iterator	&operator+(difference_type n)	{	return(&(this->_value) + n);	}
-				vector_iterator	&operator-(difference_type n)	{	return(&(this->_value) - n);	}
-				vector_iterator	&operator+(const vector_iterator &rhs)	{	return(&(this->_value) + &(rhs._value));	}
-				vector_iterator	&operator-(const vector_iterator &rhs)	{	return(&(this->_value) - &(rhs._value));	}
+				vector_iterator	&operator+(difference_type n)	{	return(this->_value + n);	}
+				vector_iterator	&operator-(difference_type n)	{	return(this->_value - n);	}
+				vector_iterator	&operator+(const vector_iterator &rhs)
+				{	return(this->_value + rhs._value);	}
+				vector_iterator	&operator-(const vector_iterator &rhs)
+				{	return(this->_value - rhs._value);	}
 				
 				bool	&operator<(const vector_iterator &rhs)	{	return(this->_value < rhs._value);	}
 				bool	&operator>(const vector_iterator &rhs)	{	return(this->_value > rhs._value);	}
@@ -189,7 +191,7 @@ namespace ft
 			private:
 				
 				/* ATTRIBUTES */
-				value_type	_value;
+				pointer	_value;
 		};
 
 	/* Predefined iterator

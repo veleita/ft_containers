@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 18:42:27 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/27 17:15:02 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:59:19 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void test_vector()
 	ft::vector<int> ft_fill_vector(10);
 	ft::vector<int> ft_fill_vector_sized_and_valued(19, 42);
 
-	int range_array[] = { 45, 87846, 12, 965, 5 };
-	ft::vector<int>::iterator ft_iterator(&(range_array[0]));
+	int array[] = { 45, 87846, 12, 965, 5 };
+	ft::vector<int> ft_vector_from_array (array,
+			array + (sizeof(array) / sizeof(int)));
 
 	/* reserve */
 	ft::vector<int>::size_type sz;

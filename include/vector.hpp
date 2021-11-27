@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/26 17:28:33 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:42:30 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,13 @@ namespace ft
 			allocator_type get_allocator() const	{	return (this->_alloc);	}
 
 
+			/* ITERATORS */
+			iterator 		begin()			{	return (iterator(_start));	}
+			const_iterator	begin() const	{	return (iterator(_start));	}
+
+			iterator 		end()			{	return (_last_element + 1);	}
+			const_iterator	end() const	{	return (_last_element + 1);	}
+
 			/* CAPACITY */
 
 			/* size(): Returns the number of elements in the vector */
@@ -167,18 +174,18 @@ namespace ft
 			/* Resizes the container so that it contains n elements */
 			void resize(size_type n, value_type val = value_type())
 			{
-				size_type prev_size;
+				size_type prev_size = this->size();
 
-				if (n > (prev_size = this->size()))
+				if (n > prev_size)
 				{
 					this->reserve(n);
 					for (size_type i = prev_size; i < n; i++)
-						this->alloc->construct(this->space++, val);
+						_alloc.construct(_last_element++, val);
 				}
 				else if (n < prev_size)
 				{
 					for (size_type i = n; i < prev_size; i++)
-						this->alloc->destroy(--this->space);
+						this->alloc->destroy(--_last_element);
 				}
 			}
 
@@ -203,14 +210,14 @@ namespace ft
 
 				for (size_type i = 0; i < prev_size; i++)
 				{
-					this->alloc->construct(new_start + i, _start + i);
-					this->alloc->destroy(_start + i);
+					_alloc.construct(new_start + i, _start + i);
+					_alloc.destroy(_start + i);
 				}
-				this->alloc->deallocate(_start, prev_capacity);
+				_alloc.deallocate(_start, prev_capacity);
 
-				this->_start = new_start;
-				this->_last_element = new_start + prev_size;
-				this->_end = new_start + n;
+				_start = new_start;
+				_last_element = new_start + prev_size;
+				_end = new_start + n;
 			}
 
 			
@@ -228,6 +235,18 @@ namespace ft
 				}
 			}
 
+			void push_back (const value_type& val)
+			{
+				/* test what happens when capacity < 1
+				if (capacity == 0)
+					reserve(1);
+				*/
+				if (_last_element == _end)
+					reserve(this->capacity() * 2);
+				_alloc.construct(_last_element, val);
+				_last_element++;
+			}
+
 			/* Assign(): Assigns new contents to the vector, replacing its current contents
 			 * and modifying its size accordingly */
 			template <class InputIterator>
@@ -235,17 +254,17 @@ namespace ft
 					  typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>
 					  ::type* = nullptr)
 			  {
-				  this->reserve();
 				  this->clear();
 				  
 				  size_type n = ft::distance(first, last);
+				  this->reserve(n);
 				  while (n--)
 					  _alloc.construct(_last_element++, *(first++));
 			  }
 
 			void assign (size_type n, const value_type& val)
 			{
-				  this->reserve();
+				  this->reserve(n);
 				  this->clear();
 
 				  while (n--)

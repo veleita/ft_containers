@@ -6,11 +6,14 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:03:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/27 17:11:51 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:38:19 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <test_vector.hpp>
+//#include <test_vector.hpp>
+#include <iterator>
+#include <vector>
+#include <iostream>
 
 void test_vector()
 {
@@ -24,8 +27,8 @@ void test_vector()
 	std::vector<int> ft_fill_vector(10);
 	std::vector<int> ft_fill_vector_sized_and_valued(19, 42);
 
-	int range_array[] = { 45, 87846, 12, 965, 5 };
-	std::vector<int>::iterator ft_iterator(&(range_array[0]));
+	int array[] = { 45, 87846, 12, 965, 5 };
+	std::vector<int> ft_vector_from_array (array, array + sizeof(array) / sizeof(int));
 
 	/* reserve */
 	std::vector<int>::size_type sz;
