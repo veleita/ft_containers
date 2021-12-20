@@ -16,7 +16,7 @@ FT_TEST 	= ft_containers
 
 # Compilation variables ========================================================
 CC = clang++
-CFLAGS += -Wall -Wextra -Werror -std=c++98 -g
+CFLAGS += -Wall -Wextra -Werror -g
 
 # Directories ==================================================================
 INCLUDE_DIR 	=	include/
@@ -25,7 +25,7 @@ STL_OBJ_DIR		=	obj/
 FT_OBJ_DIR 		=	ft_obj/
 
 # Source files =================================================================
-SRC 		=	SRCS = $(shell ls $(SRC_DIR)*.cpp | cut -d '/' -f 2)
+SRC 		=	$(shell ls $(SRC_DIR)*.cpp | cut -d '/' -f 2)
 STL_OBJ 	= 	$(addprefix $(STL_OBJ_DIR), $(SRC:.cpp=.o))
 FT_OBJ 		= 	$(addprefix $(FT_OBJ_DIR), $(SRC:.cpp=.o))
 
@@ -35,26 +35,26 @@ FT_OBJ 		= 	$(addprefix $(FT_OBJ_DIR), $(SRC:.cpp=.o))
 all: $(STL_TEST) $(FT_TEST)
 
 $(STL_TEST): $(STL_OBJ)
-	$(CC) $(CFLAGS) $(OBJS) -I $(INCLUDE_DIR) -o $(NAME)
+	$(CC) $(CFLAGS) $(STL_OBJ) -I $(INCLUDE_DIR) -o $(STL_TEST)
 
 $(FT_TEST): $(FT_OBJ)
-	$(CC) $(CFLAGS) $(FT_OBJS) -I $(INCLUDE_DIR) -o $(FT_NAME)
+	$(CC) $(CFLAGS) $(FT_OBJ) -I $(INCLUDE_DIR) -o $(FT_TEST)
 
 
 # Creating directories ==========================================================
-$(STL_OBJ):
+$(STL_OBJ_DIR):
 	mkdir $(STL_OBJ_DIR)
 
 $(FT_OBJ):
-	mkdir $(STL_OBJ_DIR)
+	mkdir $(FT_OBJ_DIR)
 
 
 # Building sources ==============================================================
-$(STL_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
-		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D VERSION=stl -c $< -o $@
+$(STL_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(STL_OBJ_DIR)
+		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D NAMESPACE=std -c $< -o $@
 
 $(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
-		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D VERSION=ft -c $< -o $@
+		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D NAMESPACE=ft -c $< -o $@
 
 
 
@@ -65,9 +65,7 @@ original: $(STL_TEST)
 replica: $(FT_TEST)
 	./$(FT_TEST)
 
-test: original replica
-
-diff: all
+test: all
 	./$(NAME) > original
 	./$(FT_NAME) > replica
 	diff original replica
@@ -76,10 +74,10 @@ diff: all
 
 # Cleaning ======================================================================
 clean:
-	rm -f $(OBJS) $(FT_OBJS)
+	rm -rf $(FT_OBJ_DIR) $(STL_OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME) $(FT_NAME)
+	rm -f $(FT_TEST) $(STL_TEST)
 
 re: fclean all
 
