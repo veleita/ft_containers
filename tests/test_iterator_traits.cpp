@@ -5,13 +5,14 @@ template <class BidirIt>
 void my_reverse(BidirIt first, BidirIt last)
 {
     typename NAMESPACE::iterator_traits<BidirIt>::difference_type n =
-        NAMESPACE::distance(first, last);
+        NAMESPACE::distance(first, last) - 1;
 
-    for (--n; n > 0; n -= 2)
+    while (n > 0)
     {
         typename NAMESPACE::iterator_traits<BidirIt>::value_type tmp = *first;
         *first++ = *--last;
         *last = tmp;
+        n -= 2;
     }
 }
 

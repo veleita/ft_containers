@@ -8,7 +8,9 @@
 #if NAMESPACE == std
 #include <type_traits> // is_integral
 #include <utility>     // pair
-#elif NAMESPACE == ft
+#endif
+
+#if NAMESPACE == ft
 #include <ft_utils.hpp>
 #endif
 

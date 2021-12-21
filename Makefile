@@ -45,7 +45,7 @@ $(FT_TEST): $(FT_OBJ)
 $(STL_OBJ_DIR):
 	mkdir $(STL_OBJ_DIR)
 
-$(FT_OBJ):
+$(FT_OBJ_DIR):
 	mkdir $(FT_OBJ_DIR)
 
 
@@ -53,7 +53,7 @@ $(FT_OBJ):
 $(STL_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(STL_OBJ_DIR)
 		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D NAMESPACE=std -c $< -o $@
 
-$(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
+$(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(FT_OBJ_DIR)
 		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D NAMESPACE=ft -c $< -o $@
 
 
@@ -66,8 +66,8 @@ replica: $(FT_TEST)
 	./$(FT_TEST)
 
 test: all
-	./$(NAME) > original
-	./$(FT_NAME) > replica
+	./$(STL_TEST) > original
+	./$(FT_TEST) > replica
 	diff original replica
 	@rm original replica
 
