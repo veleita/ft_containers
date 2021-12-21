@@ -12,6 +12,7 @@
 #endif
 
 #if NAMESPACE == ft
+#include <ft_iterator_traits.hpp>
 #include <ft_iterator.hpp>
 #endif
 
