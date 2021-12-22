@@ -42,9 +42,9 @@ namespace ft
 	{
 	public:
 		/* TYPEDEFS */
-		typedef typename ft::iterator<std::random_access_iterator_tag, T>::iterator_category iterator_category;
-		typedef typename ft::iterator<std::random_access_iterator_tag, T>::value_type value_type;
-		typedef typename ft::iterator<std::random_access_iterator_tag, T>::difference_type difference_type;
+		typedef typename NAMESPACE::iterator<std::random_access_iterator_tag, T>::iterator_category iterator_category;
+		typedef typename NAMESPACE::iterator<std::random_access_iterator_tag, T>::value_type value_type;
+		typedef typename NAMESPACE::iterator<std::random_access_iterator_tag, T>::difference_type difference_type;
 		typedef T *pointer;
 		typedef T &reference;
 
@@ -134,11 +134,11 @@ namespace ft
 	{
 	public:
 		typedef Iterator iterator_type;
-		typedef typename ft::iterator_traits<Iterator>::iterator_category iterator_category;
-		typedef typename ft::iterator_traits<Iterator>::value_type value_type;
-		typedef typename ft::iterator_traits<Iterator>::difference_type difference_type;
-		typedef typename ft::iterator_traits<Iterator>::pointer pointer;
-		typedef typename ft::iterator_traits<Iterator>::reference reference;
+		typedef typename NAMESPACE::iterator_traits<Iterator>::iterator_category iterator_category;
+		typedef typename NAMESPACE::iterator_traits<Iterator>::value_type value_type;
+		typedef typename NAMESPACE::iterator_traits<Iterator>::difference_type difference_type;
+		typedef typename NAMESPACE::iterator_traits<Iterator>::pointer pointer;
+		typedef typename NAMESPACE::iterator_traits<Iterator>::reference reference;
 
 		reverse_iterator() : _baseIterator() {}
 		explicit reverse_iterator(iterator_type it) : _baseIterator(it) {}
