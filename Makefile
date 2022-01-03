@@ -19,7 +19,7 @@ CC = clang++
 CFLAGS += -Wall -Wextra -Werror -g
 
 # Directories ==================================================================
-INCLUDE_DIR 	=	include/
+INCLUDE_DIR 	=	containers/
 SRC_DIR			=	tests/
 STL_OBJ_DIR		=	obj/
 FT_OBJ_DIR 		=	ft_obj/

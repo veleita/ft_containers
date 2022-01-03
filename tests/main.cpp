@@ -12,7 +12,6 @@
 
 #include "test_utils.hpp"
 #include "test_iterator.hpp"
-#include "test_vector.hpp"
 
 typedef void (*test)(void);
 
@@ -43,13 +42,13 @@ int main()
 
 	std::cout << "VECTOR TEST\n";
 	std::cout << "===========================\n";
-	test vector[1] = {&test_v_constructors};
+	/*	test vector[1] = {&test_v_constructors};
 
 	for (int i = 0; i < 1; i++)
 	{
 		(*vector[i])();
 		std::cout << std::endl;
 	}
-
+*/
 	return 0;
 }
