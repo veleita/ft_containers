@@ -1,4 +1,1 @@
-.*.sw?
-.nfs.*
-.vscode/settings.json
-*.json
+.*
