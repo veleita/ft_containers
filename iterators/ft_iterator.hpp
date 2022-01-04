@@ -22,7 +22,8 @@ namespace ft
 
 	/* ITERATORS */
 
-	/* Iterator base class: https://www.cplusplus.com/reference/iterator/iterator/ */
+	/* Iterator base class:
+	**	https://www.cplusplus.com/reference/iterator/iterator/ */
 	template <
 		class Category, class T, class Distance = ptrdiff_t, class Pointer = T *,
 		class Reference = T &>

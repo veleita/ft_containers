@@ -15,11 +15,11 @@ STL_TEST 	= stl_containers
 FT_TEST 	= ft_containers
 
 # Compilation variables ========================================================
-CC = clang++
-CFLAGS += -Wall -Wextra -Werror -g
+CC 			= clang++
+CFLAGS 		+= -Wall -Wextra -Werror -g
+INCLUDES 	=	-I containers/ -I iterators/ -I utils/
 
 # Directories ==================================================================
-INCLUDE_DIR 	=	containers/
 SRC_DIR			=	tests/
 STL_OBJ_DIR		=	obj/
 FT_OBJ_DIR 		=	ft_obj/
@@ -35,10 +35,10 @@ FT_OBJ 		= 	$(addprefix $(FT_OBJ_DIR), $(SRC:.cpp=.o))
 all: $(STL_TEST) $(FT_TEST)
 
 $(STL_TEST): $(STL_OBJ)
-	$(CC) $(CFLAGS) $(STL_OBJ) -I $(INCLUDE_DIR) -o $(STL_TEST)
+	$(CC) $(CFLAGS) $(STL_OBJ) $(INCLUDES) -o $(STL_TEST)
 
 $(FT_TEST): $(FT_OBJ)
-	$(CC) $(CFLAGS) $(FT_OBJ) -I $(INCLUDE_DIR) -o $(FT_TEST)
+	$(CC) $(CFLAGS) $(FT_OBJ) $(INCLUDES) -o $(FT_TEST)
 
 
 # Creating directories ==========================================================
@@ -51,10 +51,10 @@ $(FT_OBJ_DIR):
 
 # Building sources ==============================================================
 $(STL_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(STL_OBJ_DIR)
-		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D NAMESPACE=std -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDES) -D NAMESPACE=std -c $< -o $@
 
 $(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(FT_OBJ_DIR)
-		$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -D NAMESPACE=ft -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDES) -D NAMESPACE=ft -c $< -o $@
 
 
 
