@@ -70,9 +70,9 @@ namespace ft
 		/* Destructor */
 		virtual ~vector_iterator() {}
 
-		/* Operators */
+		/* Logical perators */
 		reference operator*(void) const { return *(_elem); }
-		pointer operator->(void) { return _elem; }
+		pointer operator->(void) const { return _elem; }
 
 		vector_iterator &operator++(void)
 		{
@@ -122,7 +122,7 @@ namespace ft
 			return (*this);
 		}
 
-		reference operator[](difference_type n)
+		reference operator[](difference_type n) const
 		{
 			return (*(operator+(n)));
 		}
@@ -131,5 +131,43 @@ namespace ft
 		pointer _elem;
 	};
 };
+
+/* Comparison perators */
+
+template <typename U, typename V>
+bool operator==(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
+{
+	return (lhs.operator->() == rhs.operator->());
+}
+
+template <typename U, typename V>
+bool operator!=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
+{
+	return (lhs.operator->() != rhs.operator->());
+}
+
+template <typename U, typename V>
+bool operator<(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
+{
+	return (lhs.operator->() < rhs.operator->());
+}
+
+template <typename U, typename V>
+bool operator<=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
+{
+	return (lhs.operator->() <= rhs.operator->());
+}
+
+template <typename U, typename V>
+bool operator>(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
+{
+	return (lhs.operator->() > rhs.operator->());
+}
+
+template <typename U, typename V>
+bool operator>=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
+{
+	return (lhs.operator->() >= rhs.operator->());
+}
 
 #endif

@@ -14,7 +14,7 @@ void print_content(NAMESPACE::vector<T> &vct)
 {
     typename NAMESPACE::vector<T>::const_iterator it;
     std::cout << "Vector content:\n";
-    for (it = vct.begin(); it != vct.end(); it++)
+    for (it = vct.begin(); it < vct.end(); it++)
         std::cout << *it << " ";
     std::cout << std::endl;
 }
