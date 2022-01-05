@@ -17,10 +17,13 @@ FT_TEST 	= ft_containers
 # Compilation variables ========================================================
 CC 			= clang++
 CFLAGS 		+= -Wall -Wextra -Werror -g
-INCLUDES 	=	-I containers/ -I iterators/ -I utils/
+INCLUDES 	=	-I $(INCLUDE_DIR)utils \
+				-I $(INCLUDE_DIR)iterators \
+				-I $(INCLUDE_DIR)containers
 
 # Directories ==================================================================
 SRC_DIR			=	tests/
+INCLUDE_DIR		=	src/
 STL_OBJ_DIR		=	obj/
 FT_OBJ_DIR 		=	ft_obj/
 
