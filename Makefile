@@ -78,7 +78,7 @@ test: all
 
 # Cleaning ======================================================================
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ_DIR) original replica
 
 fclean: clean
 	rm -f $(FT_TEST) $(STL_TEST)
