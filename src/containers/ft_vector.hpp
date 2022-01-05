@@ -118,7 +118,7 @@ namespace ft
 		/* max_size(): Return maximum size */
 		size_type max_size() const { return (_alloc.max_size()); }
 
-		/* Resizes the container so that it contains n elements */
+		/* resize(): Resizes the container so that it contains n elements */
 		void resize(size_type n, value_type val = value_type())
 		{
 			size_type prev_size = this->size();
