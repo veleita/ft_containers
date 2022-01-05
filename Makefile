@@ -24,13 +24,14 @@ INCLUDES 	=	-I $(INCLUDE_DIR)utils \
 # Directories ==================================================================
 SRC_DIR			=	tests/
 INCLUDE_DIR		=	src/
-STL_OBJ_DIR		=	obj/
-FT_OBJ_DIR 		=	ft_obj/
+OBJ_DIR			=	obj/
+STL_OBJ_DIR		=	stl/
+FT_OBJ_DIR 		=	ft/
 
 # Source files =================================================================
 SRC 		=	$(shell ls $(SRC_DIR)*.cpp | cut -d '/' -f 2)
-STL_OBJ 	= 	$(addprefix $(STL_OBJ_DIR), $(SRC:.cpp=.o))
-FT_OBJ 		= 	$(addprefix $(FT_OBJ_DIR), $(SRC:.cpp=.o))
+STL_OBJ 	= 	$(addprefix $(OBJ_DIR)$(STL_OBJ_DIR), $(SRC:.cpp=.o))
+FT_OBJ 		= 	$(addprefix $(OBJ_DIR)$(FT_OBJ_DIR), $(SRC:.cpp=.o))
 
 
 
@@ -46,17 +47,17 @@ $(FT_TEST): $(FT_OBJ)
 
 # Creating directories ==========================================================
 $(STL_OBJ_DIR):
-	mkdir $(STL_OBJ_DIR)
+	mkdir -p $(OBJ_DIR)$(STL_OBJ_DIR)
 
 $(FT_OBJ_DIR):
-	mkdir $(FT_OBJ_DIR)
+	mkdir -p $(OBJ_DIR)$(FT_OBJ_DIR)
 
 
 # Building sources ==============================================================
-$(STL_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(STL_OBJ_DIR)
+$(OBJ_DIR)$(STL_OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(STL_OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -D NAMESPACE=std -c $< -o $@
 
-$(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(FT_OBJ_DIR)
+$(OBJ_DIR)$(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(FT_OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -D NAMESPACE=ft -c $< -o $@
 
 
@@ -77,7 +78,7 @@ test: all
 
 # Cleaning ======================================================================
 clean:
-	rm -rf $(FT_OBJ_DIR) $(STL_OBJ_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(FT_TEST) $(STL_TEST)
