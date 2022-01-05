@@ -17,20 +17,30 @@
 #include <vector>	// vector
 #include <list>		// list
 
+#include <ft_iterator.hpp>
+#include <ft_iterator_traits.hpp>
+#include <ft_reverse_iterator.hpp>
+
 namespace ft
 {
 
 	/* Implementation defined random-access iterator for vector class:
 	** https://www.cplusplus.com/reference/iterator/RandomAccessIterator/ */
 	template <typename T>
-	class vector_iterator : ft::iterator<std::random_access_iterator_tag, T>
+	class vector_iterator
 	{
-	private:
-		pointer _elem;
-
 	public:
-		/* iterator_category, value_type, difference_type, pointer,
-				** and reference typenames are inherited from ft::iterator */
+		/* Type definitions */
+		typedef typename ft::iterator<std::random_access_iterator_tag, T>
+			base_iterator;
+		typedef typename ft::iterator_traits<base_iterator>::iterator_category
+			iterator_category;
+		typedef typename ft::iterator_traits<base_iterator>::value_type
+			value_type;
+		typedef typename ft::iterator_traits<base_iterator>::difference_type
+			difference_type;
+		typedef T *pointer;
+		typedef T &reference;
 
 		/* Default construtor */
 		vector_iterator(void)
@@ -58,7 +68,7 @@ namespace ft
 		}
 
 		/* Destructor */
-		virtual ~random_access_iterator() {}
+		virtual ~vector_iterator() {}
 
 		/* Operators */
 		reference operator*(void) const { return *(_elem); }
@@ -116,6 +126,9 @@ namespace ft
 		{
 			return (*(operator+(n)));
 		}
+
+	private:
+		pointer _elem;
 	};
 };
 
