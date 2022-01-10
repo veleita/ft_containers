@@ -44,7 +44,7 @@ namespace ft
 
 		/* Default construtor */
 		vector_iterator(void)
-			: _elem(nullptr)
+			: _elem(0)
 		{
 		}
 
@@ -71,7 +71,7 @@ namespace ft
 		virtual ~vector_iterator() {}
 
 		/* Logical perators */
-		reference operator*(void) const { return *(_elem); }
+		reference operator*(void) const { return *_elem; }
 		pointer operator->(void) const { return _elem; }
 
 		vector_iterator &operator++(void)

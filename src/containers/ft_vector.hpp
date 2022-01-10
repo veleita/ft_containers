@@ -107,8 +107,8 @@ namespace ft
 		iterator begin() { return (iterator(_start)); }
 		const_iterator begin() const { return (iterator(_start)); }
 
-		iterator end() { return (_last_element + 1); }
-		const_iterator end() const { return (_last_element + 1); }
+		iterator end() { return (_last_element); }
+		const_iterator end() const { return (_last_element); }
 
 		/* CAPACITY */
 
