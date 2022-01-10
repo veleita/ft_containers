@@ -19,7 +19,7 @@ typedef void (*test)(void);
 int main()
 {
 	std::cout << std::boolalpha;
-
+	/*
 	std::cout << "UTILS TEST\n";
 	std::cout << "===========================\n";
 	test utils[6] = {&test_is_integral, &test_enable_if, &test_pair,
@@ -40,7 +40,7 @@ int main()
 		(*iterator[i])();
 		std::cout << std::endl;
 	}
-
+*/
 	std::cout << "VECTOR TEST\n";
 	std::cout << "===========================\n";
 	test vector[1] = {&test_v_constructors};

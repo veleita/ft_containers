@@ -21,7 +21,16 @@ void print_content(NAMESPACE::vector<T> &vct)
 
 void test_v_constructors()
 {
-    NAMESPACE::vector<int> default_vector;
+    /*    NAMESPACE::vector<int> default_vector;
     print_attributes(default_vector);
     print_content(default_vector);
+
+    NAMESPACE::vector<int> *pointer_default_vector = new NAMESPACE::vector<int>;
+    print_attributes(*pointer_default_vector);
+    print_content(*pointer_default_vector);
+    delete pointer_default_vector;
+*/
+    NAMESPACE::vector<int> fill_vector(0);
+    print_attributes(fill_vector);
+    print_content(fill_vector);
 }
