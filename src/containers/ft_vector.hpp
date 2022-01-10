@@ -68,15 +68,15 @@ namespace ft
 			: _alloc(alloc)
 		{
 			_start = _alloc.allocate(count); // allocate() returns a pointer to the initial element in the block of storage.
-			pointer it = _start;
+			_last_element = _start;
 
 			while (count--)
 			{
-				_alloc.construct(it, value);
-				it++;
+				_alloc.construct(_last_element, value);
+				_last_element++;
 			}
 
-			_end = it;
+			_end = _last_element;
 		};
 
 		// Range constructor
