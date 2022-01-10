@@ -29,8 +29,23 @@ void test_v_constructors()
     print_attributes(*pointer_default_vector);
     print_content(*pointer_default_vector);
     delete pointer_default_vector;
-*/
+
     NAMESPACE::vector<int> fill_vector(0);
     print_attributes(fill_vector);
     print_content(fill_vector);
+
+    NAMESPACE::vector<int> fill_vector_sized(19);
+    print_attributes(fill_vector_sized);
+    print_content(fill_vector_sized);
+
+    NAMESPACE::vector<int> fill_vector_valued(19, 42);
+    print_attributes(fill_vector_valued);
+    print_content(fill_vector_valued);
+    */
+    int range_array[] = {45, 87846, 12, 965, 5};
+
+    NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+    NAMESPACE::vector<int> range_vector(it, it + 5);
+    print_attributes(range_vector);
+    print_content(range_vector);
 }

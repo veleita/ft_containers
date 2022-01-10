@@ -1,6 +1,14 @@
 #ifndef ITERATOR_TRAITS_HPP
 #define ITERATOR_TRAITS_HPP
 
+#include <ft_iterator.hpp>
+
+template <class InputIterator>
+bool operator!=(const InputIterator &lhs, const InputIterator &rhs)
+{
+    return (lhs.operator->() != rhs.operator->());
+}
+
 namespace ft
 {
     /*

@@ -132,8 +132,9 @@ namespace ft
 	};
 };
 
-/* Comparison perators */
-
+/* Comparison operators */
+// MAYBE THESE SHOULD GO ON THE BASE ITERATOR SO THEY ARE DEFINED FOR ANY
+// TYPE OF ITERATOR. ITERATOR_TRAITS NEED THESE OPERATORS POR DISTANCE()
 template <typename U, typename V>
 bool operator==(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
