@@ -63,8 +63,8 @@ $(OBJ_DIR)$(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(FT_OBJ_DIR)
 
 
 # Testing -======================================================================
-original: $(STL_TEST)
-	./$(STL_TEST)
+original: $(STL_TEST) // NEED TO FIND A WAY TO EXECUTE THESE EVEN WHEN
+	./$(STL_TEST)		// THE PROGRAM HAS ALREADY BEEN CREATED
 
 replica: $(FT_TEST)
 	./$(FT_TEST)

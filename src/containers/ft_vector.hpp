@@ -92,6 +92,7 @@ namespace ft
 			_last_element = _start;			 // initial element in the block of storage.
 			while (range-- > 0)
 				_alloc.construct(_last_element++, *first++);
+			_end = _last_element;
 		};
 
 		// Copy constructor
