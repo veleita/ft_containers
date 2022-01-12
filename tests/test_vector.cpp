@@ -78,5 +78,50 @@ void test_v_constructors()
         NAMESPACE::vector<int> assign_vector = range_vector;
         print_attributes(assign_vector);
         print_content(assign_vector);
+
+        int begin = *(assign_vector.begin());
+        NAMESPACE::vector<int>::iterator c_it = assign_vector.begin();
+        const int c_begin = *(c_it);
+        std::cout << begin << " " << c_begin << std::endl;
+
+        int end = *(assign_vector.end() - 1);
+        c_it = assign_vector.end() - 1;
+        const int c_end = *(c_it);
+        std::cout << end << " " << c_end << std::endl;
     }
+
+    {
+        int range_array[] = {54, 98, -3250, 0, 54, -3};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 6);
+
+        int begin = *(range_vector.begin());
+        NAMESPACE::vector<int>::iterator c_it = range_vector.begin();
+        const int c_begin = *(c_it);
+        std::cout << begin << " " << c_begin << std::endl;
+
+        int end = *(range_vector.end() - 1);
+        c_it = range_vector.end() - 1;
+        const int c_end = *(c_it);
+        std::cout << end << " " << c_end << std::endl;
+    }
+    /* REVERSE ITERATORS NOT IMPLEMENTED
+    {
+        int range_array[] = {54, 98, -3250, 0, 54, -3};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 6);
+        int rbegin = *(range_vector.rbegin());
+        const int c_rbegin = *(range_vector.rbegin());
+        std::cout << rbegin << " " << c_rbegin << std::endl;
+    }
+
+{
+            int range_array[] = {54, 98, -3250, 0, 54, -3};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 6);
+        int rbegin = *(range_vector.rbegin());
+        const int c_rbegin = *(range_vector.rbegin());
+        std::cout << rbegin << " " << c_rbegin << std::endl;
+        }
+*/
 }
