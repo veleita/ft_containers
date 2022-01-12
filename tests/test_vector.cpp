@@ -105,7 +105,7 @@ void test_v_constructors()
         const int c_end = *(c_it);
         std::cout << end << " " << c_end << std::endl;
     }
-    /* REVERSE ITERATORS NOT IMPLEMENTED
+
     {
         int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
@@ -115,13 +115,12 @@ void test_v_constructors()
         std::cout << rbegin << " " << c_rbegin << std::endl;
     }
 
-{
-            int range_array[] = {54, 98, -3250, 0, 54, -3};
+    {
+        int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
         NAMESPACE::vector<int> range_vector(it, it + 6);
-        int rbegin = *(range_vector.rbegin());
-        const int c_rbegin = *(range_vector.rbegin());
-        std::cout << rbegin << " " << c_rbegin << std::endl;
-        }
-*/
+        int rend = *(range_vector.rend() - 1);
+        const int c_rend = *(range_vector.rend());
+        std::cout << rend << " " << c_rend << std::endl;
+    }
 }

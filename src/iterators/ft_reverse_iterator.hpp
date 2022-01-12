@@ -25,42 +25,42 @@ namespace ft
         reference operator*() const
         {
             iterator_type prev = _baseIterator - 1;
-            return (prev);
+            return (*prev);
         }
-        reference operator+(difference_type n) const { return (reverse_iterator(_baseIterator - n)); }
-        reference operator-(difference_type n) const { return (reverse_iterator(_baseIterator + n)); }
-        reference operator+=(difference_type n) const
+        reverse_iterator operator+(difference_type n) const { return (reverse_iterator(_baseIterator - n)); }
+        reverse_iterator operator-(difference_type n) const { return (reverse_iterator(_baseIterator + n)); }
+        reverse_iterator operator+=(difference_type n) const
         {
             _baseIterator -= n;
             return (*this);
         }
-        reference operator-=(difference_type n) const
+        reverse_iterator operator-=(difference_type n) const
         {
             _baseIterator += n;
             return (*this);
         }
-        reference &operator++() const
+        reverse_iterator &operator++() const
         {
             _baseIterator++;
             return (*this);
         }
-        reference &operator++(int) const
+        reverse_iterator &operator++(int) const
         {
             reverse_iterator temp = *this;
             _baseIterator++;
             return temp;
         }
-        reference &operator--() const
+        reverse_iterator &operator--() const
         {
             return --(*this);
         }
-        reference &operator--(int) const
+        reverse_iterator &operator--(int) const
         {
             reverse_iterator temp = *this;
             _baseIterator--;
             return temp;
         }
-        reference operator->() const { return &(operator*()); }
+        pointer operator->() const { return &(operator*()); }
         reference operator[](difference_type n) const { return (this->base()[-n]); };
 
     private:
