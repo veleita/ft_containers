@@ -43,9 +43,9 @@ int main()
 */
 	std::cout << "VECTOR TEST\n";
 	std::cout << "===========================\n";
-	test vector[1] = {&test_v_constructors};
+	test vector[2] = {&test_v_constructors, &test_v_iterators};
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		(*vector[i])();
 		std::cout << std::endl;

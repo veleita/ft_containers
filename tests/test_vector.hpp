@@ -14,5 +14,6 @@
 #endif
 
 void test_v_constructors();
+void test_v_iterators();
 
 #endif

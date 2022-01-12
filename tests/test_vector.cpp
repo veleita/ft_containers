@@ -21,14 +21,16 @@ void print_content(NAMESPACE::vector<T> &vct)
 
 void test_v_constructors()
 {
-    /*
+    std::cout << "CONSTRUCTORS\n";
     {
+        std::cout << "Default:\n";
         NAMESPACE::vector<int> default_vector;
         print_attributes(default_vector);
         print_content(default_vector);
     }
 
     {
+        std::cout << "Pointer:\n";
         NAMESPACE::vector<int> *pointer_default_vector = new NAMESPACE::vector<int>;
         print_attributes(*pointer_default_vector);
         print_content(*pointer_default_vector);
@@ -36,24 +38,28 @@ void test_v_constructors()
     }
 
     {
+        std::cout << "Empty fill:\n";
         NAMESPACE::vector<int> fill_vector(0);
         print_attributes(fill_vector);
         print_content(fill_vector);
     }
 
     {
+        std::cout << "Sized fill:\n";
         NAMESPACE::vector<int> fill_vector_sized(19);
         print_attributes(fill_vector_sized);
         print_content(fill_vector_sized);
     }
 
     {
+        std::cout << "Valued fill:\n";
         NAMESPACE::vector<int> fill_vector_valued(19, 42);
         print_attributes(fill_vector_valued);
         print_content(fill_vector_valued);
     }
-    */
+
     {
+        std::cout << "Range:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
 
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
@@ -63,6 +69,7 @@ void test_v_constructors()
     }
 
     {
+        std::cout << "Copy:\n";
         int range_array[] = {-89, 561, 874, 7777, 987, -6};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
         NAMESPACE::vector<int> range_vector(it, it + 6);
@@ -72,25 +79,21 @@ void test_v_constructors()
     }
 
     {
+        std::cout << "Assign:\n";
         int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
         NAMESPACE::vector<int> range_vector(it, it + 6);
         NAMESPACE::vector<int> assign_vector = range_vector;
         print_attributes(assign_vector);
         print_content(assign_vector);
-
-        int begin = *(assign_vector.begin());
-        NAMESPACE::vector<int>::iterator c_it = assign_vector.begin();
-        const int c_begin = *(c_it);
-        std::cout << begin << " " << c_begin << std::endl;
-
-        int end = *(assign_vector.end() - 1);
-        c_it = assign_vector.end() - 1;
-        const int c_end = *(c_it);
-        std::cout << end << " " << c_end << std::endl;
     }
+}
 
+void test_v_iterators()
+{
+    std::cout << "ITERATORS\n";
     {
+        std::cout << "begin(), end():\n";
         int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
         NAMESPACE::vector<int> range_vector(it, it + 6);
@@ -107,18 +110,14 @@ void test_v_constructors()
     }
 
     {
+        std::cout << "rbegin(), rend():\n";
         int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
         NAMESPACE::vector<int> range_vector(it, it + 6);
         int rbegin = *(range_vector.rbegin());
         const int c_rbegin = *(range_vector.rbegin());
         std::cout << rbegin << " " << c_rbegin << std::endl;
-    }
 
-    {
-        int range_array[] = {54, 98, -3250, 0, 54, -3};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 6);
         int rend = *(range_vector.rend() - 1);
         const int c_rend = *(range_vector.rend());
         std::cout << rend << " " << c_rend << std::endl;
