@@ -63,9 +63,20 @@ void test_v_constructors()
     }
 
     {
-        int neg_range_array[] = {-89, 561, 874, 7777, 987, -6};
-        NAMESPACE::vector<int>::iterator it(&(neg_range_array[0]));
-        NAMESPACE::vector<int> neg_range_vector(it, it + 6);
-        NAMESPACE::vector<int> copy_vector(neg_range_vector);
+        int range_array[] = {-89, 561, 874, 7777, 987, -6};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 6);
+        NAMESPACE::vector<int> copy_vector(range_vector);
+        print_attributes(copy_vector);
+        print_content(copy_vector);
+    }
+
+    {
+        int range_array[] = {54, 98, -3250, 0, 54, -3};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 6);
+        NAMESPACE::vector<int> assign_vector = range_vector;
+        print_attributes(assign_vector);
+        print_content(assign_vector);
     }
 }
