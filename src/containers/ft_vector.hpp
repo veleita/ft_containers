@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.hpp                                         :+:      :+:    :+:   */
+/*   ft_vector.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/27 18:42:30 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/17 13:15:15 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ namespace ft
 			else if (n < prev_size)
 			{
 				for (size_type i = n; i < prev_size; i++)
-					this->alloc->destroy(--_last_element);
+					_alloc.destroy(--_last_element);
 			}
 		}
 
@@ -176,7 +176,7 @@ namespace ft
 
 			for (size_type i = 0; i < prev_size; i++)
 			{
-				_alloc.construct(new_start + i, _start + i);
+				_alloc.construct(new_start + i, *(_start + i));
 				_alloc.destroy(_start + i);
 			}
 			_alloc.deallocate(_start, prev_capacity);

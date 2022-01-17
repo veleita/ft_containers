@@ -50,14 +50,14 @@ void test_v_constructors()
         print_attributes(fill_vector_sized);
         print_content(fill_vector_sized);
     }
-
+    std::cout << std::endl;
     {
         std::cout << "Valued fill:\n";
         NAMESPACE::vector<int> fill_vector_valued(19, 42);
         print_attributes(fill_vector_valued);
         print_content(fill_vector_valued);
     }
-
+    std::cout << std::endl;
     {
         std::cout << "Range:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
@@ -67,7 +67,7 @@ void test_v_constructors()
         print_attributes(range_vector);
         print_content(range_vector);
     }
-
+    std::cout << std::endl;
     {
         std::cout << "Copy:\n";
         int range_array[] = {-89, 561, 874, 7777, 987, -6};
@@ -77,7 +77,7 @@ void test_v_constructors()
         print_attributes(copy_vector);
         print_content(copy_vector);
     }
-
+    std::cout << std::endl;
     {
         std::cout << "Assign:\n";
         int range_array[] = {54, 98, -3250, 0, 54, -3};
@@ -106,7 +106,7 @@ void test_v_iterators()
         int end = *(range_vector.end() - 1);
         c_it = range_vector.end() - 1;
         const int c_end = *(c_it);
-        std::cout << end << " " << c_end << std::endl;
+        std::cout << end << " " << c_end << std::endl << std::endl;
     }
 
     {
@@ -121,5 +121,33 @@ void test_v_iterators()
         int rend = *(range_vector.rend() - 1);
         const int c_rend = *(range_vector.rend());
         std::cout << rend << " " << c_rend << std::endl;
+    }
+}
+
+void test_v_capacity()
+{
+    std::cout << "CAPACITY\n";
+    {
+        std::cout << "size:\n";
+        NAMESPACE::vector<int> v_small(20);
+        print_attributes(v_small);
+        std::cout << std::endl;
+
+        NAMESPACE::vector<int> v_big(100000);
+        print_attributes(v_big);
+        std::cout << std::endl;
+    }
+   
+    {
+        std::cout << "resize:\n";
+        NAMESPACE::vector<int> v_extension(40);
+        v_extension.resize(85);
+        print_attributes(v_extension);
+        std::cout << std::endl;
+   
+        NAMESPACE::vector<int> v_reduction(40);
+        v_reduction.resize(5);
+        print_attributes(v_reduction);
+        std::cout << std::endl;
     }
 }
