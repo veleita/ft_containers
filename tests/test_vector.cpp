@@ -136,7 +136,6 @@ void test_v_capacity()
 
         NAMESPACE::vector<int> v_big(100000);
         print_attributes(v_big);
-        print_content(v_big);
         std::cout << std::endl;
     }
    
@@ -145,13 +144,18 @@ void test_v_capacity()
         NAMESPACE::vector<int> v_extension(40);
         v_extension.resize(85);
         print_attributes(v_extension);
-        print_content(v_extension);
         std::cout << std::endl;
    
         NAMESPACE::vector<int> v_reduction(40);
         v_reduction.resize(5);
         print_attributes(v_reduction);
         print_content(v_reduction);
+        std::cout << std::endl;
+        
+        NAMESPACE::vector<int> v_to_empty(4);
+        v_to_empty.resize(0);
+        print_attributes(v_to_empty);
+        print_content(v_to_empty);
         std::cout << std::endl;
     }
 
@@ -168,7 +172,6 @@ void test_v_capacity()
         v_capacity_big.push_back(42);
         v_capacity_big.push_back(42);
         print_attributes(v_capacity_big);
-        print_content(v_capacity_big);
         std::cout << std::endl;
     }
 }
