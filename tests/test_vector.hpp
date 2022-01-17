@@ -15,6 +15,7 @@
 
 void test_v_constructors();
 void test_v_iterators();
+void test_v_access();
 void test_v_capacity();
 
 #endif

@@ -124,6 +124,20 @@ void test_v_iterators()
     }
 }
 
+void test_v_access()
+{
+    std::cout << "ACCESS\n";
+    {
+        std::cout << "[] operator:\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 6);
+        int element = range_vector[1];
+        const int c_element = range_vector[1];
+        std::cout << element << " " << c_element << std::endl;
+    }
+}
+
 void test_v_capacity()
 {
     std::cout << "CAPACITY\n";
@@ -182,6 +196,5 @@ void test_v_capacity()
         v_base.push_back(42);
         print_attributes(v_base);
         print_content(v_base);
-        std::cout << std::endl;
     }
 }

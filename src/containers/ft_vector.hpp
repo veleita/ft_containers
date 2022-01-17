@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/17 13:15:15 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:32:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ namespace ft
 
 		void push_back(const value_type &val)
 		{
-			/* test what happens when capacity < 1
+			/* throw exception when capacity < 1
 				if (capacity == 0)
 					reserve(1);
 				*/
@@ -234,6 +234,12 @@ namespace ft
 			while (n--)
 				_alloc.construct(_last_element++, val);
 		}
+
+        reference operator[](size_type n)   {   return *(_start + n);   }
+        const_reference operator[](size_type n) const
+        {
+           return *(_start + n);
+        }
 
 	private:
 		allocator_type _alloc;
