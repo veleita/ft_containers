@@ -174,4 +174,14 @@ void test_v_capacity()
         print_attributes(v_capacity_big);
         std::cout << std::endl;
     }
+    
+    {
+        std::cout << "reserve:\n";
+        NAMESPACE::vector<int> v_base;
+        v_base.reserve(100);
+        v_base.push_back(42);
+        print_attributes(v_base);
+        print_content(v_base);
+        std::cout << std::endl;
+    }
 }
