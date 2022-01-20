@@ -13,7 +13,7 @@ template <class T>
 void print_content(NAMESPACE::vector<T> &vct)
 {
     typename NAMESPACE::vector<T>::const_iterator it;
-    std::cout << "Vector content:\n";
+    std::cout << "Vector content: ";
     for (it = vct.begin(); it < vct.end(); it++)
         std::cout << *it << " ";
     std::cout << std::endl;
@@ -228,4 +228,20 @@ void test_v_capacity()
         print_attributes(v_base);
         print_content(v_base);
     }
+}
+
+void test_v_modifiers()
+{
+    std::cout << "MODIFIERS\n";
+    {
+        std::cout << "clear:\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 5);
+        print_attributes(range_vector);
+        print_content(range_vector);
+		range_vector.clear();
+        print_attributes(range_vector);
+        print_content(range_vector);
+	}
 }

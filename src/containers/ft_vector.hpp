@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/20 15:45:38 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:55:20 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ namespace ft
 
 
 		/* ACCESS */
+
 		reference operator[](size_type n)   {   return *(_start + n);   }
         const_reference operator[](size_type n) const
         {
@@ -150,6 +151,7 @@ namespace ft
 
 
 		/* ITERATORS */
+
 		iterator begin() { return (iterator(_start)); }
 		const_iterator begin() const { return (iterator(_start)); }
 
@@ -173,6 +175,7 @@ namespace ft
 		{
 			return (reverse_iterator(this->begin()));
 		}
+
 
 		/* CAPACITY */
 
@@ -230,6 +233,7 @@ namespace ft
 			_last_element = new_start + prev_size;
 			_end = new_start + n;
 		}
+
 
 		/* MODIFIERS */
 

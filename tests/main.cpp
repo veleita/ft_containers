@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/20 15:33:18 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:59:22 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ int main()
 */
 	std::cout << "VECTOR TEST\n";
 	std::cout << "===========================\n";
-	test vector[2] = {
-						//&test_v_constructors,
+	test vector[5] = {
+						&test_v_constructors,
 						&test_v_iterators,
-                      	&test_v_access
-						//test_v_capacity
+                      	&test_v_access,
+						&test_v_capacity,
+						&test_v_modifiers
 					};
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		(*vector[i])();
 		std::cout << "---------------------------\n\n";
