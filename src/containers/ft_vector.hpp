@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/17 14:32:46 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:09:08 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,12 +235,25 @@ namespace ft
 				_alloc.construct(_last_element++, val);
 		}
 
-        reference operator[](size_type n)   {   return *(_start + n);   }
+		/* ACCESS */
+
+		reference operator[](size_type n)   {   return *(_start + n);   }
         const_reference operator[](size_type n) const
         {
            return *(_start + n);
         }
 
+		reference at(size_type n)
+		{
+			/* throw std::out_of_range exception if n is out of range */
+			return (operator[](n));
+		}
+
+		const_reference at(size_type n) const
+		{
+			/* throw std::out_of_range exception if n is out of range */
+			return (operator[](n));
+		}
 	private:
 		allocator_type _alloc;
 		pointer _start;

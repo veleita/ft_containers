@@ -132,8 +132,19 @@ void test_v_access()
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
         NAMESPACE::vector<int> range_vector(it, it + 6);
+
         int element = range_vector[1];
         const int c_element = range_vector[1];
+        std::cout << element << " " << c_element << std::endl;
+	}
+    {
+        std::cout << "at():\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 6);
+
+        int element = range_vector.at(3);
+        const int c_element = range_vector.at(4);
         std::cout << element << " " << c_element << std::endl;
     }
 }
