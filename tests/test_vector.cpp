@@ -131,21 +131,41 @@ void test_v_access()
         std::cout << "[] operator:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 6);
+        NAMESPACE::vector<int> range_vector(it, it + 5);
 
         int element = range_vector[1];
         const int c_element = range_vector[1];
-        std::cout << element << " " << c_element << std::endl;
+        std::cout << element << " " << c_element << std::endl << std::endl;;
 	}
     {
         std::cout << "at():\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 6);
+        NAMESPACE::vector<int> range_vector(it, it + 5);
 
         int element = range_vector.at(3);
         const int c_element = range_vector.at(4);
-        std::cout << element << " " << c_element << std::endl;
+        std::cout << element << " " << c_element << std::endl << std::endl;;
+    }
+    {
+        std::cout << "front():\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 5);
+
+        int element = range_vector.front();
+        const int c_element = range_vector.front();
+        std::cout << element << " " << c_element << std::endl << std::endl;;
+    }
+    {
+        std::cout << "back():\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 5);
+
+        int element = range_vector.back();
+        const int c_element = range_vector.back();
+        std::cout << element << " " << c_element << std::endl << std::endl;;
     }
 }
 

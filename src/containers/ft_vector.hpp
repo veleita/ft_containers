@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/20 15:09:08 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:45:38 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,53 @@ namespace ft
 			: _alloc(source._alloc), _start(source._start),
 			  _last_element(source._last_element), _end(source._end){};
 
+
 		/* GETTERS */
 		allocator_type get_allocator() const { return (this->_alloc); }
+
+
+		/* ACCESS */
+		reference operator[](size_type n)   {   return *(_start + n);   }
+        const_reference operator[](size_type n) const
+        {
+           return *(_start + n);
+        }
+
+		/* at(): access specified element with bounds checking */
+		reference at(size_type n)
+		{
+			/* throw std::out_of_range exception if n is out of range */
+			return (operator[](n));
+		}
+
+		const_reference at(size_type n) const
+		{
+			/* throw std::out_of_range exception if n is out of range */
+			return (operator[](n));
+		}
+
+		/* front(): access the first element */
+		reference front()
+		{
+			return *_start;
+		}
+
+		const_reference front() const
+		{
+			return *_start;
+		}
+
+		/* back(): access the last element */
+		reference back()
+		{
+			return *(_last_element - 1);
+		}
+
+		const_reference back() const
+		{
+			return *(_last_element - 1);
+		}
+
 
 		/* ITERATORS */
 		iterator begin() { return (iterator(_start)); }
@@ -235,25 +280,6 @@ namespace ft
 				_alloc.construct(_last_element++, val);
 		}
 
-		/* ACCESS */
-
-		reference operator[](size_type n)   {   return *(_start + n);   }
-        const_reference operator[](size_type n) const
-        {
-           return *(_start + n);
-        }
-
-		reference at(size_type n)
-		{
-			/* throw std::out_of_range exception if n is out of range */
-			return (operator[](n));
-		}
-
-		const_reference at(size_type n) const
-		{
-			/* throw std::out_of_range exception if n is out of range */
-			return (operator[](n));
-		}
 	private:
 		allocator_type _alloc;
 		pointer _start;
