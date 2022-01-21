@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 07:10:56 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 07:38:36 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,6 +307,30 @@ namespace ft
 			_last_element += count;
 		}
 
+		/* erase(): erases elements */
+		iterator erase( iterator pos )
+		{
+			size_type relative_pos = pos - this->begin();
+			_alloc.destroy(_start + relative_pos);
+			std::memmove(_start + relative_pos, _start + relative_pos + 1,
+					(this->size() - relative_pos) * sizeof(value_type));
+			_last_element--;
+			return (_start + relative_pos);
+		}
+
+		iterator erase( iterator first, iterator last )
+		{
+			size_type count = last - first;
+			size_type relative_pos = first - this->begin();
+			for (size_type i = 0; i < count; i++)
+				_alloc.destroy(_start + relative_pos + i);
+			std::memmove(_start + relative_pos, _start + relative_pos + count,
+					(this->size() - relative_pos) * sizeof(value_type));
+			_last_element -= count;
+			return (_start + relative_pos);
+		}
+
+		/* push_back(): adds element at the end of the vector */
 		void push_back(const value_type &val)
 		{
 			/* throw exception when capacity < 1
