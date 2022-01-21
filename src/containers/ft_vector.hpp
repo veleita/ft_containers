@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 08:07:54 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 08:36:40 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,24 +186,6 @@ namespace ft
 		/* max_size(): Return maximum size */
 		size_type max_size() const { return (_alloc.max_size()); }
 
-		/* resize(): Resizes the container so that it contains n elements */
-		void resize(size_type n, value_type val = value_type())
-		{
-			size_type prev_size = this->size();
-
-			if (n > prev_size)
-			{
-				this->reserve(n);
-				for (size_type i = prev_size; i < n; i++)
-					_alloc.construct(_last_element++, val);
-			}
-			else if (n < prev_size)
-			{
-				for (size_type i = n; i < prev_size; i++)
-					_alloc.destroy(--_last_element);
-			}
-		}
-
 		/* capacity(): Return size of allocated storage */
 		size_type capacity() const { return (this->_end - this->_start); }
 
@@ -346,6 +328,15 @@ namespace ft
 			/* throw exception when capacity < 1 */
 			_alloc.destroy(_last_element);
 			_last_element--;
+		}
+
+		/* resize(): changes the number of elements stored */
+		void resize( size_type count, value_type value = value_type() )
+		{
+			if (count > this->size())
+				this->insert(this->end(), count - this->size(), value);
+			else if (count < this->size())
+				this->erase(begin() + count, this->end());
 		}
 
 		/* Assign(): Assigns new contents to the vector, replacing its current contents
