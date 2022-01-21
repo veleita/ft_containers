@@ -324,7 +324,7 @@ void test_v_modifiers()
         std::cout << std::endl;
 	}
 	{
-        std::cout << "resize:\n";
+        std::cout << "assign:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
         NAMESPACE::vector<int> base_v;
