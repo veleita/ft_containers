@@ -243,5 +243,24 @@ void test_v_modifiers()
 		range_vector.clear();
         print_attributes(range_vector);
         print_content(range_vector);
+        std::cout << std::endl;
+	}
+    {
+        std::cout << "insert:\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 5);
+
+		range_vector.insert(range_vector.begin() + 2, 42);
+        print_attributes(range_vector);
+        print_content(range_vector);
+
+		range_vector.insert(range_vector.begin() + 2, 24, 666);
+        print_attributes(range_vector);
+        print_content(range_vector);
+
+		range_vector.insert(range_vector.end(), it, it + 5);
+        print_attributes(range_vector);
+        print_content(range_vector);
 	}
 }

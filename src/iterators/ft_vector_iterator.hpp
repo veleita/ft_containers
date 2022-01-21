@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterators.hpp                                      :+:      :+:    :+:   */
+/*   ft_vector_iterator.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/11/27 18:52:14 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 06:23:05 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,10 @@ namespace ft
 	};
 };
 
-/* Comparison operators */
 // MAYBE THESE SHOULD GO ON THE BASE ITERATOR SO THEY ARE DEFINED FOR ANY
 // TYPE OF ITERATOR. ITERATOR_TRAITS NEED THESE OPERATORS POR DISTANCE()
+
+/* Comparison operators */
 template <typename U, typename V>
 bool operator==(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
@@ -169,6 +170,21 @@ template <typename U, typename V>
 bool operator>=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
 	return (lhs.operator->() >= rhs.operator->());
+}
+
+/* Algorithmic operators */
+
+template <typename U, typename V>
+ptrdiff_t operator-(const ft::vector_iterator<U>& lhs, const ft::vector_iterator<V>& rhs)
+{
+	return lhs.operator->() - rhs.operator->();
+}
+
+template <typename U>
+ft::vector_iterator<U> operator+(typename ft::vector_iterator<U>::difference_type n,
+				const ft::vector_iterator<U>& rhs)
+{
+	return (ft::vector_iterator<U>)(rhs.operator->() + n);
 }
 
 #endif

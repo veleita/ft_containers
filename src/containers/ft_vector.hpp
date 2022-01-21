@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/20 15:55:20 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 07:10:56 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define VECTOR_HPP
 
 #include <memory>
+#include <cstring>
 #include <ft_vector_iterator.hpp>
 #include <ft_utils.hpp>
 
@@ -247,6 +248,63 @@ namespace ft
 				_alloc.destroy(_last_element);
 				i--;
 			}
+		}
+
+		/* Insert(): Inserts elements */
+		iterator insert(iterator pos, value_type const &value)
+		{
+			size_type relative_pos = pos - this->begin();
+			if (!this->empty()) // make room for the new element
+			{
+				if (this->size() >= this->capacity())
+					reserve(this->size() * 2);
+				std::memmove(_start + relative_pos + 1, _start + relative_pos,
+					(this->size() - relative_pos) * sizeof(value_type));
+			}
+			else
+				reserve(1);
+			_alloc.construct(_start + relative_pos, value);
+			_last_element++;
+			return (_start + relative_pos);
+		}
+
+		void insert(iterator pos, size_type count, value_type const &value)
+		{
+			size_type relative_pos = pos - this->begin();
+			if (!this->empty()) // make room for the new element
+			{
+				if (this->size() + count >= this->capacity())
+					reserve(this->size() * 2 >= this->size() + count ?
+						this->size() * 2 : this->size() + count);
+				std::memmove(_start + relative_pos + count, _start + relative_pos,
+					(this->size() - relative_pos) * sizeof(value_type));
+			}
+			else
+				reserve(count);
+			for (size_type i = 0; i < count; i++)
+				_alloc.construct(_start + relative_pos + i, value);
+			_last_element += count;
+		}
+
+		template< class InputIt >
+		void insert( iterator pos, InputIt first, InputIt last,
+			typename ft::enable_if<!ft::is_integral<InputIt>::value>::type* = 0)
+		{
+			size_type relative_pos = pos - this->begin();
+			size_type count = last - first;
+			if (!this->empty()) // make room for the new element
+			{
+				if (this->size() + count >= this->capacity())
+					reserve(this->size() * 2 >= this->size() + count ?
+						this->size() * 2 : this->size() + count);
+				std::memmove(_start + relative_pos + count, _start + relative_pos,
+					(this->size() - relative_pos) * sizeof(value_type));
+			}
+			else
+				reserve(count);
+			for (size_type i = 0; i < count; i++)
+				_alloc.construct(_start + relative_pos + i, *first++);
+			_last_element += count;
 		}
 
 		void push_back(const value_type &val)
