@@ -352,4 +352,22 @@ void test_v_modifiers()
 
         std::cout << std::endl;
 	}
+	{
+        std::cout << "swap:\n";
+        int range_array_one[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it_one(&(range_array_one[0]));
+        NAMESPACE::vector<int> v_one(it_one, it_one + 5);
+        print_attributes(v_one);
+        print_content(v_one);
+        int range_array_two[] = {1, 2, 3};
+        NAMESPACE::vector<int>::iterator it_two(&(range_array_two[0]));
+        NAMESPACE::vector<int> v_two(it_two, it_two + 3);
+        print_attributes(v_two);
+        print_content(v_two);
+		v_one.swap(v_two);
+        print_attributes(v_one);
+        print_content(v_one);
+        print_attributes(v_two);
+        print_content(v_two);
+	}
 }

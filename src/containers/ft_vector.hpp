@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 09:11:07 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 09:23:38 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,7 +341,7 @@ namespace ft
 				this->erase(begin() + count, this->end());
 		}
 
-		/* Assign(): Assigns new contents to the vector, replacing its current contents
+		/* assign(): Assigns new contents to the vector, replacing its current contents
 			 * and modifying its size accordingly */
 		template <class InputIterator>
 		void assign(InputIterator first, InputIterator last,
@@ -355,6 +355,22 @@ namespace ft
 		{
 			this->clear();
 			this->insert(this->begin(), n, val);
+		}
+
+		/* swap(): swaps the contents */
+		void swap( vector& other )
+		{
+			pointer _start_cpy 	  = this->_start;
+			pointer _last_element_cpy = this->_last_element;
+			pointer _end_cpy 	  = this->_end;
+
+			this->_start = other._start;
+			this->_last_element = other._last_element;
+			this->_end = other._end;
+
+			other._start = _start_cpy;
+			other._last_element = _last_element_cpy;
+			other._end = _end_cpy;
 		}
 
 	private:
