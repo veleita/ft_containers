@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 08:36:40 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 08:39:38 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,20 +346,13 @@ namespace ft
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type * = nullptr)
 		{
 			this->clear();
-
-			size_type n = NAMESPACE::distance(first, last);
-			this->reserve(n);
-			while (n--)
-				_alloc.construct(_last_element++, *(first++));
+			this->insert(this->begin(), first, last);
 		}
 
 		void assign(size_type n, const value_type &val)
 		{
-			this->reserve(n);
 			this->clear();
-
-			while (n--)
-				_alloc.construct(_last_element++, val);
+			this->insert(this->begin(), n, val);
 		}
 
 	private:
