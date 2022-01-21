@@ -167,6 +167,15 @@ void test_v_access()
         const int c_element = range_vector.back();
         std::cout << element << " " << c_element << std::endl << std::endl;;
     }
+    {
+        std::cout << "data():\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 5);
+
+		std::cout << *(range_vector.data()) << " " 
+			<< *(range_vector.data() + range_vector.size() - 1) << std::endl;
+	}	
 }
 
 void test_v_capacity()

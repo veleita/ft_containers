@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 08:39:38 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 09:11:07 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,10 @@ namespace ft
 
 
 		/* GETTERS */
-		allocator_type get_allocator() const { return (this->_alloc); }
 
+		allocator_type get_allocator() const {	return (this->_alloc);	}
+
+		value_type	*data() {	return (this->_start);	};
 
 		/* ACCESS */
 
