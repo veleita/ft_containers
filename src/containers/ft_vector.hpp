@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 07:38:36 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/21 08:07:54 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,14 +333,19 @@ namespace ft
 		/* push_back(): adds element at the end of the vector */
 		void push_back(const value_type &val)
 		{
-			/* throw exception when capacity < 1
-				if (capacity == 0)
-					reserve(1);
-				*/
+			/* throw exception when capacity < 1 */
 			if (_last_element == _end)
-				reserve(this->capacity() * 2);
+				reserve(this->capacity() == 0 ? 1 : this->capacity() * 2);
 			_alloc.construct(_last_element, val);
 			_last_element++;
+		}
+
+		/* pop_back(): removes the element at the end of the vector */
+		void pop_back()
+		{
+			/* throw exception when capacity < 1 */
+			_alloc.destroy(_last_element);
+			_last_element--;
 		}
 
 		/* Assign(): Assigns new contents to the vector, replacing its current contents

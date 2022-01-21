@@ -281,4 +281,30 @@ void test_v_modifiers()
 
         std::cout << std::endl;
 	}
+	{
+        std::cout << "push_back:\n";
+		NAMESPACE::vector<int> empty_v;
+		empty_v.push_back(435);
+        print_attributes(empty_v);
+        print_content(empty_v);
+		
+		NAMESPACE::vector<int> base_v(72);
+		base_v.push_back(5);
+        print_attributes(base_v);
+        print_content(base_v);
+
+        std::cout << std::endl;
+	}
+	{
+        std::cout << "pop_back:\n";
+        int range_array[] = {45, 87846, 12, 965, 5};
+        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
+        NAMESPACE::vector<int> range_vector(it, it + 5);
+		range_vector.pop_back();
+		range_vector.pop_back();
+        print_attributes(range_vector);
+        print_content(range_vector);
+
+        std::cout << std::endl;
+	}
 }
