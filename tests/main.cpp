@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/22 07:54:35 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/22 08:09:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,13 @@ int main()
 
 	std::cout << "\nSTACK TEST\n";
 	std::cout << "===========================\n";
-	test stack[1] = {
-						&test_s_constructors
-                    //  &test_s_access,
-					//	&test_s_capacity,
-					//	&test_s_modifiers,
+	test stack[2] = {
+						&test_s_constructors,
+                		&test_s_member_functions
 					//	&test_s_operators
 					};
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		(*stack[i])();
 		std::cout << "---------------------------\n\n";

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:48:14 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/22 07:53:42 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/22 08:10:27 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 # endif
 
 void test_s_constructors();
+void test_s_member_functions();
 
 #endif
