@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:09:43 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/22 08:01:35 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/22 08:43:53 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,38 @@ namespace ft
 			typedef T				value_type;
 			typedef size_t			size_type;
 
+		private:
+			container_type	underlaying_ctnr;
 
+		public:
 			/* CONSTRUCTORS */
 			explicit stack (const container_type& ctnr = container_type())
-			:	underlaying_container(ctnr)
+			:	underlaying_ctnr(ctnr)
 			{}
 
-		private:
-			container_type	underlaying_container;
+			/* MEMBER FUNCTIONS */
+
+			/* empty(): true if the stack is empty, false otherwise */
+			bool empty() const	{	return (underlaying_ctnr.empty());	}
+
+			/* size(): returns the size of the stack */
+			size_type size() const	{	return underlaying_ctnr.size();	}
+
+			/* top(): returns a reference to the top element in the stack */
+			value_type	&top()	{	return underlaying_ctnr.back();	}
+			const value_type	&top() const
+			{	return underlaying_ctnr.back();	}
+
+			/* push(): insert element on top */
+			void push( const value_type	&val )
+			{	underlaying_ctnr.push_back(val);	}
+
+			/* pop(): remove the top element */
+			void pop()	{	underlaying_ctnr.pop_back();	}
+
+			/* DESTRUCTOR */
+			~stack()
+			{}
 	};
 }
 
