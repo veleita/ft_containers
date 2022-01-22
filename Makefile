@@ -6,7 +6,7 @@
 #    By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 18:27:39 by mzomeno-          #+#    #+#              #
-#    Updated: 2021/10/26 21:18:53 by mzomeno-         ###   ########.fr        #
+#    Updated: 2022/01/22 06:50:13 by mzomeno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,23 +55,23 @@ $(FT_OBJ_DIR):
 
 # Building sources ==============================================================
 $(OBJ_DIR)$(STL_OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(STL_OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -D NAMESPACE=std -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDES) -D ORIGINAL=1 -D NAMESPACE=std -c $< -o $@
 
 $(OBJ_DIR)$(FT_OBJ_DIR)%.o:	$(SRC_DIR)%.cpp | $(FT_OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -D NAMESPACE=ft -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDES) -D ORIGINAL=0 -D NAMESPACE=ft -c $< -o $@
 
 
 
 # Testing -======================================================================
 original: $(STL_TEST) 	# NEED TO FIND A WAY TO EXECUTE THESE EVEN WHEN THE PROGRAM HAS ALREADY BEEN CREATED
-	./$(STL_TEST)
+	@./$(STL_TEST)
 replica: $(FT_TEST)
-	./$(FT_TEST)
+	@./$(FT_TEST)
 
 test: all
-	./$(STL_TEST) > original
-	./$(FT_TEST) > replica
-	diff original replica
+	@./$(STL_TEST) > original
+	@./$(FT_TEST) > replica
+	@diff original replica
 	@rm original replica
 
 
