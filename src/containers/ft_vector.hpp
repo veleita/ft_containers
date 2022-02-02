@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 09:23:38 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:40:26 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ namespace ft
 	/*
 	 * Reference: https://www.cplusplus.com/reference/vector/vector/
 	 */
-	template <class T, class Alloc = std::allocator<T>>
+	template <class T, class Alloc = std::allocator<T> >
 	class vector
 	{
 	public:

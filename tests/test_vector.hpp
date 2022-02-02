@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:48:32 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/22 07:56:46 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:51:24 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <time>
+#include <stdlib.h>
 
 #if NAMESPACE == std
 #include <vector>

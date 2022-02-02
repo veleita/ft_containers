@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/22 07:48:19 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:22:12 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,26 @@ void test_v_constructors()
         print_attributes(fill_vector_valued);
         print_content(fill_vector_valued);
     }
+	// COPY THIS FORM OF VECTOR CONSTRUCTION FOR EVERY RANGE_VECTOR---------------------------------------------------------
     std::cout << std::endl;
     {
         std::cout << "Range:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
 
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
-        print_attributes(range_vector);
-        print_content(range_vector);
+        NAMESPACE::vector<int> vct(10);
+		srand(time(0));
+		for (unsigned int i = 0; i < vct)
+			vct[i] = rand() % 10;
+        NAMESPACE::vector<int>::iterator it = vct.begin();
+        print_attributes(vct);
+        print_content(vct);
     }
     std::cout << std::endl;
     {
         std::cout << "Copy:\n";
         int range_array[] = {-89, 561, 874, 7777, 987, -6};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 6);
-        NAMESPACE::vector<int> copy_vector(range_vector);
+        NAMESPACE::vector<int> vct(it, it + 6);
+        NAMESPACE::vector<int> copy_vector(vct);
         print_attributes(copy_vector);
         print_content(copy_vector);
     }
@@ -94,8 +97,8 @@ void test_v_constructors()
         std::cout << "Assign:\n";
         int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 6);
-        NAMESPACE::vector<int> assign_vector = range_vector;
+        NAMESPACE::vector<int> vct(it, it + 6);
+        NAMESPACE::vector<int> assign_vector = vct;
         print_attributes(assign_vector);
         print_content(assign_vector);
     }
@@ -108,15 +111,15 @@ void test_v_iterators()
         std::cout << "begin(), end():\n";
         int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 6);
+        NAMESPACE::vector<int> vct(it, it + 6);
 
-        int begin = *(range_vector.begin());
-        NAMESPACE::vector<int>::iterator c_it = range_vector.begin();
+        int begin = *(vct.begin());
+        NAMESPACE::vector<int>::iterator c_it = vct.begin();
         const int c_begin = *(c_it);
         std::cout << begin << " " << c_begin << std::endl;
 
-        int end = *(range_vector.end() - 1);
-        c_it = range_vector.end() - 1;
+        int end = *(vct.end() - 1);
+        c_it = vct.end() - 1;
         const int c_end = *(c_it);
         std::cout << end << " " << c_end << std::endl << std::endl;
     }
@@ -125,13 +128,13 @@ void test_v_iterators()
         std::cout << "rbegin(), rend():\n";
         int range_array[] = {54, 98, -3250, 0, 54, -3};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 6);
-        int rbegin = *(range_vector.rbegin());
-        const int c_rbegin = *(range_vector.rbegin());
+        NAMESPACE::vector<int> vct(it, it + 6);
+        int rbegin = *(vct.rbegin());
+        const int c_rbegin = *(vct.rbegin());
         std::cout << rbegin << " " << c_rbegin << std::endl;
 
-        int rend = *(range_vector.rend() - 1);
-        const int c_rend = *(range_vector.rend());
+        int rend = *(vct.rend() - 1);
+        const int c_rend = *(vct.rend());
         std::cout << rend << " " << c_rend << std::endl;
     }
 }
@@ -143,50 +146,50 @@ void test_v_access()
         std::cout << "[] operator:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-        int element = range_vector[1];
-        const int c_element = range_vector[1];
+        int element = vct[1];
+        const int c_element = vct[1];
         std::cout << element << " " << c_element << std::endl << std::endl;;
 	}
     {
         std::cout << "at():\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-        int element = range_vector.at(3);
-        const int c_element = range_vector.at(4);
+        int element = vct.at(3);
+        const int c_element = vct.at(4);
         std::cout << element << " " << c_element << std::endl << std::endl;;
     }
     {
         std::cout << "front():\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-        int element = range_vector.front();
-        const int c_element = range_vector.front();
+        int element = vct.front();
+        const int c_element = vct.front();
         std::cout << element << " " << c_element << std::endl << std::endl;;
     }
     {
         std::cout << "back():\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-        int element = range_vector.back();
-        const int c_element = range_vector.back();
+        int element = vct.back();
+        const int c_element = vct.back();
         std::cout << element << " " << c_element << std::endl << std::endl;;
     }
     {
         std::cout << "data():\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-		std::cout << *(range_vector.data()) << " " 
-			<< *(range_vector.data() + range_vector.size() - 1) << std::endl;
+		std::cout << *(vct.data()) << " " 
+			<< *(vct.data() + vct.size() - 1) << std::endl;
 	}	
 }
 
@@ -258,31 +261,31 @@ void test_v_modifiers()
         std::cout << "clear:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
-        print_attributes(range_vector);
-        print_content(range_vector);
-		range_vector.clear();
-        print_attributes(range_vector);
-        print_content(range_vector);
+        NAMESPACE::vector<int> vct(it, it + 5);
+        print_attributes(vct);
+        print_content(vct);
+		vct.clear();
+        print_attributes(vct);
+        print_content(vct);
         std::cout << std::endl;
 	}
     {
         std::cout << "insert:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-		range_vector.insert(range_vector.begin() + 2, 42);
-        print_attributes(range_vector);
-        print_content(range_vector);
+		vct.insert(vct.begin() + 2, 42);
+        print_attributes(vct);
+        print_content(vct);
 
-		range_vector.insert(range_vector.begin() + 2, 24, 666);
-        print_attributes(range_vector);
-        print_content(range_vector);
+		vct.insert(vct.begin() + 2, 24, 666);
+        print_attributes(vct);
+        print_content(vct);
 
-		range_vector.insert(range_vector.end(), it, it + 5);
-        print_attributes(range_vector);
-        print_content(range_vector);
+		vct.insert(vct.end(), it, it + 5);
+        print_attributes(vct);
+        print_content(vct);
 
         std::cout << std::endl;
 	}
@@ -290,15 +293,15 @@ void test_v_modifiers()
         std::cout << "erase:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-		range_vector.erase(range_vector.begin() + 2);
-        print_attributes(range_vector);
-        print_content(range_vector);
+		vct.erase(vct.begin() + 2);
+        print_attributes(vct);
+        print_content(vct);
 
-		range_vector.erase(range_vector.begin() + 1, range_vector.end() - 2);
-        print_attributes(range_vector);
-        print_content(range_vector);
+		vct.erase(vct.begin() + 1, vct.end() - 2);
+        print_attributes(vct);
+        print_content(vct);
 
         std::cout << std::endl;
 	}
@@ -320,11 +323,11 @@ void test_v_modifiers()
         std::cout << "pop_back:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
-		range_vector.pop_back();
-		range_vector.pop_back();
-        print_attributes(range_vector);
-        print_content(range_vector);
+        NAMESPACE::vector<int> vct(it, it + 5);
+		vct.pop_back();
+		vct.pop_back();
+        print_attributes(vct);
+        print_content(vct);
 
         std::cout << std::endl;
 	}
@@ -332,15 +335,15 @@ void test_v_modifiers()
         std::cout << "resize:\n";
         int range_array[] = {45, 87846, 12, 965, 5};
         NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> range_vector(it, it + 5);
+        NAMESPACE::vector<int> vct(it, it + 5);
 
-		range_vector.resize(10);
-        print_attributes(range_vector);
-        print_content(range_vector);
+		vct.resize(10);
+        print_attributes(vct);
+        print_content(vct);
 
-		range_vector.resize(3);
-        print_attributes(range_vector);
-        print_content(range_vector);
+		vct.resize(3);
+        print_attributes(vct);
+        print_content(vct);
 
         std::cout << std::endl;
 	}
