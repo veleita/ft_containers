@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/27 11:40:26 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:56:09 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,8 +240,8 @@ namespace ft
 			size_type relative_pos = pos - this->begin();
 			if (!this->empty()) // make room for the new element
 			{
-				if (this->size() >= this->capacity())
-					reserve(this->size() * 2);
+				if (this->size() + 1 > this->capacity())
+					reserve(this->capacity() * 2);
 				std::memmove(_start + relative_pos + 1, _start + relative_pos,
 					(this->size() - relative_pos) * sizeof(value_type));
 			}
@@ -257,9 +257,8 @@ namespace ft
 			size_type relative_pos = pos - this->begin();
 			if (!this->empty()) // make room for the new element
 			{
-				if (this->size() + count >= this->capacity())
-					reserve(this->size() * 2 >= this->size() + count ?
-						this->size() * 2 : this->size() + count);
+				while (this->size() + count > this->capacity())
+					reserve(this->capacity() * 2);
 				std::memmove(_start + relative_pos + count, _start + relative_pos,
 					(this->size() - relative_pos) * sizeof(value_type));
 			}
@@ -278,9 +277,8 @@ namespace ft
 			size_type count = last - first;
 			if (!this->empty()) // make room for the new element
 			{
-				if (this->size() + count >= this->capacity())
-					reserve(this->size() * 2 >= this->size() + count ?
-						this->size() * 2 : this->size() + count);
+				while (this->size() + count > this->capacity())
+					reserve(this->capacity() * 2);
 				std::memmove(_start + relative_pos + count, _start + relative_pos,
 					(this->size() - relative_pos) * sizeof(value_type));
 			}
@@ -336,7 +334,10 @@ namespace ft
 		void resize( size_type count, value_type value = value_type() )
 		{
 			if (count > this->size())
+			{
+				reserve(count);
 				this->insert(this->end(), count - this->size(), value);
+			}
 			else if (count < this->size())
 				this->erase(begin() + count, this->end());
 		}

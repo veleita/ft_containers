@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/03 14:56:02 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:04:27 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,6 @@ void test_v_capacity()
         print_attributes(v_big);
         std::cout << std::endl;
     }
-   
     {
         std::cout << "resize:\n";
         NAMESPACE::vector<int> v_extension(40);
