@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/22 08:09:46 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:15:37 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,21 @@ int main()
 
 	std::cout << "\nVECTOR TEST\n";
 	std::cout << "===========================\n";
-	test vector[5] = {
+	test vector[2] = {
 						&test_v_constructors,
-						&test_v_iterators,
-                      	&test_v_access,
-						&test_v_capacity,
-						&test_v_modifiers
+						&test_v_iterators
+                     // 	&test_v_access,
+					//	&test_v_capacity,
+					//	&test_v_modifiers
 					};
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		(*vector[i])();
 		std::cout << "---------------------------\n\n";
 	}
 
-
+/*
 	std::cout << "\nSTACK TEST\n";
 	std::cout << "===========================\n";
 	test stack[2] = {
@@ -90,7 +90,7 @@ int main()
 		(*stack[i])();
 		std::cout << "---------------------------\n\n";
 	}
-
+*/
 
 	gettimeofday(&tv, NULL);
 	after = tv.tv_sec * 1000000 + tv.tv_usec;

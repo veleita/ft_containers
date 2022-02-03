@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/27 13:22:12 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:32:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void test_v_constructors()
         print_attributes(default_vector);
         print_content(default_vector);
     }
-
+	std::cout << std::endl;
     {
         std::cout << "Pointer:\n";
         NAMESPACE::vector<int> *pointer_default_vector = new NAMESPACE::vector<int>;
@@ -48,14 +48,14 @@ void test_v_constructors()
         print_content(*pointer_default_vector);
         delete pointer_default_vector;
     }
-
+	std::cout << std::endl;
     {
         std::cout << "Empty fill:\n";
         NAMESPACE::vector<int> fill_vector(0);
         print_attributes(fill_vector);
         print_content(fill_vector);
     }
-
+	std::cout << std::endl;
     {
         std::cout << "Sized fill:\n";
         NAMESPACE::vector<int> fill_vector_sized(19);
@@ -75,19 +75,17 @@ void test_v_constructors()
         std::cout << "Range:\n";
 
         NAMESPACE::vector<int> vct(10);
-		srand(time(0));
-		for (unsigned int i = 0; i < vct)
+		for (unsigned int i = 0; i < vct.size(); i++)
 			vct[i] = rand() % 10;
-        NAMESPACE::vector<int>::iterator it = vct.begin();
         print_attributes(vct);
         print_content(vct);
     }
     std::cout << std::endl;
     {
         std::cout << "Copy:\n";
-        int range_array[] = {-89, 561, 874, 7777, 987, -6};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 6);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
         NAMESPACE::vector<int> copy_vector(vct);
         print_attributes(copy_vector);
         print_content(copy_vector);
@@ -95,9 +93,9 @@ void test_v_constructors()
     std::cout << std::endl;
     {
         std::cout << "Assign:\n";
-        int range_array[] = {54, 98, -3250, 0, 54, -3};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 6);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
         NAMESPACE::vector<int> assign_vector = vct;
         print_attributes(assign_vector);
         print_content(assign_vector);
@@ -109,36 +107,41 @@ void test_v_iterators()
     std::cout << "ITERATORS\n";
     {
         std::cout << "begin(), end():\n";
-        int range_array[] = {54, 98, -3250, 0, 54, -3};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 6);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
         int begin = *(vct.begin());
         NAMESPACE::vector<int>::iterator c_it = vct.begin();
         const int c_begin = *(c_it);
-        std::cout << begin << " " << c_begin << std::endl;
+        print_content(vct);
+        std::cout << "Iterator: " << begin << " | Const iterator: " << c_begin << std::endl;
 
         int end = *(vct.end() - 1);
         c_it = vct.end() - 1;
         const int c_end = *(c_it);
-        std::cout << end << " " << c_end << std::endl << std::endl;
+        print_content(vct);
+        std::cout << "Iterator: " << end << " | Const iterator: " << c_end << std::endl << std::endl;
     }
 
     {
         std::cout << "rbegin(), rend():\n";
-        int range_array[] = {54, 98, -3250, 0, 54, -3};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 6);
-        int rbegin = *(vct.rbegin());
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
+        
+		int rbegin = *(vct.rbegin());
         const int c_rbegin = *(vct.rbegin());
-        std::cout << rbegin << " " << c_rbegin << std::endl;
+        print_content(vct);
+        std::cout << "Iterator: " << rbegin << " | Const iterator: " << c_rbegin << std::endl;
 
-        int rend = *(vct.rend() - 1);
+        int rend = *(vct.rend() + 1);
         const int c_rend = *(vct.rend());
-        std::cout << rend << " " << c_rend << std::endl;
+        print_content(vct);
+        std::cout << "Iterator: " << rend << " | Const iterator: " << c_rend << std::endl;
     }
 }
-
+/*
 void test_v_access()
 {
     std::cout << "ACCESS\n";
@@ -386,3 +389,4 @@ void test_v_modifiers()
         print_content(v_two);
 	}
 }
+	*/
