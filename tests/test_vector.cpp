@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/03 14:42:46 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:56:02 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,15 +141,15 @@ void test_v_iterators()
         std::cout << "Iterator: " << rend << " | Const iterator: " << c_rend << std::endl;
     }
 }
-/*
+
 void test_v_access()
 {
     std::cout << "ACCESS\n";
     {
         std::cout << "[] operator:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
         int element = vct[1];
         const int c_element = vct[1];
@@ -157,9 +157,9 @@ void test_v_access()
 	}
     {
         std::cout << "at():\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
         int element = vct.at(3);
         const int c_element = vct.at(4);
@@ -167,9 +167,9 @@ void test_v_access()
     }
     {
         std::cout << "front():\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
         int element = vct.front();
         const int c_element = vct.front();
@@ -177,9 +177,9 @@ void test_v_access()
     }
     {
         std::cout << "back():\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
         int element = vct.back();
         const int c_element = vct.back();
@@ -187,9 +187,9 @@ void test_v_access()
     }
     {
         std::cout << "data():\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
 		std::cout << *(vct.data()) << " " 
 			<< *(vct.data() + vct.size() - 1) << std::endl;
@@ -262,9 +262,9 @@ void test_v_modifiers()
     std::cout << "MODIFIERS\n";
     {
         std::cout << "clear:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
         print_attributes(vct);
         print_content(vct);
 		vct.clear();
@@ -274,9 +274,9 @@ void test_v_modifiers()
 	}
     {
         std::cout << "insert:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
 		vct.insert(vct.begin() + 2, 42);
         print_attributes(vct);
@@ -286,7 +286,7 @@ void test_v_modifiers()
         print_attributes(vct);
         print_content(vct);
 
-		vct.insert(vct.end(), it, it + 5);
+		vct.insert(vct.end(), vct.begin(), vct.begin() + 5);
         print_attributes(vct);
         print_content(vct);
 
@@ -294,9 +294,9 @@ void test_v_modifiers()
 	}
     {
         std::cout << "erase:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
 		vct.erase(vct.begin() + 2);
         print_attributes(vct);
@@ -324,9 +324,9 @@ void test_v_modifiers()
 	}
 	{
         std::cout << "pop_back:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 		vct.pop_back();
 		vct.pop_back();
         print_attributes(vct);
@@ -336,9 +336,9 @@ void test_v_modifiers()
 	}
 	{
         std::cout << "resize:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> vct(it, it + 5);
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
 
 		vct.resize(10);
         print_attributes(vct);
@@ -352,9 +352,10 @@ void test_v_modifiers()
 	}
 	{
         std::cout << "assign:\n";
-        int range_array[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it(&(range_array[0]));
-        NAMESPACE::vector<int> base_v;
+        NAMESPACE::vector<int> base_v(10);
+		for (unsigned int i = 0; i < base_v.size(); i++)
+			base_v[i] = rand() % 10;
+		NAMESPACE::vector<int>::iterator it = base_v.begin();
 
 		base_v.assign(it, it + 5);
         print_attributes(base_v);
@@ -372,14 +373,14 @@ void test_v_modifiers()
 	}
 	{
         std::cout << "swap:\n";
-        int range_array_one[] = {45, 87846, 12, 965, 5};
-        NAMESPACE::vector<int>::iterator it_one(&(range_array_one[0]));
-        NAMESPACE::vector<int> v_one(it_one, it_one + 5);
+        NAMESPACE::vector<int> v_one(10);
+		for (unsigned int i = 0; i < v_one.size(); i++)
+			v_one[i] = rand() % 10;
         print_attributes(v_one);
         print_content(v_one);
-        int range_array_two[] = {1, 2, 3};
-        NAMESPACE::vector<int>::iterator it_two(&(range_array_two[0]));
-        NAMESPACE::vector<int> v_two(it_two, it_two + 3);
+        NAMESPACE::vector<int> v_two(10);
+		for (unsigned int i = 0; i < v_two.size(); i++)
+			v_two[i] = rand() % 10;
         print_attributes(v_two);
         print_content(v_two);
 		v_one.swap(v_two);
@@ -389,4 +390,3 @@ void test_v_modifiers()
         print_content(v_two);
 	}
 }
-	*/
