@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/03 14:32:46 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:42:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ void test_v_iterators()
         print_content(vct);
         std::cout << "Iterator: " << rbegin << " | Const iterator: " << c_rbegin << std::endl;
 
-        int rend = *(vct.rend() + 1);
-        const int c_rend = *(vct.rend());
+        int rend = *(vct.rend() - 1);
+        const int c_rend = *(vct.rend() - 1);
         print_content(vct);
         std::cout << "Iterator: " << rend << " | Const iterator: " << c_rend << std::endl;
     }
