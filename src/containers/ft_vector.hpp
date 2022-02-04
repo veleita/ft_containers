@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/03 15:56:09 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:19:21 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,11 @@ namespace ft
 		// Copy constructor
 		// MUST COPY SOURCE CONTENT WITH insert()
 		vector(const vector &source)
-			: _alloc(source._alloc), _start(source._start),
-			  _last_element(source._last_element), _end(source._end){};
+			: _alloc(source._alloc), _start(nullptr),
+			  _last_element(nullptr), _end(nullptr)
+		{
+			this->insert(this->begin(), source.begin(), source.end());
+		};
 
 
 		/* GETTERS */
