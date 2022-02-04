@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:48:32 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/03 14:16:38 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/04 20:36:42 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void test_v_iterators();
 void test_v_access();
 void test_v_capacity();
 void test_v_modifiers();
+void test_v_operators();
 
 #endif

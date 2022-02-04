@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:22 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/04 19:50:52 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/04 20:37:45 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void test_s_operators()
 		stk.push(i);
         stk_2.push(i * 2);
 	}
-	std::cout << (stk == stk_2) << std::endl;
-	std::cout << (stk != stk_2) << std::endl;
+//	std::cout << (stk == stk_2) << std::endl;
+//	std::cout << (stk != stk_2) << std::endl;
 	
 	NAMESPACE::stack<int> stk_3;
     for (int i = 0; i < 42; i++)
 		stk_3.push(i);
-	std::cout << (stk == stk_3) << std::endl;
-	std::cout << (stk != stk_3) << std::endl;
+//	std::cout << (stk == stk_3) << std::endl;
+//	std::cout << (stk != stk_3) << std::endl;
 }	

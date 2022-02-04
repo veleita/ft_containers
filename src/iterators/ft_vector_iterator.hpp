@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/21 06:23:05 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/04 20:28:57 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ namespace ft
 		/* Destructor */
 		virtual ~vector_iterator() {}
 
-		/* Logical perators */
+		/* Logical operators */
 		reference operator*(void) const { return *_elem; }
 		pointer operator->(void) const { return _elem; }
 

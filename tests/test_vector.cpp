@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/04 18:22:56 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/04 20:35:28 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,4 +387,11 @@ void test_v_modifiers()
         print_attributes(v_two);
         print_content(v_two);
 	}
+}
+
+void test_v_operators()
+{
+        NAMESPACE::vector<int> v_one(10);
+        NAMESPACE::vector<int> v_two(10);
+		std::cout << (v_one == v_two) << std::endl;
 }
