@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:22 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/01/22 08:26:16 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/04 19:50:52 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,34 @@ void test_s_constructors()
 void test_s_member_functions()
 {
     std::cout << "MEMBER FUNCTIONS\n";
-    {
-        std::cout << "Empty:\n";
-	}
-	{
-        std::cout << "Size:\n";
-	}
-	{
-        std::cout << "Top:\n";
-	}
-	{
-        std::cout << "Push:\n";
-	}
-	{
-        std::cout << "Pop:\n";
-	}
+	NAMESPACE::stack<int> stk;
+    std::cout << "Empty stack? " << stk.empty() << std::endl;
+	NAMESPACE::stack<int> stk_filled;
+	for (unsigned int i = 0; i < 42; i++)
+		stk_filled.push(rand() % 10);
+	print_stack_info(stk_filled);
+	NAMESPACE::stack<int> stk_big;
+	for (unsigned int i = 0; i < 420000; i++)
+		stk_filled.push(rand() % 10);
+	print_stack_info(stk_filled);
 }
+
+void test_s_operators()
+{
+	std::cout << "== and !=\n";
+	NAMESPACE::stack<int> stk;
+	NAMESPACE::stack<int> stk_2;
+    for (int i = 0; i < 42; i++)
+    {
+		stk.push(i);
+        stk_2.push(i * 2);
+	}
+	std::cout << (stk == stk_2) << std::endl;
+	std::cout << (stk != stk_2) << std::endl;
+	
+	NAMESPACE::stack<int> stk_3;
+    for (int i = 0; i < 42; i++)
+		stk_3.push(i);
+	std::cout << (stk == stk_3) << std::endl;
+	std::cout << (stk != stk_3) << std::endl;
+}	
