@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/04 20:35:28 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:30:45 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,4 +394,11 @@ void test_v_operators()
         NAMESPACE::vector<int> v_one(10);
         NAMESPACE::vector<int> v_two(10);
 		std::cout << (v_one == v_two) << std::endl;
+		std::cout << (v_one != v_two) << std::endl;
+		v_one.push_back(42);
+		std::cout << (v_one < v_two) << std::endl;
+		std::cout << (v_one <= v_two) << std::endl;
+		v_two.push_back(21);
+		std::cout << (v_one > v_two) << std::endl;
+		std::cout << (v_one >= v_two) << std::endl;
 }
