@@ -3,12 +3,6 @@
 
 #include <ft_iterator.hpp>
 
-template <class InputIterator>
-bool operator!=(const InputIterator &lhs, const InputIterator &rhs)
-{
-    return (lhs.operator->() != rhs.operator->());
-}
-
 namespace ft
 {
     /*
