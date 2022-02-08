@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:22 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/08 10:56:26 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:18:35 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void test_s_member_functions()
 
 void test_s_operators()
 {
-	std::cout << "== and !=\n";
-	{
 		NAMESPACE::stack<int> stk;
 		NAMESPACE::stack<int> stk_2;
     	for (int i = 0; i < 42; i++)
@@ -73,11 +71,18 @@ void test_s_operators()
 		}
 		std::cout << (stk == stk_2) << std::endl;
 		std::cout << (stk != stk_2) << std::endl;
+		std::cout << (stk < stk_2) << std::endl;
+		std::cout << (stk <= stk) << std::endl;
+		std::cout << (stk > stk_2) << std::endl;
+		std::cout << (stk >= stk) << std::endl;
 	
 		NAMESPACE::stack<int> stk_3;
 	    for (int i = 0; i < 42; i++)
 			stk_3.push(i);
 		std::cout << (stk == stk_3) << std::endl;
 		std::cout << (stk != stk_3) << std::endl;
-	}
+		std::cout << (stk >= stk) << std::endl;
+		std::cout << (stk > stk_3) << std::endl;
+		std::cout << (stk <= stk) << std::endl;
+		std::cout << (stk < stk_3) << std::endl;
 }	
