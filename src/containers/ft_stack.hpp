@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:09:43 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/04 18:35:22 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/08 10:55:19 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ namespace ft
 			typedef T				value_type;
 			typedef size_t			size_type;
 
-		private:
-			container_type	underlaying_ctnr;
 
 		public:
+
+			container_type	underlaying_ctnr;
+			
 			/* CONSTRUCTORS */
 			explicit stack (const container_type& ctnr = container_type())
 			:	underlaying_ctnr(ctnr)
@@ -60,6 +61,46 @@ namespace ft
 			~stack()
 			{}
 	};
+	
+	/* NON-MEMBER FUNCTION OVERLOADS */
+
+	/* Call the relational operators of the underlaying container
+	 * (ft::vector by default) */
+	template <class T, class Container>
+		bool operator==(const stack< T, Container > &lhs, const stack< T, Container > &rhs)
+		{
+			return (lhs.underlaying_ctnr == rhs.underlaying_ctnr);
+		}
+	
+	template <class T, class Container>
+		bool operator!=(const stack< T, Container > &lhs, const stack< T, Container > &rhs)
+		{
+			return (lhs.underlaying_ctnr != rhs.underlaying_ctnr);
+		}
+
+	template <class T, class Container>
+		bool operator<(const stack< T, Container > &lhs, const stack< T, Container > &rhs)
+		{
+			return (lhs.underlaying_ctnr < rhs.underlaying_ctnr);
+		}
+		
+	template <class T, class Container>
+		bool operator<=(const stack< T, Container > &lhs, const stack< T, Container > &rhs)
+		{
+			return (lhs.underlaying_ctnr <= rhs.underlaying_ctnr);
+		}
+
+	template <class T, class Container>
+		bool operator> (const stack< T,Container > &lhs, const stack< T, Container > &rhs)
+		{
+			return (lhs.underlaying_ctnr > rhs.underlaying_ctnr);
+		}
+
+	template <class T, class Container>
+		bool operator>= (const stack< T, Container > &lhs, const stack< T, Container > &rhs)
+		{
+			return (lhs.underlaying_ctnr >= rhs.underlaying_ctnr);
+		}
 }
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/08 09:32:43 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/08 10:56:18 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -393,22 +393,59 @@ namespace ft
 	/* Check if the contents of lhs and rhs are equal, that is, they have the same number
 	 * of elements and each element in lhs compares equal with the element in rhs at the
 	 * same position. */
-	template <class T, class Alloc>
-		bool operator==( const ft::vector<T,Alloc>& lhs,
-				const ft::vector<T,Alloc>& rhs )
+	template< class T, class Alloc >
+		bool operator==( const ft::vector< T, Alloc > &lhs,
+				const ft::vector< T, Alloc > &rhs )
 		{
 			if (lhs.size() != rhs.size())
 				return false;
 			return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 		}
 
-	template <class T, class Alloc>
-		bool operator!=( const ft::vector<T,Alloc>& lhs,
-				const ft::vector<T,Alloc>& rhs )
+	template< class T, class Alloc >
+		bool operator!=( const ft::vector< T, Alloc > &lhs,
+				const ft::vector< T, Alloc > &rhs )
 		{
 			return !(lhs == rhs);
 		}
 
+	/* Compare the elements sequentially using operator< or operator> in a reciprocal manner
+	 * (i.e., checking both a<b and b<a) and stopping at the first occurrence. That is what
+	 * lexicographical_compare does */
+	template< typename T, typename Alloc >
+		bool	operator<(const ft::vector< T, Alloc > &lhs,
+					const ft::vector< T, Alloc > &rhs)
+		{
+		return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+		}
+
+	template< typename T, typename Alloc >
+	bool	operator>(const ft::vector< T, Alloc > &lhs,
+				const ft::vector< T, Alloc > &rhs)
+	{
+		return ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end());
+	}
+
+	template<typename T, typename Alloc>
+	bool	operator<=(const ft::vector< T, Alloc > &lhs,
+				const ft::vector< T, Alloc > &rhs)
+	{
+		return (lhs == rhs || lhs < rhs);
+	}
+
+	template<typename T, typename Alloc>
+	bool	operator>=(const ft::vector< T, Alloc > &lhs,
+				const ft::vector< T, Alloc > &rhs)
+	{
+		return (lhs == rhs || lhs > rhs);
+	}
+
+	/*-- Swap --*/
+	template<typename T, class Alloc>
+	void	swap(ft::vector< T, Alloc > &x, ft::vector< T, Alloc > &y)
+	{
+		x.swap(y);
+	}
 };
 
 #endif
