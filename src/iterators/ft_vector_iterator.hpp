@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/04 20:28:57 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/09 10:10:03 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,32 @@ namespace ft
 	{
 	public:
 		/* Type definitions */
-		typedef typename ft::iterator<std::random_access_iterator_tag, T>
-			base_iterator;
-		typedef typename ft::iterator_traits<base_iterator>::iterator_category
-			iterator_category;
-		typedef typename ft::iterator_traits<base_iterator>::value_type
-			value_type;
-		typedef typename ft::iterator_traits<base_iterator>::difference_type
-			difference_type;
-		typedef T *pointer;
-		typedef T &reference;
+		typedef typename iterator_traits<T>::value_type			value_type;
+		typedef typename iterator_traits<T>::difference_type	difference_type;
+		typedef typename iterator_traits<T>::pointer			pointer;
+		typedef typename iterator_traits<T>::reference			reference;
+		typedef typename iterator_traits<T>::iterator_category	iterator_category;
 
-		/* Default construtor */
-		vector_iterator(void)
-			: _elem(0)
-		{
-		}
+		/* Iterator content */
+		pointer _elem;
+		
 
-		/* Constructor from pointer */
-		vector_iterator(pointer elem)
+		/* Default constructor */
+		explicit vector_iterator(pointer elem = NULL)
 			: _elem(elem)
 		{
 		}
 
 		/* Copy constructor */
-		vector_iterator(const vector_iterator &copy)
+		template <class U>
+		vector_iterator(const vector_iterator<U> &copy)
 			: _elem(copy._elem)
 		{
 		}
 
 		/* Assignation */
-		vector_iterator &operator=(const vector_iterator &rhs)
+		template <class U>
+		vector_iterator &operator=(const vector_iterator<U> &rhs)
 		{
 			this->_elem = rhs._elem;
 			return (*this);
@@ -102,12 +97,12 @@ namespace ft
 
 		vector_iterator operator+(difference_type n) const
 		{
-			return (_elem + n);
+			return (vector_iterator(_elem + n));
 		}
 
 		vector_iterator operator-(difference_type n) const
 		{
-			return (_elem - n);
+			return (vector_iterator(_elem - n));
 		}
 
 		vector_iterator &operator+=(difference_type n)
@@ -127,8 +122,6 @@ namespace ft
 			return (*(operator+(n)));
 		}
 
-	private:
-		pointer _elem;
 	};
 };
 

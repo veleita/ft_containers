@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/08 11:27:03 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/09 10:13:17 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ int main()
 						&test_v_operators
 					};
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		(*vector[i])();
 		std::cout << "---------------------------\n\n";
 	}
-
+	
 	std::cout << "\nSTACK TEST\n";
 	std::cout << "===========================\n";
 	test stack[3] = {
@@ -90,7 +90,7 @@ int main()
 		(*stack[i])();
 		std::cout << "---------------------------\n\n";
 	}
-
+	
 	gettimeofday(&tv, NULL);
 	after = tv.tv_sec * 1000000 + tv.tv_usec;
 	execution_time = before - after;

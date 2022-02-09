@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:22 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/08 11:29:16 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:46:19 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 template <class T>
 static void print_stack_info(NAMESPACE::stack<T> &stk)
 {
+	(void)stk;
+	/*
     std::cout << "Empty stack: " << stk.empty() << std::endl;
     std::cout << "Stack size: " << stk.size() << std::endl;
     std::cout << "Stack content: ";
@@ -25,10 +27,12 @@ static void print_stack_info(NAMESPACE::stack<T> &stk)
 		if (stk.size() > 0)
 			std::cout << ", ";
 	}
+	*/
 }
 
 void test_s_constructors()
 {
+	/*
     std::cout << "CONSTRUCTORS\n";
     {
         std::cout << "Default:\n";
@@ -43,10 +47,12 @@ void test_s_constructors()
 		print_stack_info(*pointer_default_stack);
         delete pointer_default_stack;
     }
+	*/
 }
 
 void test_s_member_functions()
 {
+	/*
     std::cout << "MEMBER FUNCTIONS\n";
 	NAMESPACE::stack<int> stk;
     std::cout << "Empty stack? " << stk.empty() << std::endl;
@@ -58,10 +64,12 @@ void test_s_member_functions()
 	for (unsigned int i = 0; i < 420000; i++)
 		stk_filled.push(rand() % 10);
 	print_stack_info(stk_filled);
+	*/
 }
 
 void test_s_operators()
 {
+	/*
 		NAMESPACE::stack<int> stk;
 		NAMESPACE::stack<int> stk_2;
     	for (int i = 0; i < 42; i++)
@@ -89,4 +97,5 @@ void test_s_operators()
 		std::cout << (stk > stk_3) << std::endl;
 		std::cout << (stk <= stk) << std::endl;
 		std::cout << (stk < stk_3) << std::endl;
+		*/
 }	

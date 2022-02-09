@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:07:48 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/08 12:14:53 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/09 10:11:45 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ namespace ft
 	{
 	public:
 		/* TYPE DEFINITIONS */
-		typedef Alloc allocator_type;
-		typedef T value_type;
-		typedef size_t size_type;
-		typedef typename allocator_type::reference reference;
-		typedef typename allocator_type::const_reference const_reference;
-		typedef typename allocator_type::pointer pointer;
-		typedef typename allocator_type::const_pointer const_pointer;
-		typedef typename ft::vector_iterator<value_type> iterator;
-		typedef typename ft::vector_iterator<value_type> const_iterator;
-		typedef typename ft::reverse_iterator<iterator> reverse_iterator;
-		typedef typename ft::reverse_iterator<iterator>
+		typedef Alloc 										allocator_type;
+		typedef T											value_type;
+		typedef size_t										size_type;
+		typedef typename allocator_type::reference 			reference;
+		typedef typename allocator_type::const_reference 	const_reference;
+		typedef typename allocator_type::pointer 			pointer;
+		typedef typename allocator_type::const_pointer 		const_pointer;
+		typedef typename ft::vector_iterator<pointer> 		iterator;
+		typedef typename ft::vector_iterator<const_pointer> const_iterator;
+		typedef typename ft::reverse_iterator<iterator> 	reverse_iterator;
+		typedef typename ft::reverse_iterator<const_iterator>
 			const_reverse_iterator;
 		typedef typename ft::iterator_traits<iterator>::difference_type
 			difference_type;
@@ -160,8 +160,8 @@ namespace ft
 		iterator begin() { return (iterator(_start)); }
 		const_iterator begin() const { return (iterator(_start)); }
 
-		iterator end() { return (_last_element); }
-		const_iterator end() const { return (_last_element); }
+		iterator end() { return (iterator(_last_element)); }
+		const_iterator end() const { return (const_iterator(_last_element)); }
 
 		reverse_iterator rbegin()
 		{
@@ -251,7 +251,7 @@ namespace ft
 				reserve(1);
 			_alloc.construct(_start + relative_pos, value);
 			_last_element++;
-			return (_start + relative_pos);
+			return (iterator(_start + relative_pos));
 		}
 
 		void insert(iterator pos, size_type count, value_type const &value)
@@ -299,7 +299,7 @@ namespace ft
 			std::memmove(_start + relative_pos, _start + relative_pos + 1,
 					(this->size() - relative_pos) * sizeof(value_type));
 			_last_element--;
-			return (_start + relative_pos);
+			return (iterator(_start + relative_pos));
 		}
 
 		iterator erase( iterator first, iterator last )
@@ -311,7 +311,7 @@ namespace ft
 			std::memmove(_start + relative_pos, _start + relative_pos + count,
 					(this->size() - relative_pos) * sizeof(value_type));
 			_last_element -= count;
-			return (_start + relative_pos);
+			return (iterator(_start + relative_pos));
 		}
 
 		/* push_back(): adds element at the end of the vector */
