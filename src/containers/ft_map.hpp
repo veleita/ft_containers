@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/08 12:22:18 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/09 10:32:06 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 namespace ft
 {
+	/* Reference: https://www.cplusplus.com/reference/map/map/ */
+
 	template < class Key,                                 // map::key_type
 			 class T,                                     // map::mapped_type
 			 class Compare = less<Key>,                   // map::key_compare
@@ -44,5 +46,42 @@ namespace ft
 			typedef typename ft::iterator_traits<iterator>::difference_type
 				difference_type;
 			typedef size_t										size_type;
+	
+
+			/* CONSTRUCTORS
+			 *
+			 * Parameters:
+			 * 				comp	:	If key_compare uses the default less (which
+			 * 							has no state), this parameter is not relevant.
+			 * 							Otherwise, check the documentation.
+			 *
+			 * 				alloc	:	If allocator_type is an instantiation of the
+			 * 							default allocator (which has no state), this
+			 * 							parameter is not relevant. Otherwise, y'know.
+			 *
+			 * 				first	:	Position of the first element in the range of
+			 * 							elements to be copied.
+			 *
+			 * 				last	:	Position of the element beyond the last in the
+			 * 							range of elements to be copied.
+			 * 				x		:	The vector of which the constructed vector is
+			 * 							to be a copy.
+			 */
+
+			// Default constructor
+			explicit map (const key_compare& comp = key_compare(),
+             				 const allocator_type& alloc = allocator_type())
+			{}
+
+			// Range constructor
+			template <class InputIterator>
+				map (InputIterator first, InputIterator last,
+						const key_compare& comp = key_compare(),
+						const allocator_type& alloc = allocator_type())
+			{}
+
+			// Copy constructor
+			map (const map& x)
+			{}
 	};
 };
