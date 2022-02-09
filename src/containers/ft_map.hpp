@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/09 10:32:06 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/09 10:53:36 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <ft_iterator_traits.hpp>
 # include <ft_utils.hpp>
+# include <ft_binary_search_tree.hpp>
 
 namespace ft
 {
@@ -43,7 +44,7 @@ namespace ft
 			typedef typename ft::reverse_iterator<iterator>		reverse_iterator;
 			typedef typename ft::reverse_iterator<iconst_iterator>
 				const_reverse_iterator;
-			typedef typename ft::iterator_traits<iterator>::difference_type
+			gypedef typename ft::iterator_traits<iterator>::difference_type
 				difference_type;
 			typedef size_t										size_type;
 	

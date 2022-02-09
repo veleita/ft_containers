@@ -12,6 +12,7 @@
 
 #if NAMESPACE == ft
 #include <ft_utils.hpp>
+#include <ft_binary_search_tree.hpp>
 #endif
 
 class A
@@ -28,5 +29,6 @@ void test_pair();
 void test_make_pair();
 void test_equal();
 void test_lexicographical_compare();
+void test_binary_search_tree();
 
 #endif

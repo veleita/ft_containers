@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:04:03 by mzomeno-          #+#    #+#             */
-/*   Updated: 2021/10/17 18:17:33 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/09 11:04:21 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,25 @@ void test_lexicographical_compare()
 
 	std::cout << "Comparing different container types: " << NAMESPACE::lexicographical_compare(first.begin(), first.end(), lst.begin(), lst.end())
 			  << '\n';
+}
+
+
+/* BINARY_SEARCH_TREE */
+
+t_node	*search(t_node	*root, int key)
+{
+	// Base Cases: root is null or key is present at root
+	if (root == NULL || root->key == key)
+		return root;
+   
+	// Key is greater than root's key
+   	if (root->key < key)
+   		return search(root->right, key);
+
+	// Key is smaller than root's key
+   	return search(root->left, key);
+}
+
+void test_binary_search_tree()
+{
 }
