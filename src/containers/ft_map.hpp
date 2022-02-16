@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/16 09:28:08 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/16 09:37:35 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ namespace ft
 				difference_type;
 			typedef size_t										size_type;
 	
+			class value_compare
+			{}
 
 			/* COPLEN'S FUNCTIONS
 			 *
@@ -92,7 +94,7 @@ namespace ft
 			/* ACCESS */
 
 			allocator_type get_allocator() const
-			{}
+			{	return }
 
 			mapped_type& at( const key_type& key )
 			{}
