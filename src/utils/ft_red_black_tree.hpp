@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/16 11:56:02 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:18:40 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ namespace ft
 	/* Reference: 
 	 * 		https://www.geeksforgeeks.org/binary-search-tree-data-structure/
 	 * 		https://www.programiz.com/dsa/red-black-tree
+	 * 		https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
 	 */
 	
 	/* A red-black tree is a Binary Search Tree that follows there properties:
@@ -37,24 +38,64 @@ namespace ft
 	template<class T>
 	class RedBlackTree
 	{
-		public:
+		private:
 			// Variables
-    		T		_data;
-    		BST		*_left, *_right;
-			bool	_color;
+    		T				_data;
+    		RedBlackTree	*_left, *_right, *_parent;
+			bool			_color;
 
+
+		public:
     		// Constructors
-    		BST()	: 	_data(0), _left(nullptr), _right(nullptr)
+    		RedBlackTree()	: 	_data(0), _left(nullptr), _right(nullptr), _parent(nullptr), color(BLACK)
 			{}
 
-    		BST(T data)	:	_data(data), _left(nullptr), _right(nullptr)
+    		RedBlackTree(T data)	:	_data(data), _left(nullptr), _right(nullptr), _parent(nullptr), color(BLACK)
 			{}
+
 
     		// Functions
-    		BST* insert(BST *node, T data)
+
+			void leftRotate(RedBlackTree *rotationCenter)
+			{
+				RedBlackTree *newNode = rotationCenter->right;	// Identify the newly inserted node
+				
+				rotationCenter->right = newNode->left;			// rCenter right-subtree -> nNode left-subtree
+				newNode->left->parent = rotationCenter;
+	
+				newNode->parent = rotationCenter->parent;		// newNode takes rotationCenter's place
+				if (rotationCenter == rotationCenter->parent->left)
+					rotationCenter->parent->left = newNode;
+				else
+					rotationCenter->parent->right = newNode;
+
+				newNode->left = rotationCenter;					// rCenter is now nNode's left child
+				rotationCenter->parent = newNode;
+			}
+
+			void rightRotate(RedBlackTree *rotationCenter)
+			{
+				RedBlackTree *newNode = rotationCenter->left;	// Identify the newly inserted node
+				
+				rotationCenter->left = newNode->right;			// rCenter left-subtree -> nNode right-subtree
+				newNode->right->parent = rotationCenter;
+
+				newNode->parent = rotationCenter->parent;		// newNode takes rotationCenter's place
+				if (rotationCenter == rotationCenter->parent->left)
+					rotationCenter->parent->left = newNode;
+				else
+					rotationCenter->parent->right = newNode;
+
+				newNode->right = rotationCenter;				// rCenter is now nNode's right node
+				rotationCenter->parent = newNode;
+			}
+
+
+			// Balance it with ROTATE and RECOLOR
+    		RedBlackTree* insert(RedBlackTree *node, T data)
 			{
 				if (node == nullptr)
-					return new BST(data);	// Return inserted node
+					return new RedBlackTree(data);	// Return inserted node
 
 				if (data > node->data)
 					node->right = insert(node->right, data);
@@ -64,7 +105,7 @@ namespace ft
 					return (node);
 			}
 
-	    	void inorderTraverse(BST *node)
+	    	void inorderTraverse(RedBlackTree *node)
 			{
 				if (node == nullptr)
 					return;
@@ -73,7 +114,7 @@ namespace ft
 				inorder(node->right);
 			}
 
-			void deleteNode(BST *node, T data)
+			void deleteNode(RedBlackTree *node, T data)
 			{}
 
 			// ITERATORS
