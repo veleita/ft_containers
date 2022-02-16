@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/16 10:46:33 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:06:09 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ namespace ft
 {
 	/* Reference: https://www.cplusplus.com/reference/map/map/ */
 
-	template < class key_type,                                 	// map::key_type
-			 class T,                                     		// map::mapped_type
-			 class Compare = std::less<key_type>,				// map::key_compare
-			 class Alloc = allocator<pair<const key_type,T> >	// map::allocator_type
+	template < class key_type,                                 		// map::key_type
+			 class T,                                     			// map::mapped_type
+			 class Compare = std::less<key_type>,					// map::key_compare
+			 class Alloc = allocator<ft::pair<const key_type,T> >	// map::allocator_type
 			 >
 	class map
 	{
@@ -40,8 +40,9 @@ namespace ft
 			typedef typename allocator_type::const_reference   	const_reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef typename ft::map_iterator<value_type>		iterator;
-			typedef typename ft::map_iterator<const value_type>	const_iterator;
+			typedef ft::binary_search_tree						tree_type;
+			typedef typename tree_type::iterator				iterator;
+			typedef typename tree_type::const_iterator			const_iterator;
 			typedef typename ft::reverse_iterator<iterator>		reverse_iterator;
 			typedef typename ft::reverse_iterator<iconst_iterator>
 				const_reverse_iterator;
@@ -55,10 +56,11 @@ namespace ft
 
 		private:
 			
-			/* VARIABLES */
+			/* MEMBER ATTRIBUTES */
 			allocator_type	_alloc;
 			key_compare		_k_comp;
 			value_compare	_v_comp;
+			tree_type		_tree;
 
 
 		
@@ -227,7 +229,7 @@ namespace ft
 			// returns the function that compares keys
 			key_compare key_comp() const
 			{	return _k_comp;	}
-
+			
 			// returns the function that compares keys in objects of type value_type
 			ft::map::value_compare value_comp() const
 			{	return _v_comp;	}
