@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/16 09:37:35 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:46:33 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ namespace ft
 {
 	/* Reference: https://www.cplusplus.com/reference/map/map/ */
 
-	template < class key_type,                                 // map::key_type
-			 class T,                                     // map::mapped_type
-			 class Compare = less<key_type>,                   // map::key_compare
-			 class Alloc = allocator<pair<const key_type,T> >  // map::allocator_type
+	template < class key_type,                                 	// map::key_type
+			 class T,                                     		// map::mapped_type
+			 class Compare = std::less<key_type>,				// map::key_compare
+			 class Alloc = allocator<pair<const key_type,T> >	// map::allocator_type
 			 >
 	class map
 	{
@@ -34,6 +34,7 @@ namespace ft
 			typedef Key											key_type;
 			typedef T											mapped_type;
 			typedef ft::pair<const key_type, mapped_type>		value_type;
+			typedef Compare										key_compare;
 			typedef Alloc										allocator_type;
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference   	const_reference;
@@ -49,7 +50,19 @@ namespace ft
 			typedef size_t										size_type;
 	
 			class value_compare
-			{}
+			{
+			};
+
+		private:
+			
+			/* VARIABLES */
+			allocator_type	_alloc;
+			key_compare		_k_comp;
+			value_compare	_v_comp;
+
+
+		
+		public:
 
 			/* COPLEN'S FUNCTIONS
 			 *
@@ -69,7 +82,8 @@ namespace ft
 			 * 							range of elements to be copied.
 			 * 				x		:	The vector of which the constructed vector is
 			 * 							to be a copy.
-			 */
+
+			 // WHICH VARIABLES ARE GOING TO NEED TO FILL?
 
 			explicit map (const key_compare& comp = key_compare(),
              				 const allocator_type& alloc = allocator_type())
@@ -89,22 +103,25 @@ namespace ft
 
 			~map()
 			{}
+			 */
 
 
 			/* ACCESS */
 
 			allocator_type get_allocator() const
-			{	return }
+			{	return this->_alloc;	}
 
+			/* BST SEARCH
 			mapped_type& at( const key_type& key )
 			{}
 
 			const mapped_type& at( const key_type& key ) const
 			{}
-
+			*/
 
 			/* ITERATORS */
 			
+			/* BST ITERATORS
 			iterator begin()
 			{}
 
@@ -128,10 +145,11 @@ namespace ft
 
 			const_reverse_iterator rend() const
 			{}
-
+			*/
 
 			/* CAPACITY */
 
+			/* BST TRAVERSE
 			bool empty() const
 			{}
 
@@ -140,13 +158,14 @@ namespace ft
 
 			size_type max_size() const
 			{}
-
+			*/
 
 			/* MODIFIERS */
 
+			/* BST DELETE AND INSERT
 			void clear()
 			{}
-
+			
 			ft::pair<iterator, bool> 	insert( const value_type& value )
 			{}
 
@@ -164,10 +183,12 @@ namespace ft
 
 			void swap( map& other )
 			{}
+			*/
 
 
 			/* LOOKUP */
 
+			/* BST SEARCH
 			// returns the number of elements matching specific key
 			size_type count( const key_type& key ) const
 			{}
@@ -199,17 +220,17 @@ namespace ft
 
 			const_iterator 	upper_bound( const key_type& key ) const
 			{}
-
+			*/
 
 			/* OBSERVERS */
 
 			// returns the function that compares keys
 			key_compare key_comp() const
-			{}
+			{	return _k_comp;	}
 
 			// returns the function that compares keys in objects of type value_type
 			ft::map::value_compare value_comp() const
-			{}
+			{	return _v_comp;	}
 	};
 
 	/* NON-MEMBER FUNCTIONS */
