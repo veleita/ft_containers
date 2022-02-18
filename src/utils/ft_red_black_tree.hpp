@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/16 17:18:40 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/18 13:24:56 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ namespace ft
 
 		public:
     		// Constructors
-    		RedBlackTree()	: 	_data(0), _left(nullptr), _right(nullptr), _parent(nullptr), color(BLACK)
+    		RedBlackTree()	: 	_data(0), _left(nullptr), _right(nullptr), _parent(nullptr), color(RED)
 			{}
 
-    		RedBlackTree(T data)	:	_data(data), _left(nullptr), _right(nullptr), _parent(nullptr), color(BLACK)
+    		RedBlackTree(T data)	:	_data(data), _left(nullptr), _right(nullptr), _parent(nullptr), color(RED)
 			{}
 
 
@@ -86,12 +86,71 @@ namespace ft
 				else
 					rotationCenter->parent->right = newNode;
 
-				newNode->right = rotationCenter;				// rCenter is now nNode's right node
+				newNode->right = rotationCenter;				// rCenter is now nNode's right child
 				rotationCenter->parent = newNode;
 			}
 
+			void balanceTree(RedBlackTree *newNode)
+			{
+				RedBlackTree *parent = newNode->parent;
+				if (parent->color == BLACK)						// Case 1 -> everything good
+					return ;
+				RedBlackTree *grandParent = parent->parent;
+				RedBlackTree *uncle = 
+					(parent == grandParent->right) ? 
+					grandParent->left :
+					grandParent->right;
+				if (uncle && uncle->color == RED)				// Case 2 -> parent and uncle are red
+				{
+					parent->color = BLACK;
+					uncle->color = BLACK;
+					if (grandParent != root)
+					{
+						grandParent->color == RED;
+						if (grandParent->parent->color == RED)	// Recursive call if grandParent
+							balanceTree(root, parent);			// and greatgrandparent are both red
+				}
+				else											// Case 3 -> parent is red, uncle is
+				{												// black or null
+
+				}
+
+
+				while (parent->color == RED)
+				{
+					if (parent == parent->parent->left)
+						newNode = parent->parent->right;
+				}
+			}
 
 			// Balance it with ROTATE and RECOLOR
+			void insert(RedBlackTree *root, RedBlackTree *newNode)
+			{
+				if (root == nullptr)				// case empty tree
+				{
+					root = newNode;
+					newNode->color = BLACK;
+					return ;
+				}
+				RedBlackTree *lastNode = nullptr;	// we will use this to iterate through the tree
+				while (root)
+				{
+					lastNode = root;				// in the last iteration, root will be nullptr
+					if (newNode->key < root->key)	// and so aux would be its "parent"
+						root = root->left;
+					else if (newNode->key > root->key)
+						root = root->right;
+					else							// case newNode is a duplicate
+						return;
+				}
+				newNode->parent = lastNode;			// newNode gets attached to the tree
+				if (newNode->key < lastNode->key)
+					lastNode->left = newNode;
+				else
+					lastNode->right = newNode;
+				balanceTree(newNode;)
+			}
+
     		RedBlackTree* insert(RedBlackTree *node, T data)
 			{
 				if (node == nullptr)
