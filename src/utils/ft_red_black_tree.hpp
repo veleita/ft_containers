@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/18 13:24:56 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/21 17:52:43 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,40 +56,60 @@ namespace ft
 
     		// Functions
 
-			void leftRotate(RedBlackTree *rotationCenter)
+			// L-ROTATE
+			//
+			// 				|G|							|P|
+			// 			   /   \                       /   \
+			// 			|U|    |P|         =>        |G|   |rC|
+			// 			      /   \                 /   \
+			// 			    |lC|  |rC|            |U|   |lC|
+			//
+			void leftRotate(RedBlackTree *G)
 			{
-				RedBlackTree *newNode = rotationCenter->right;	// Identify the newly inserted node
+				RedBlackTree *P = G->right;						// Identify the two nodes to rotate
 				
-				rotationCenter->right = newNode->left;			// rCenter right-subtree -> nNode left-subtree
-				newNode->left->parent = rotationCenter;
+				G->right = P->left;								// P's lC (left child) is now at G's right, bc G < P
+				P->left->parent = G;
 	
-				newNode->parent = rotationCenter->parent;		// newNode takes rotationCenter's place
-				if (rotationCenter == rotationCenter->parent->left)
-					rotationCenter->parent->left = newNode;
+				P->parent = G->parent;							// P takes G's place
+				if (G == G->parent->left)						// link P to its former grandparent
+					G->parent->left = P;
 				else
-					rotationCenter->parent->right = newNode;
+					G->parent->right = P;
 
-				newNode->left = rotationCenter;					// rCenter is now nNode's left child
-				rotationCenter->parent = newNode;
+				P->left = G;									// G is now P's left child
+				G->parent = P;
 			}
 
-			void rightRotate(RedBlackTree *rotationCenter)
+			// R-ROTATE
+			//
+			// 				|G|							|P|
+			// 			   /   \                       /   \
+			// 			|P|    |U|         =>       |lC|   |G|
+			// 		   /   \                              /   \
+			// 	     |lC|  |rC|                         |rC|   |U|
+			//
+			void rightRotate(RedBlackTree *G)
 			{
-				RedBlackTree *newNode = rotationCenter->left;	// Identify the newly inserted node
+				RedBlackTree *P = G->left;						// Identify the two nodes to rotate
 				
-				rotationCenter->left = newNode->right;			// rCenter left-subtree -> nNode right-subtree
-				newNode->right->parent = rotationCenter;
-
-				newNode->parent = rotationCenter->parent;		// newNode takes rotationCenter's place
-				if (rotationCenter == rotationCenter->parent->left)
-					rotationCenter->parent->left = newNode;
+				G->left = P->right;								// P's rC (right child) is now at G's right, bc G > P
+				P->right->parent = G;
+	
+				P->parent = G->parent;							// P takes G's place
+				if (G == G->parent->left)						// link P to its former grandparent
+					G->parent->left = P;
 				else
-					rotationCenter->parent->right = newNode;
+					G->parent->right = P;
 
-				newNode->right = rotationCenter;				// rCenter is now nNode's right child
-				rotationCenter->parent = newNode;
+				P->right = G;									// G is now P's right child
+				G->parent = P;
 			}
 
+			// Case 1: parent black
+			// Case 2: parent and uncle red
+			// Case 3: parent red, uncle black, new between parent and grandparent
+			// Case 4: parent red, uncle black, parent between new and grandparent
 			void balanceTree(RedBlackTree *newNode)
 			{
 				RedBlackTree *parent = newNode->parent;
