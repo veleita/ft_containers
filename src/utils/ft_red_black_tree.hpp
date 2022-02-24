@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/21 17:52:43 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:50:08 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,21 @@ namespace ft
 			// Case 1: parent black
 			// Case 2: parent and uncle red
 			// Case 3: parent red, uncle black, new between parent and grandparent
+			//	A)									B)
+			//		|G|			|G|			or			|G|		|G|
+			//	   /   	       /                           \       \
+			//	 |P|    =>   |N|                           |P| =>  |N|
+			//	    \   	/							  /           \
+			//	   |N|    |P|							|N|           |P|
+			//
 			// Case 4: parent red, uncle black, parent between new and grandparent
+			//		A)									B)
+			//			|G|			|P|			or			|G|				|P|
+			//		   /   	       /   \                       \       	   /   \
+			//		 |P|    =>   |N|   |G|                     |P| 	=>   |G|   |N|
+			//		/   										  \
+			//	  |N|    										  |N|
+			//
 			void balanceTree(RedBlackTree *newNode)
 			{
 				RedBlackTree *parent = newNode->parent;
@@ -120,7 +134,7 @@ namespace ft
 					(parent == grandParent->right) ? 
 					grandParent->left :
 					grandParent->right;
-				if (uncle && uncle->color == RED)				// Case 2 -> parent and uncle are red
+				if (uncle && uncle->color == RED)				// Case 2 -> color parent and uncle black
 				{
 					parent->color = BLACK;
 					uncle->color = BLACK;
@@ -130,16 +144,17 @@ namespace ft
 						if (grandParent->parent->color == RED)	// Recursive call if grandParent
 							balanceTree(root, parent);			// and greatgrandparent are both red
 				}
-				else											// Case 3 -> parent is red, uncle is
-				{												// black or null
-
-				}
-
-
-				while (parent->color == RED)
+				else											// Case 3 -> rotate newNode with its parent
 				{
-					if (parent == parent->parent->left)
-						newNode = parent->parent->right;
+					if (newNode->key > parent->key && parent->key < grandParent->key)		// A
+						leftRotate(parent);
+					else if (newNode->key < parent->key && parent->key > grandParent->key)  // B
+						rightRotate(parent);
+																// Case 4 -> rotate parent with grandparent
+					if (newNode->key < grandParent->key)	// A
+						rightRotate(grandParent);
+					else									// B
+						leftRotate(grandParent);
 				}
 			}
 
@@ -149,7 +164,7 @@ namespace ft
 				if (root == nullptr)				// case empty tree
 				{
 					root = newNode;
-					newNode->color = BLACK;
+					newNode->color = RED;
 					return ;
 				}
 				RedBlackTree *lastNode = nullptr;	// we will use this to iterate through the tree
