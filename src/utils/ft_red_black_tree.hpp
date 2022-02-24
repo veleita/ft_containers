@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/24 14:50:08 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:56:47 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ namespace ft
 						rightRotate(grandParent);
 					else									// B
 						leftRotate(grandParent);
+					parent->color = BLACK;
+					grandParent->color = RED;
 				}
 			}
 
