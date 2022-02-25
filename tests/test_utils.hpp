@@ -12,7 +12,7 @@
 
 #if NAMESPACE == ft
 #include <ft_utils.hpp>
-#include <ft_binary_search_tree.hpp>
+#include <ft_red_black_tree.hpp>
 #endif
 
 class A

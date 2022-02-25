@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/16 11:57:28 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/25 16:33:35 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ namespace ft
 			typedef typename allocator_type::const_reference   	const_reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef ft::red_black_tree							tree_type;
+			typedef ft::red_black_tree<value_type, key_compare>	tree_type;
 			typedef typename tree_type::iterator				iterator;
 			typedef typename tree_type::const_iterator			const_iterator;
 			typedef typename ft::reverse_iterator<iterator>		reverse_iterator;

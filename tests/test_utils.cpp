@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:04:03 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/09 11:04:21 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/25 16:31:34 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void test_lexicographical_compare()
 }
 
 
-/* BINARY_SEARCH_TREE */
+/* RED_BLACK_TREE */
 
 t_node	*search(t_node	*root, int key)
 {
@@ -157,6 +157,7 @@ t_node	*search(t_node	*root, int key)
    	return search(root->left, key);
 }
 
-void test_binary_search_tree()
+void test_rb_tree()
 {
+	RedBlackTree rb_tree<>;
 }

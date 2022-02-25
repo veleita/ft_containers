@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_binary_search_tree.hpp                          :+:      :+:    :+:   */
+/*   ft_red_black_tree.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/24 14:56:47 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/25 16:50:44 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,69 @@
 namespace ft
 {
 	/* Reference: 
-	 * 		https://www.geeksforgeeks.org/binary-search-tree-data-structure/
-	 * 		https://www.programiz.com/dsa/red-black-tree
-	 * 		https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
+	 * 		geeksforgeeks.org/binary-search-tree-data-structure/
+	 * 		programiz.com/dsa/red-black-tree
+	 * 		edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
+	 * 		brilliant.org/practice/red-black-trees <3
 	 */
 	
 	/* A red-black tree is a Binary Search Tree that follows there properties:
-	 * 		1. Red/Black Property: Every node is colored, either red or black.
+	 * 		1. Red/Black Property: Every node is _colored, either red or black.
 	 * 		2. Root Property: The root is black.
 	 * 		3. Leaf Property: Every leaf (NIL) is black.
 	 * 		4. Red Property: If a red node has children then, the children are
 	 * 			always black.
 	 * 		5. Depth Property: For each node, any simple path from this node
 	 * 			to any of its descendant leaf has the same black-depth.
+	 *
+	 *
+	 *		NOTE TO FUTURE ZOME !!!
+	 *		
+	 *		T is map::value_type = ft::pair<key_type, mapped_type>
+	 *		Compare = std::less is the func used to compare the key (data.first)
+	 *		
+	 *		To-do
+	 *
+	 *		how to access the node's key
+	 *		how to use std::less (Compare)
+	 *		how do bst iterators work ?!!
+	 *		tests for bs_tree
+	 *			- Construct
+	 *			- Traverse (print?)
+	 *			- Search
+	 *			- Insert (check every case)
 	 */
-	template<class T>
+	template<class T, class Compare = std::less<key_type>,
+			class Alloc = allocator<T>
+				>
 	class RedBlackTree
 	{
 		private:
 			// Variables
     		T				_data;
-    		RedBlackTree	*_left, *_right, *_parent;
 			bool			_color;
+			Alloc			_allocator;
 
 
 		public:
-    		// Constructors
-    		RedBlackTree()	: 	_data(0), _left(nullptr), _right(nullptr), _parent(nullptr), color(RED)
+    		RedBlackTree	*left, *right, *parent;
+    		
+			// Constructors
+    		RedBlackTree()	: 	_data(0), _left(nullptr), _right(nullptr), _parent(nullptr), _color(RED)
 			{}
 
-    		RedBlackTree(T data)	:	_data(data), _left(nullptr), _right(nullptr), _parent(nullptr), color(RED)
+    		RedBlackTree(T data)	:	_data(data), _left(nullptr), _right(nullptr), _parent(nullptr), _color(RED)
 			{}
 
 
-    		// Functions
+			// Getter
+			bool getColor() const
+			{	return this->_color;	}
+
+			T	getKey() const
+			{}
+
+    		// Methods
 
 			// L-ROTATE
 			//
@@ -127,21 +156,21 @@ namespace ft
 			void balanceTree(RedBlackTree *newNode)
 			{
 				RedBlackTree *parent = newNode->parent;
-				if (parent->color == BLACK)						// Case 1 -> everything good
+				if (parent->getColor == BLACK)						// Case 1 -> everything good
 					return ;
 				RedBlackTree *grandParent = parent->parent;
 				RedBlackTree *uncle = 
 					(parent == grandParent->right) ? 
 					grandParent->left :
 					grandParent->right;
-				if (uncle && uncle->color == RED)				// Case 2 -> color parent and uncle black
+				if (uncle && uncle->getColor == RED)				// Case 2 -> _color parent and uncle black
 				{
-					parent->color = BLACK;
-					uncle->color = BLACK;
+					parent->getColor = BLACK;
+					uncle->getColor = BLACK;
 					if (grandParent != root)
 					{
-						grandParent->color == RED;
-						if (grandParent->parent->color == RED)	// Recursive call if grandParent
+						grandParent->getColor == RED;
+						if (grandParent->parent->getColor == RED)	// Recursive call if grandParent
 							balanceTree(root, parent);			// and greatgrandparent are both red
 				}
 				else											// Case 3 -> rotate newNode with its parent
@@ -155,8 +184,8 @@ namespace ft
 						rightRotate(grandParent);
 					else									// B
 						leftRotate(grandParent);
-					parent->color = BLACK;
-					grandParent->color = RED;
+					parent->getColor = BLACK;
+					grandParent->getColor = RED;
 				}
 			}
 
@@ -166,7 +195,7 @@ namespace ft
 				if (root == nullptr)				// case empty tree
 				{
 					root = newNode;
-					newNode->color = RED;
+					newNode->getColor = RED;
 					return ;
 				}
 				RedBlackTree *lastNode = nullptr;	// we will use this to iterate through the tree
