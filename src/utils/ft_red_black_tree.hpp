@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/25 16:50:44 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:49:39 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define BLACK 	1
 
 # include <iostream>
+# include <ft_utils.hpp>
 
 namespace ft
 {
@@ -24,6 +25,7 @@ namespace ft
 	 * 		geeksforgeeks.org/binary-search-tree-data-structure/
 	 * 		programiz.com/dsa/red-black-tree
 	 * 		edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
+	 * 		cs.usfca.edu/~galles/visualization/RedBlack.html
 	 * 		brilliant.org/practice/red-black-trees <3
 	 */
 	
@@ -52,20 +54,63 @@ namespace ft
 	 *			- Traverse (print?)
 	 *			- Search
 	 *			- Insert (check every case)
+	 *			- Node class
 	 */
-	template<class T, class Compare = std::less<key_type>,
-			class Alloc = allocator<T>
-				>
+
+	template < typename T >
+		class Node
+		{
+			public:
+				typedef T	value_type;
+
+				value_type	data;
+				bool		color;
+				Node		*parent, left, right;
+
+				Node()	:	data(), color(BLACK), parent(nullptr), left(nullptr), right(nullptr)
+				{}
+
+				Node(value_type const &data)	
+					:	data(data), color(BLACK), parent(nullptr), left(nullptr), right(nullptr)
+				{}
+
+				Node(Node const &copy)
+					:	
+						data(copy.data), 
+						color(copy.color), 
+						parent(copy.parent), 
+						left(copy.left), 
+						right(copy.right)
+				{}
+
+				Node &operator=(Node const &lhs)
+				{
+					if (lhs != *this)
+					{
+						this->data = lhs.data;
+						this->color = lhs.color;
+						this->parent = lhs.parent;
+						this->left = lhs.left;
+						this->right = lhs.right;
+					}
+					return *this;
+				}
+			
+				~Node() {}
+		}
+
+	template< class T, class Compare = std::less<key_type>, class Alloc = std::allocator<T> >
 	class RedBlackTree
 	{
-		private:
-			// Variables
-    		T				_data;
-			bool			_color;
-			Alloc			_allocator;
-
-
 		public:
+			// Typedef
+			typedef T			value_type;
+			typedef size_t		size_type;
+			typedef typename
+			// Variables
+    		T				data;
+			bool			color;
+			Alloc			allocator;
     		RedBlackTree	*left, *right, *parent;
     		
 			// Constructors
