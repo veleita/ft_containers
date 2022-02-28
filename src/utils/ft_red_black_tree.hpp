@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/28 14:49:39 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:40:01 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ namespace ft
 	 * 		edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
 	 * 		cs.usfca.edu/~galles/visualization/RedBlack.html
 	 * 		brilliant.org/practice/red-black-trees <3
+	 * 		stackoverflow.com/questions/14148756/what-does-template-rebind-do
 	 */
 	
 	/* A red-black tree is a Binary Search Tree that follows there properties:
@@ -54,7 +55,8 @@ namespace ft
 	 *			- Traverse (print?)
 	 *			- Search
 	 *			- Insert (check every case)
-	 *			- Node class
+	 *			- Node class					👍
+	 *			- Some kind of getter for color and key (?)
 	 */
 
 	template < typename T >
@@ -104,14 +106,19 @@ namespace ft
 	{
 		public:
 			// Typedef
-			typedef T			value_type;
-			typedef size_t		size_type;
-			typedef typename
+			typedef T										value_type;
+			typedef size_t									size_type;
+			typedef ft::Node<value_type>					Node;
+			typedef Allocator::template rebind<Node>::other	node_alloc;
+			typedef typename node_alloc::pointer			pointer;
+			typedef typename node_alloc::const_pointer		const_pointer;
+
 			// Variables
-    		T				data;
-			bool			color;
-			Alloc			allocator;
-    		RedBlackTree	*left, *right, *parent;
+    		pointer			root;
+			size_type		size;
+			node_alloc		nodeAlloc;
+			Alloc			dataAlloc;
+			Compare			compareFunc;
     		
 			// Constructors
     		RedBlackTree()	: 	_data(0), _left(nullptr), _right(nullptr), _parent(nullptr), _color(RED)
@@ -120,13 +127,6 @@ namespace ft
     		RedBlackTree(T data)	:	_data(data), _left(nullptr), _right(nullptr), _parent(nullptr), _color(RED)
 			{}
 
-
-			// Getter
-			bool getColor() const
-			{	return this->_color;	}
-
-			T	getKey() const
-			{}
 
     		// Methods
 
@@ -234,7 +234,6 @@ namespace ft
 				}
 			}
 
-			// Balance it with ROTATE and RECOLOR
 			void insert(RedBlackTree *root, RedBlackTree *newNode)
 			{
 				if (root == nullptr)				// case empty tree
@@ -247,7 +246,7 @@ namespace ft
 				while (root)
 				{
 					lastNode = root;				// in the last iteration, root will be nullptr
-					if (newNode->key < root->key)	// and so aux would be its "parent"
+					if (newNode->key < root->key)	// and lastNode will be its "parent"
 						root = root->left;
 					else if (newNode->key > root->key)
 						root = root->right;
@@ -260,19 +259,6 @@ namespace ft
 				else
 					lastNode->right = newNode;
 				balanceTree(newNode;)
-			}
-
-    		RedBlackTree* insert(RedBlackTree *node, T data)
-			{
-				if (node == nullptr)
-					return new RedBlackTree(data);	// Return inserted node
-
-				if (data > node->data)
-					node->right = insert(node->right, data);
-				else if (data < node->data)
-					node->left = insert(node->left, data);
-				else				// Duplicate value
-					return (node);
 			}
 
 	    	void inorderTraverse(RedBlackTree *node)
