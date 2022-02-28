@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/28 15:40:01 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/02/28 19:01:42 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,16 @@ namespace ft
 	{
 		public:
 			// Typedef
-			typedef T										value_type;
-			typedef size_t									size_type;
-			typedef ft::Node<value_type>					Node;
-			typedef Allocator::template rebind<Node>::other	node_alloc;
-			typedef typename node_alloc::pointer			pointer;
-			typedef typename node_alloc::const_pointer		const_pointer;
+			typedef T													value_type;
+			typedef size_t												size_type;
+			typedef ft::Node<value_type>								Node;
+			typedef Allocator::template rebind<Node>::other				node_alloc;
+			typedef typename node_alloc::pointer						pointer;
+			typedef typename node_alloc::const_pointer					const_pointer;
+			typedef typename ft::tree_iterator<T, pointer>				iterator;
+			typedef typename ft::tree_iterator<const T, const_pointer>	const_iterator;
+			typedef typename ft::reverse_iterator<iterator>				reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
 			// Variables
     		pointer			root;
