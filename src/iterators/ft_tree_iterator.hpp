@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 17:02:50 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/28 19:08:21 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:23:11 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ namespace ft
 		NodePointer root;
 
 		/* Default constructor */
-		explicit tree_iterator(pointer node = nullptr)
+		explicit tree_iterator(pointer node = nullptr)	// X a
 			: node(node)
 		{
 		}
 
 		/* Copy constructor */
 		template <class U>
-		tree_iterator(const tree_iterator<U> &copy)
+		tree_iterator(const tree_iterator<U> &copy)	// X a(b)
 			: node(copy.node)
 		{
 		}
 
 		/* Assignation */
 		template <class U>
-		tree_iterator &operator=(const tree_iterator<U> &rhs)
+		tree_iterator &operator=(const tree_iterator<U> &rhs)	// a = b
 		{
 			this->node = rhs.node;
 			this->root = rhs.root;
@@ -64,8 +64,8 @@ namespace ft
 		pointer	getRoot() const {	return root;	}
 
 		/* Operators */
-		reference operator*(void) const { return node->data; }
-		pointer operator->(void) const { return &(node->data); }
+		reference operator*(void) const { return node->data; }		// *a
+		pointer operator->(void) const { return &(node->data); }	// a->
 
 		NodePointer	min(NodePointer branch)
 		{
@@ -80,7 +80,7 @@ namespace ft
 				branch = branch->right;
 			return branch;
 		
-		tree_iterator &operator++(void)
+		tree_iterator &operator++(void)	// ++a
 		{
 			if (node->right)
 				node = min(node->right);
@@ -90,14 +90,14 @@ namespace ft
 			return (*this);
 		}
 
-		tree_iterator operator++(int)
+		tree_iterator operator++(int)	// a++
 		{
 			tree_iterator saved_state = *this;
 			operator++();
 			return (saved_state);
 		}
 
-		tree_iterator &operator--(void)
+		tree_iterator &operator--(void)	// --a
 		{
 			if (node->left)
 				node = max(node->left);
@@ -107,7 +107,7 @@ namespace ft
 			return (*this);
 		}
 
-		tree_iterator operator--(int)
+		tree_iterator operator--(int)	// a--
 		{
 			vector_iterator saved_state = *this;
 			operator--();
@@ -116,20 +116,55 @@ namespace ft
 	};
 };
 
-template <typename U, typename V, typename P1, typename P2>
-bool	operator==(const ree_iterator<U,P1>& lhs, const tree_iterator<V,P2>& rhs)
+
+/* Comparison operators */
+template <typename U, typename V, typename P1, typename P2>	// a == b
+bool operator==(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<V,P2>& rhs)
 {
 	return lhs.getNode() == rhs.getNode();
 }
 
-template <typename U, typename V, typename P1, typename P2>
-bool	operator!=(const tree_iterator<U,P1>& lhs, const tree_iterator<V,P2>& rhs)
+template <typename U, typename V, typename P1, typename P2>	// a != b
+bool operator!=(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<V,P2>& rhs)
 {
 	return lhs.getNode() != rhs.getNode();
 }
 
-template <typename U, typename V, typename P1, typename P2>
-bool		operator>(const tree_iterator<U,P1>& lhs, const tree_iterator<V,P2>& rhs)
+template <typename U, typename V, typename P1, typename P2>	// a > b
+bool operator>(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<V,P2>& rhs)
 {
-		return lhs.getNode() > rhs.getNode();
+	return lhs.getNode() > rhs.getNode();
+}
+	
+template <typename U, typename V, typename P1, typename P2>	// a < b
+bool operator<(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<V,P2>& rhs)
+{
+	return lhs.getNode() < rhs.getNode();
+}
+
+template <typename U, typename V, typename P1, typename P2>	// a >= b
+bool operator>=(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<V,P2>& rhs)
+{
+	return lhs.getNode() >= rhs.getNode();
+}
+
+template <typename U, typename V, typename P1, typename P2> // a <= b
+bool operator<=(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<V,P2>& rhs)
+{
+	return lhs.getNode() <= rhs.getNode();
+}
+
+
+/* Algorithmic operators */
+template <typename U, typename V, typename P1, typename P2> // a - b
+ptrdiff_t operator-(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<V,P2>& rhs)
+{
+	return lhs.getNode() - rhs.getNode();
+}
+
+template <typename U, typename P1>	// n + a
+ft::tree_iterator<U,P1> operator+(typename ft::tree_iterator<U,P1>::difference_type n,
+		const tree_iterator<U,P1> &rhs)
+{
+	return (tree_iterator<U,P1>(rhs.getNode() + n));
 }

@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/28 19:01:42 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/03 12:42:50 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,6 @@ namespace ft
 			void deleteNode(RedBlackTree *node, T data)
 			{}
 
-			// ITERATORS
 			// SEARCH
 			// INSERT
 	};

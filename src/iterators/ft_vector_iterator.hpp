@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/09 10:10:03 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/03 13:19:46 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,40 @@
 #include <ft_iterator_traits.hpp>
 #include <ft_reverse_iterator.hpp>
 
+// Valid expressions
+// 	X a		👍🏽	
+// 	X b(a)		👍🏽
+// 	b = a		👍🏽
+// 	a == b		👍🏽
+// 	a != b		👍🏽
+// 	*a		👍🏽
+// 	a->		👍🏽
+// 	*a = t Can be dereferenced as an lvalue if in a dereferenceable state
+// 	++a		👍🏽
+//	a++		👍🏽
+//	*a++	👍🏽(Comprobar)
+// 	--a		👍🏽
+//	a--		👍🏽
+//	*a--	👍🏽(Comprobar)
+//	a + n
+//	n + a
+//	a - n
+//	n - a
+//	a - b
+//	a < b
+//	a > b
+//	a <= b
+//	a >= b
+//	a += n
+//	a -= n
+//	a[n]
+
+
 namespace ft
 {
 
 	/* Implementation defined random-access iterator for vector class:
-	** https://www.cplusplus.com/reference/iterator/RandomAccessIterator/ */
+	** cplusplus.com/reference/iterator/RandomAccessIterator/ */
 	template <typename T>
 	class vector_iterator
 	{
@@ -173,7 +202,7 @@ ptrdiff_t operator-(const ft::vector_iterator<U>& lhs, const ft::vector_iterator
 	return lhs.operator->() - rhs.operator->();
 }
 
-template <typename U>
+template <typename U, typename V>
 ft::vector_iterator<U> operator+(typename ft::vector_iterator<U>::difference_type n,
 				const ft::vector_iterator<U>& rhs)
 {
