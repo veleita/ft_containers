@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/03/03 12:42:50 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:53:34 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include <iostream>
 # include <ft_utils.hpp>
+# include <ft_tree_iterator.hpp>
 
 namespace ft
 {
@@ -99,9 +100,9 @@ namespace ft
 				}
 			
 				~Node() {}
-		}
+		};
 
-	template< class T, class Compare = std::less<key_type>, class Alloc = std::allocator<T> >
+	template< class T, class Compare = std::less<T>, class Alloc = std::allocator<T> >
 	class RedBlackTree
 	{
 		public:
@@ -109,7 +110,7 @@ namespace ft
 			typedef T													value_type;
 			typedef size_t												size_type;
 			typedef ft::Node<value_type>								Node;
-			typedef Allocator::template rebind<Node>::other				node_alloc;
+			typedef typename Alloc::template rebind<Node>::other		node_alloc;
 			typedef typename node_alloc::pointer						pointer;
 			typedef typename node_alloc::const_pointer					const_pointer;
 			typedef typename ft::tree_iterator<T, pointer>				iterator;

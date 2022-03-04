@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 17:02:50 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/03/03 15:23:11 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:57:58 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 namespace ft
 {
-	template < typename T >
+	template < typename T, typename NodePointer >
 	class tree_iterator
 	{
 		public:
@@ -41,15 +41,15 @@ namespace ft
 		}
 
 		/* Copy constructor */
-		template <class U>
-		tree_iterator(const tree_iterator<U> &copy)	// X a(b)
+		template <class U, typename P1>
+		tree_iterator(const tree_iterator<U, P1> &copy)	// X a(b)
 			: node(copy.node)
 		{
 		}
 
 		/* Assignation */
-		template <class U>
-		tree_iterator &operator=(const tree_iterator<U> &rhs)	// a = b
+		template <class U, typename P1>
+		tree_iterator &operator=(const tree_iterator<U, P1> &rhs)	// a = b
 		{
 			this->node = rhs.node;
 			this->root = rhs.root;
@@ -57,7 +57,7 @@ namespace ft
 		}
 
 		/* Destructor */
-		virtual ~vector_iterator() {}
+		virtual ~tree_iterator() {}
 
 		/* Getters */
 		pointer	getNode() const {	return node;	}
@@ -79,6 +79,7 @@ namespace ft
 			while (branch->right)
 				branch = branch->right;
 			return branch;
+		}
 		
 		tree_iterator &operator++(void)	// ++a
 		{
@@ -109,7 +110,7 @@ namespace ft
 
 		tree_iterator operator--(int)	// a--
 		{
-			vector_iterator saved_state = *this;
+			tree_iterator saved_state = *this;
 			operator--();
 			return (saved_state);
 		}

@@ -1,0 +1,3 @@
+do const operators work?
+original and replica rules in the makefile dont work as they should
+what things should be centraliced in the iterator base class?
