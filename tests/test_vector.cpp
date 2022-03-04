@@ -6,7 +6,7 @@
 /*   By: mzomeno- <1veleita1@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 07:26:38 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/09 10:32:34 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:17:26 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,26 @@ void test_v_iterators()
         print_content(vct);
         std::cout << "Iterator: " << rend << " | Const iterator: " << c_rend << std::endl;
     }
+	{
+        std::cout << "operators:\n";
+        NAMESPACE::vector<int> vct(10);
+		for (unsigned int i = 0; i < vct.size(); i++)
+			vct[i] = rand() % 10;
+
+        NAMESPACE::vector<int>::iterator vct_i = vct.begin();
+		std::cout << *vct_i << std::endl;
+		std::cout << vct_i++ << std::endl;
+		std::cout << vct_i << std::endl;
+		std::cout << ++vct_i << std::endl;
+		std::cout << *vct_i++ << std::endl;
+		std::cout << vct_i-- << std::endl;
+		std::cout << vct_i << std::endl;
+		std::cout << --vct_i << std::endl;
+		std::cout << *vct_i-- << std::endl;
+		std::cout << (vct_i + 3) << std::endl;
+		std::cout << (vct_i - 3) << std::endl;
+		std::cout << vct_i[3] << std::endl;
+	}
 }
 
 void test_v_access()

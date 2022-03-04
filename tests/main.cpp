@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:05:11 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/09 10:13:17 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:37:07 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef void (*test)(void);
 
 int main()
 {
-
 	struct timeval	tv;
 	unsigned long	before;
 	unsigned long	after;
@@ -31,6 +30,7 @@ int main()
 	gettimeofday(&tv, NULL);
 	before = tv.tv_sec * 1000000 + tv.tv_usec;
 
+/*
 	std::cout << "UTILS TEST\n";
 	std::cout << "===========================\n\n";
 	test utils[6] = {
@@ -58,7 +58,7 @@ int main()
 		(*iterator[i])();
 		std::cout << "---------------------------\n\n";
 	}
-
+*/
 
 	std::cout << "\nVECTOR TEST\n";
 	std::cout << "===========================\n";
@@ -76,7 +76,7 @@ int main()
 		(*vector[i])();
 		std::cout << "---------------------------\n\n";
 	}
-	
+/*	
 	std::cout << "\nSTACK TEST\n";
 	std::cout << "===========================\n";
 	test stack[3] = {
@@ -90,7 +90,7 @@ int main()
 		(*stack[i])();
 		std::cout << "---------------------------\n\n";
 	}
-	
+*/	
 	gettimeofday(&tv, NULL);
 	after = tv.tv_sec * 1000000 + tv.tv_usec;
 	execution_time = before - after;

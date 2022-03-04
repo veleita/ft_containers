@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:15:24 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/03/03 13:19:46 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:36:34 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,7 @@
 #include <ft_reverse_iterator.hpp>
 
 // Valid expressions
-// 	X a		👍🏽	
-// 	X b(a)		👍🏽
-// 	b = a		👍🏽
-// 	a == b		👍🏽
-// 	a != b		👍🏽
-// 	*a		👍🏽
-// 	a->		👍🏽
 // 	*a = t Can be dereferenced as an lvalue if in a dereferenceable state
-// 	++a		👍🏽
-//	a++		👍🏽
-//	*a++	👍🏽(Comprobar)
-// 	--a		👍🏽
-//	a--		👍🏽
-//	*a--	👍🏽(Comprobar)
-//	a + n
-//	n + a
-//	a - n
-//	n - a
-//	a - b
-//	a < b
-//	a > b
-//	a <= b
-//	a >= b
-//	a += n
-//	a -= n
-//	a[n]
 
 
 namespace ft
@@ -71,21 +46,21 @@ namespace ft
 		
 
 		/* Default constructor */
-		explicit vector_iterator(pointer elem = NULL)
+		explicit vector_iterator(pointer elem = NULL)	// 	X a	
 			: _elem(elem)
 		{
 		}
 
 		/* Copy constructor */
 		template <class U>
-		vector_iterator(const vector_iterator<U> &copy)
+		vector_iterator(const vector_iterator<U> &copy)	// 	X b(a)
 			: _elem(copy._elem)
 		{
 		}
 
 		/* Assignation */
 		template <class U>
-		vector_iterator &operator=(const vector_iterator<U> &rhs)
+		vector_iterator &operator=(const vector_iterator<U> &rhs)	// 	b = a
 		{
 			this->_elem = rhs._elem;
 			return (*this);
@@ -95,58 +70,60 @@ namespace ft
 		virtual ~vector_iterator() {}
 
 		/* Logical operators */
-		reference operator*(void) const { return *_elem; }
-		pointer operator->(void) const { return _elem; }
+		reference operator*(void) const { return *_elem; }	// 	*a
+		pointer operator->(void) const { return _elem; }	// 	a->
 
-		vector_iterator &operator++(void)
+//	*a++
+//	*a--
+		vector_iterator &operator++(void)	// 	++a
 		{
 			_elem++;
 			return (*this);
 		}
 
-		vector_iterator operator++(int)
+		vector_iterator operator++(int)	//	a++
 		{
 			vector_iterator saved_state = *this;
 			operator++();
 			return (saved_state);
 		}
 
-		vector_iterator &operator--(void)
+		vector_iterator &operator--(void)	// 	--a
 		{
 			_elem--;
 			return (*this);
 		}
 
-		vector_iterator operator--(int)
+		vector_iterator operator--(int)	//	a--
 		{
 			vector_iterator saved_state = *this;
 			operator--();
 			return (saved_state);
 		}
 
-		vector_iterator operator+(difference_type n) const
+		vector_iterator operator+(difference_type n) const	//	a + n
 		{
 			return (vector_iterator(_elem + n));
 		}
 
-		vector_iterator operator-(difference_type n) const
+		vector_iterator operator-(difference_type n) const	//	a - n
 		{
 			return (vector_iterator(_elem - n));
 		}
 
-		vector_iterator &operator+=(difference_type n)
+		vector_iterator &operator+=(difference_type n)	//	a += n
 		{
 			_elem += n;
 			return (*this);
 		}
 
-		vector_iterator &operator-=(difference_type n)
+		vector_iterator &operator-=(difference_type n)	//	a -= n
 		{
 			_elem -= n;
 			return (*this);
 		}
 
-		reference operator[](difference_type n) const
+		reference operator[](difference_type n) const	//	a[n]
 		{
 			return (*(operator+(n)));
 		}
@@ -158,37 +135,37 @@ namespace ft
 // TYPE OF ITERATOR. ITERATOR_TRAITS NEED THESE OPERATORS POR DISTANCE()
 
 /* Comparison operators */
-template <typename U, typename V>
+template <typename U, typename V>	// 	a == b
 bool operator==(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
 	return (lhs.operator->() == rhs.operator->());
 }
 
-template <typename U, typename V>
+template <typename U, typename V>	// 	a != b
 bool operator!=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
 	return (lhs.operator->() != rhs.operator->());
 }
 
-template <typename U, typename V>
+template <typename U, typename V>	//	a < b
 bool operator<(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
 	return (lhs.operator->() < rhs.operator->());
 }
 
-template <typename U, typename V>
+template <typename U, typename V>	//	a > b
 bool operator<=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
 	return (lhs.operator->() <= rhs.operator->());
 }
 
-template <typename U, typename V>
+template <typename U, typename V>	//	a <= b
 bool operator>(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
 	return (lhs.operator->() > rhs.operator->());
 }
 
-template <typename U, typename V>
+template <typename U, typename V>	//	a >= b
 bool operator>=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> &rhs)
 {
 	return (lhs.operator->() >= rhs.operator->());
@@ -196,17 +173,25 @@ bool operator>=(const ft::vector_iterator<U> &lhs, const ft::vector_iterator<V> 
 
 /* Algorithmic operators */
 
-template <typename U, typename V>
-ptrdiff_t operator-(const ft::vector_iterator<U>& lhs, const ft::vector_iterator<V>& rhs)
+template <typename U, typename V>	//	a - b
+typename ft::vector_iterator<U>::difference_type operator-(const ft::vector_iterator<U>& lhs,
+		const ft::vector_iterator<V>& rhs)
 {
 	return lhs.operator->() - rhs.operator->();
 }
 
-template <typename U, typename V>
+template <typename U, typename V>	//	n + a
 ft::vector_iterator<U> operator+(typename ft::vector_iterator<U>::difference_type n,
-				const ft::vector_iterator<U>& rhs)
+		const ft::vector_iterator<U>& rhs)
 {
 	return (ft::vector_iterator<U>)(rhs.operator->() + n);
+}
+
+template <typename U, typename V>	//	n - a
+ft::vector_iterator<U> operator-(typename ft::vector_iterator<U>::difference_type n,
+		const ft::vector_iterator<U>& rhs)
+{
+	return (ft::vector_iterator<U>)(rhs.operator->() - n);
 }
 
 #endif

@@ -11,7 +11,7 @@
 #endif
 
 #if NAMESPACE == ft
-#include <ft_red_black_tree.hpp>
+//#include <ft_red_black_tree.hpp>
 #endif
 
 class A
