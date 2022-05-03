@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/05/03 15:30:10 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:55:39 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ namespace ft
 			 * 							range of elements to be copied.
 			 * 				x		:	The vector of which the constructed vector is
 			 * 							to be a copy.
+			 */
 
 			 // WHICH VARIABLES ARE GOING TO NEED TO FILL?
 
@@ -117,7 +118,6 @@ namespace ft
 
 			~map()
 			{}
-			*/
 
 
 			/* ACCESS */

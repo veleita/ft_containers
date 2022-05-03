@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/03/04 09:53:34 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:46:17 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ namespace ft
 				}
 			}
 
-			void insert(RedBlackTree *root, RedBlackTree *newNode)
+			void insert(RedBlackTree *root = nullptr, RedBlackTree *newNode)
 			{
 				if (root == nullptr)				// case empty tree
 				{
