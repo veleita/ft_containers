@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/25 16:33:35 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:30:10 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,35 @@ namespace ft
 
 			explicit map (const key_compare& comp = key_compare(),
              				 const allocator_type& alloc = allocator_type())
+							 :	_tree(), _k_comp(comp), _alloc(alloc), _v_comp(value_compare())
 			{}
 
 			template <class InputIterator>
 				map (InputIterator first, InputIterator last,
 						const key_compare& comp = key_compare(),
 						const allocator_type& alloc = allocator_type())
-			{}
+						:	_tree(), _k_comp(comp), _alloc(alloc), _v_comp(value_compare())
+			{
+				for (InputIterator i = first; i != last; i++)
+					_tree.insert(*i);
+			}
 
 			map (const map& x)
-			{}
+			{
+				*this = x;
+			}
 
 			map& operator=( const map& other )
-			{}
+			{
+				_tree = other._tree;
+				_v_comp = other._v_comp;
+				_k_comp = other._k_comp;
+				_alloc = other._alloc;
+			}
 
 			~map()
 			{}
-			 */
+			*/
 
 
 			/* ACCESS */
