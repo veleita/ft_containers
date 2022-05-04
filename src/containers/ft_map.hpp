@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:51:39 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/05/03 15:55:39 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:12:21 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ namespace ft
 {
 	/* Reference: https://www.cplusplus.com/reference/map/map/ */
 
-	template < class key_type,                                 		// map::key_type
+	template < class Key,	                                 		// map::key_type
 			 class T,                                     			// map::mapped_type
-			 class Compare = std::less<key_type>,					// map::key_compare
-			 class Alloc = allocator<ft::pair<const key_type,T> >	// map::allocator_type
+			 class Compare = std::less<Key>,						// map::key_compare
+			 class Alloc = std::allocator<ft::pair<const Key,T> >	// map::allocator_type
 			 >
 	class map
 	{
@@ -40,14 +40,14 @@ namespace ft
 			typedef typename allocator_type::const_reference   	const_reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef ft::red_black_tree<value_type, key_compare>	tree_type;
+			typedef ft::RedBlackTree<value_type, key_compare>	tree_type;
 			typedef typename tree_type::iterator				iterator;
 			typedef typename tree_type::const_iterator			const_iterator;
 			typedef typename ft::reverse_iterator<iterator>		reverse_iterator;
-			typedef typename ft::reverse_iterator<iconst_iterator>
+			typedef typename ft::reverse_iterator<const_iterator>
 				const_reverse_iterator;
-			gypedef typename ft::iterator_traits<iterator>::difference_type
-				difference_type;
+//			typedef typename ft::iterator_traits<iterator>::difference_type
+//				difference_type;
 			typedef size_t										size_type;
 	
 			class value_compare
@@ -90,14 +90,14 @@ namespace ft
 
 			explicit map (const key_compare& comp = key_compare(),
              				 const allocator_type& alloc = allocator_type())
-							 :	_tree(), _k_comp(comp), _alloc(alloc), _v_comp(value_compare())
+							 :	_alloc(alloc), _k_comp(comp), _v_comp(value_compare()), _tree()
 			{}
 
 			template <class InputIterator>
 				map (InputIterator first, InputIterator last,
 						const key_compare& comp = key_compare(),
 						const allocator_type& alloc = allocator_type())
-						:	_tree(), _k_comp(comp), _alloc(alloc), _v_comp(value_compare())
+						:	_k_comp(comp), _alloc(alloc), _v_comp(value_compare()), _tree()
 			{
 				for (InputIterator i = first; i != last; i++)
 					_tree.insert(*i);
@@ -243,11 +243,11 @@ namespace ft
 			{	return _k_comp;	}
 			
 			// returns the function that compares keys in objects of type value_type
-			ft::map::value_compare value_comp() const
+			value_compare value_comp() const
 			{	return _v_comp;	}
 	};
 
-	/* NON-MEMBER FUNCTIONS */
+	/* NON-MEMBER FUNCTIONS
 
 	template< class Key, class T, class Compare, class Alloc >
 		bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs,
@@ -282,5 +282,8 @@ namespace ft
 	template< class Key, class T, class Compare, class Alloc >
 		void swap( ft::map<Key,T,Compare,Alloc>& lhs,
         		   ft::map<Key,T,Compare,Alloc>& rhs )
-		{}
+		{} 
+	*/
 };
+
+#endif

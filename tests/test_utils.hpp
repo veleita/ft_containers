@@ -6,12 +6,12 @@
 #include <list>
 
 #if NAMESPACE == std
-#include <type_traits> // is_integral
-#include <utility>     // pair
+# include <type_traits> // is_integral
+# include <utility>     // pair
 #endif
 
 #if NAMESPACE == ft
-//#include <ft_red_black_tree.hpp>
+# include <ft_red_black_tree.hpp>
 #endif
 
 class A

@@ -1,3 +1,6 @@
+#ifndef FT_REVERSE_ITERATOR_HPP
+# define FT_REVERSE_ITERATOR_HPP
+
 
 namespace ft
 {
@@ -67,3 +70,5 @@ namespace ft
         iterator_type _baseIterator;
     };
 };
+
+#endif

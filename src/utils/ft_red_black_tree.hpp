@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:53:59 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/05/03 15:46:17 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:06:42 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,10 @@ namespace ft
 			Compare			compareFunc;
     		
 			// Constructors
-    		RedBlackTree()	: 	_data(0), _left(nullptr), _right(nullptr), _parent(nullptr), _color(RED)
+    		RedBlackTree()	:	root(nullptr), size(0)
 			{}
 
-    		RedBlackTree(T data)	:	_data(data), _left(nullptr), _right(nullptr), _parent(nullptr), _color(RED)
+    		RedBlackTree(pointer root_node)	:	root(root_node)
 			{}
 
 
@@ -222,6 +222,7 @@ namespace ft
 						grandParent->getColor == RED;
 						if (grandParent->parent->getColor == RED)	// Recursive call if grandParent
 							balanceTree(root, parent);			// and greatgrandparent are both red
+					}
 				}
 				else											// Case 3 -> rotate newNode with its parent
 				{
@@ -239,7 +240,7 @@ namespace ft
 				}
 			}
 
-			void insert(RedBlackTree *root = nullptr, RedBlackTree *newNode)
+			void insert(RedBlackTree *newNode)
 			{
 				if (root == nullptr)				// case empty tree
 				{
@@ -263,7 +264,7 @@ namespace ft
 					lastNode->left = newNode;
 				else
 					lastNode->right = newNode;
-				balanceTree(newNode;)
+				balanceTree(newNode);
 			}
 
 	    	void inorderTraverse(RedBlackTree *node)
@@ -274,12 +275,11 @@ namespace ft
 				std::cout << node->data << std::endl;
 				inorder(node->right);
 			}
-
+/*
 			void deleteNode(RedBlackTree *node, T data)
 			{}
-
+*/
 			// SEARCH
-			// INSERT
 	};
 };
 

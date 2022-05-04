@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 19:04:03 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/02/25 16:31:34 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:07:19 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ void test_lexicographical_compare()
 }
 
 
-/* RED_BLACK_TREE */
+/* RED_BLACK_TREE 
 
-t_node	*search(t_node	*root, int key)
+ft::Node<>	*search(ft::Node<>	*root, int key)
 {
 	// Base Cases: root is null or key is present at root
 	if (root == NULL || root->key == key)
@@ -161,3 +161,5 @@ void test_rb_tree()
 {
 	RedBlackTree rb_tree<>;
 }
+
+*/

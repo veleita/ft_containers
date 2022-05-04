@@ -6,7 +6,7 @@
 /*   By: mzomeno- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 17:02:50 by mzomeno-          #+#    #+#             */
-/*   Updated: 2022/03/04 09:57:58 by mzomeno-         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:55:11 by mzomeno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,9 @@ ptrdiff_t operator-(const ft::tree_iterator<U,P1>& lhs, const ft::tree_iterator<
 
 template <typename U, typename P1>	// n + a
 ft::tree_iterator<U,P1> operator+(typename ft::tree_iterator<U,P1>::difference_type n,
-		const tree_iterator<U,P1> &rhs)
+		const ft::tree_iterator<U,P1> &rhs)
 {
-	return (tree_iterator<U,P1>(rhs.getNode() + n));
+	return (ft::tree_iterator<U,P1>(rhs.getNode() + n));
 }
+
+#endif
